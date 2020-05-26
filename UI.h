@@ -10,5 +10,6 @@ class UI
 		static std::pair<int, int>itemBox_pointer;
 		static int backpack_pointer;
 		static Container now_itemBox;
+		static int interact_key;
 };
 

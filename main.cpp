@@ -47,7 +47,7 @@ void use_item()
 			Item temp = Resource::item_map[it->first];
 			temp.use();
 			Resource::player_backpack.remove(it->first);
-			if (Resource::player_backpack.items.size() > UI::backpack_pointer)		//修改了一个小bug
+			if (Resource::player_backpack.items.size() >= UI::backpack_pointer)		//修改了一个小bug
 				UI::backpack_pointer = 0;
 			return;
 		}
@@ -88,6 +88,7 @@ void interact()
 			if (type == Interaction::TYPE::ItemBox)
 			{
 				UI::now_itemBox = Resource::itemBox_map[temp.key];
+				UI::interact_key = temp.key;
 				UI::open_itemBox = true;
 			}
 			else if (type == Interaction::TYPE::Event)
@@ -96,6 +97,48 @@ void interact()
 			}
 		}
 		
+	}
+}
+/*
+	移动物品
+*/
+void move_item()
+{
+	int now = 0;
+
+	if (UI::itemBox_pointer.first == 0)			//背包移动到物品箱中
+	{
+		for (std::list<std::pair<int, int>>::iterator it = Resource::player_backpack.items.begin(); it != Resource::player_backpack.items.end(); it++)
+		{
+			if (now == UI::itemBox_pointer.second)
+			{
+				Resource::itemBox_map[UI::interact_key].add(it->first);
+				Resource::player_backpack.remove(it->first);
+
+				UI::now_itemBox = Resource::itemBox_map[UI::interact_key];					//把物品信息更新
+				if (Resource::player_backpack.items.size() >= UI::itemBox_pointer.second)
+					UI::itemBox_pointer.second = 0;
+				return;
+			}
+			now++;
+		}
+	}
+	else										//物品箱移动到背包
+	{
+		for (std::list<std::pair<int, int>>::iterator it = UI::now_itemBox.items.begin(); it != UI::now_itemBox.items.end(); it++)
+		{
+			if (now == UI::itemBox_pointer.second)
+			{
+				Resource::player_backpack.add(it->first);
+				Resource::itemBox_map[UI::interact_key].remove(it->first);
+
+				UI::now_itemBox = Resource::itemBox_map[UI::interact_key];					//把物品信息更新
+				if (UI::now_itemBox.items.size() >= UI::itemBox_pointer.second)
+					UI::itemBox_pointer.second = 0;
+				return;
+			}
+			now++;
+		}
 	}
 }
 
@@ -154,6 +197,10 @@ void updateWithInput()
 		else if (KEYDOWN('E') || KEYDOWN(VK_ESCAPE))
 		{
 			UI::open_itemBox = false;
+		}
+		else if (KEYDOWN('F'))
+		{
+			move_item();
 		}
 	}
 	else
