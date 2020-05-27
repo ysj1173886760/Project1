@@ -6,6 +6,7 @@
 #include"Container.h"
 #include"Event.h"
 #include"Interaction.h"
+#include"InteractiveEvent.h"
 
 class Item;
 
@@ -18,6 +19,8 @@ class Resource
 		static IMAGE backpack;
 		static IMAGE backpack_pointer;
 		static IMAGE itemBox;
+		static IMAGE eventWindow;
+		static IMAGE event_pointer;
 
 		static int school_map[30][30];
 
@@ -34,6 +37,8 @@ class Resource
 		static std::vector<Container>itemBox_map;
 
 		static std::vector<Interaction>interaction_map;
+
+		static std::vector<InteractiveEvent>interactionEvent_map;
 };
 
 

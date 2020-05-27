@@ -85,15 +85,21 @@ void interact()
 		{
 			Interaction temp = Resource::interaction_map[Resource::school_map[interact_x][interact_y]];
 			Interaction::TYPE type = temp.type;
+			Resource::Event_queue.push_back(temp.des);
+
 			if (type == Interaction::TYPE::ItemBox)
 			{
 				UI::now_itemBox = Resource::itemBox_map[temp.key];
 				UI::interact_key = temp.key;
 				UI::open_itemBox = true;
+				UI::itemBox_pointer.first = 0;
+				UI::itemBox_pointer.second = 0;
 			}
 			else if (type == Interaction::TYPE::Event)
 			{
-
+				UI::open_event = true;
+				UI::event_pointer = 0;
+				UI::now_event = Resource::interactionEvent_map[temp.key];
 			}
 		}
 		
@@ -142,6 +148,29 @@ void move_item()
 	}
 }
 
+/*
+	显示时间窗口
+*/
+void do_event()
+{
+	for (int i = 0; i < UI::now_event.selections.size(); i++)
+	{
+		if (i == UI::event_pointer)
+		{
+			if (UI::now_event.selections[i].type == Result::TYPE::UpdatePlayerState)
+			{
+				UI::now_event.selections[i].updateState();
+				Resource::Event_queue.push_back(UI::now_event.selections[i].result);
+			}
+			else if (UI::now_event.selections[i].type == Result::TYPE::DoNothing)
+			{
+				//just do nothing
+			}
+			return;
+		}
+	}
+}
+
 void updateWithInput()
 {
 	if (UI::open_backpack)
@@ -163,6 +192,7 @@ void updateWithInput()
 		else if (KEYDOWN('E') || KEYDOWN(VK_ESCAPE))
 		{
 			UI::open_backpack = false;
+			UI::backpack_pointer = 0;
 		}
 	}
 	else if(UI::open_itemBox)
@@ -201,6 +231,24 @@ void updateWithInput()
 		else if (KEYDOWN('F'))
 		{
 			move_item();
+		}
+	}
+	else if (UI::open_event)
+	{
+		if (KEYDOWN('W'))
+		{
+			if (UI::event_pointer - 1 >= 0)
+				UI::event_pointer--;
+		}
+		else if (KEYDOWN('S'))
+		{
+			if (UI::event_pointer + 1 < UI::now_event.selections.size())
+				UI::event_pointer++;
+		}
+		else if (KEYDOWN('F'))
+		{
+			do_event();
+			UI::open_event = false;
 		}
 	}
 	else
@@ -273,6 +321,82 @@ void draw_backpack()
 }
 
 /*
+	画事件窗口
+*/
+void draw_eventWindow()
+{
+	putimage(180, 180, &Resource::eventWindow);
+
+	std::string temp = "";
+
+	int count = 0;
+	int now = 0;
+
+	for (int i = 0; i < UI::now_event.des.size(); i++)
+	{
+		if (UI::now_event.des[i] & 0x80)
+		{
+			count += 1;
+			temp += UI::now_event.des[i];
+			temp += UI::now_event.des[++i];
+		}
+		else
+		{
+			count += 1;
+			temp += UI::now_event.des[i];
+		}
+		if (count >= 20)
+		{
+			count = 0;
+			out_string(180 + 30, 180 + 20 + now * 25, temp);
+			now++;
+			temp = "";
+		}
+	}
+	if (count != 0)
+	{
+		count = 0;
+		out_string(180 + 30, 180 + 20 + now * 25, temp);
+		now++;
+		temp = "";
+	}
+
+	for (int i = 0; i < UI::now_event.selections.size(); i++)
+	{
+		if (i == UI::event_pointer)
+			putimage(180, 180 + 50 + now * 25, &Resource::event_pointer);
+		for (int j = 0; j < UI::now_event.selections[i].des.size(); j++)
+		{
+			if (UI::now_event.selections[i].des[j] & 0x80)
+			{
+				count += 1;
+				temp += UI::now_event.selections[i].des[j];
+				temp += UI::now_event.selections[i].des[++j];
+			}
+			else
+			{
+				count += 1;
+				temp += UI::now_event.selections[i].des[j];
+			}
+			if (count >= 20)
+			{
+				count = 0;
+				out_string(180 + 30, 180 + 50 + now * 25, temp);
+				now++;
+				temp = "";
+			}
+		}
+		if (count != 0)
+		{
+			count = 0;
+			out_string(180 + 30, 180 + 50 + now * 25, temp);
+			now++;
+			temp = "";
+		}
+	}
+}
+
+/*
 	180
 */
 void draw_state()
@@ -286,32 +410,38 @@ void draw_state()
 	outtextxy(750, 90, _T("口渴值:"));
 	out_number(810, 90, PlayerState::player_water);
 
-	outtextxy(750, 120, _T("疲劳值:"));
-	out_number(810, 120, PlayerState::player_fatigue);
+	outtextxy(750, 120, _T("神志:"));
+	out_number(810, 120, PlayerState::player_sanity);
 
-	outtextxy(750, 150, _T("您当前在:"));
-	out_string(830, 150, PlayerState::player_position);
+	outtextxy(750, 150, _T("疲劳值:"));
+	out_number(810, 150, PlayerState::player_fatigue);
 
-	outtextxy(750, 180, _T("您当前面向:"));
+	outtextxy(750, 180, _T("您当前在:"));
+	out_string(830, 180, PlayerState::player_position);
+
+	outtextxy(750, 210, _T("您当前面向:"));
 	if (PlayerState::player_face == 0)			//南方
 	{
-		outtextxy(850, 180, _T("南方"));
+		outtextxy(850, 210, _T("南方"));
 	}
 	else if (PlayerState::player_face == 1)		//东方
 	{
-		outtextxy(850, 180, _T("东方"));
+		outtextxy(850, 210, _T("东方"));
 	}
 	else if (PlayerState::player_face == 2)		//北方
 	{
-		outtextxy(850, 180, _T("北方"));
+		outtextxy(850, 210, _T("北方"));
 	}
 	else if (PlayerState::player_face == 3)		//西方
 	{
-		outtextxy(850, 180, _T("西方"));
+		outtextxy(850, 210, _T("西方"));
 	}
 
 }
 
+/*
+	事件最多20个字
+*/
 void draw_Event()
 {
 	if (Resource::Event_queue.empty())
@@ -373,6 +503,8 @@ void draw()
 		draw_backpack();
 	if (UI::open_itemBox)
 		draw_itemBox();
+	if (UI::open_event)
+		draw_eventWindow();
 }
 
 void init()

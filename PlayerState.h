@@ -12,5 +12,6 @@ class PlayerState
 		static int player_fatigue;
 		static std::string player_position;
 		static int player_face;
+		static int player_sanity;
 };
 

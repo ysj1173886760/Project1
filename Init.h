@@ -1,6 +1,9 @@
 #pragma once
 #include"Resource.h"
 #include"PlayerState.h"
+#include<fstream>
+#include<exception>
+#include<iostream>
 
 #define BLOCK 24
 

@@ -142,10 +142,12 @@
     <ClCompile Include="Event.cpp" />
     <ClCompile Include="Init.cpp" />
     <ClCompile Include="Interaction.cpp" />
+    <ClCompile Include="InteractiveEvent.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PlayerState.cpp" />
     <ClCompile Include="Resource.cpp" />
+    <ClCompile Include="Result.cpp" />
     <ClCompile Include="UI.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -154,9 +156,11 @@
     <ClInclude Include="head.h" />
     <ClInclude Include="Init.h" />
     <ClInclude Include="Interaction.h" />
+    <ClInclude Include="InteractiveEvent.h" />
     <ClInclude Include="Item.h" />
     <ClInclude Include="PlayerState.h" />
     <ClInclude Include="Resource.h" />
+    <ClInclude Include="Result.h" />
     <ClInclude Include="UI.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

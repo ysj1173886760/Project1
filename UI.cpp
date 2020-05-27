@@ -11,3 +11,9 @@ int UI::backpack_pointer = 0;
 Container UI::now_itemBox(0, 0);
 
 int UI::interact_key = 0;
+
+bool UI::open_event = false;
+
+int UI::event_pointer = 0;
+
+InteractiveEvent UI::now_event("");

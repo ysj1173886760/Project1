@@ -1,6 +1,7 @@
 #pragma once
 #include<iostream>
 #include"Container.h"
+#include"InteractiveEvent.h"
 
 class UI
 {
@@ -11,5 +12,8 @@ class UI
 		static int backpack_pointer;
 		static Container now_itemBox;
 		static int interact_key;
+		static bool open_event;
+		static int event_pointer;
+		static InteractiveEvent now_event;
 };
 

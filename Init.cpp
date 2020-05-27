@@ -8,6 +8,8 @@ void Init::init_image()
 	loadimage(&Resource::backpack, _T("Resources\\backpack.png"));
 	loadimage(&Resource::backpack_pointer, _T("Resources\\backpack_pointer.png"));
 	loadimage(&Resource::itemBox, _T("Resources\\itemBox.png"));
+	loadimage(&Resource::eventWindow, _T("Resources\\eventWindow.png"));
+	loadimage(&Resource::event_pointer, _T("Resources\\event_pointer.png"));
 }
 
 void Init::init_player_state()
@@ -20,6 +22,7 @@ void Init::init_player_state()
 	PlayerState::player_fatigue = 0;
 	PlayerState::player_position = "废弃的学校";
 	PlayerState::player_face = 0;
+	PlayerState::player_sanity = 100;
 }
 
 /*
@@ -29,89 +32,32 @@ void Init::init_player_state()
 */
 void school_init()
 {
-	Resource::school_map[0][6] = 1;
-	Resource::school_map[0][7] = 1;
-	Resource::school_map[1][8] = 1;
-	Resource::school_map[1][9] = 1;
-	Resource::school_map[1][10] = 1;
-	Resource::school_map[1][11] = 1;
-	Resource::school_map[1][12] = 1;
-	Resource::school_map[1][13] = 1;
-	Resource::school_map[0][14] = 1;
-	Resource::school_map[1][14] = 1;
-	Resource::school_map[2][14] = 1;
-	Resource::school_map[3][14] = 1;
-	Resource::school_map[4][14] = 1;
-	Resource::school_map[5][14] = 1;
-	Resource::school_map[6][14] = 1;
-	Resource::school_map[7][14] = 1;
-	Resource::school_map[8][14] = 1;
-	Resource::school_map[9][14] = 1;
-	Resource::school_map[10][14] = 1;
-	Resource::school_map[11][14] = 1;
-	Resource::school_map[2][15] = 1;
-	Resource::school_map[3][15] = 1;
-	Resource::school_map[4][15] = 1;
-	Resource::school_map[5][15] = 1;
-	Resource::school_map[6][15] = 1;
-	Resource::school_map[7][15] = 1;
-	Resource::school_map[8][15] = 1;
-	Resource::school_map[9][15] = 1;
-	Resource::school_map[10][15] = 1;
-	Resource::school_map[11][15] = 1;
-	Resource::school_map[12][13] = 1;
-	Resource::school_map[12][14] = 1;
-	Resource::school_map[13][13] = 1;
-	Resource::school_map[13][14] = 1;
-	Resource::school_map[14][13] = 1;
-	Resource::school_map[14][14] = 1;
-	Resource::school_map[18][13] = 1;
-	Resource::school_map[19][13] = 1;
-	Resource::school_map[20][13] = 1;
-	Resource::school_map[21][13] = 1;
-	Resource::school_map[22][13] = 1;
-	Resource::school_map[18][14] = 1;
-	Resource::school_map[19][14] = 1;
-	Resource::school_map[20][14] = 1;
-	Resource::school_map[21][14] = 1;
-	Resource::school_map[22][14] = 1;
-	Resource::school_map[23][14] = 1;
-	Resource::school_map[23][15] = 1;
-	Resource::school_map[24][15] = 1;
-	Resource::school_map[24][16] = 1;
-	Resource::school_map[25][16] = 1;
-	Resource::school_map[25][17] = 1;
-	Resource::school_map[26][17] = 1;
-	Resource::school_map[26][18] = 1;
-	Resource::school_map[27][17] = 1;
-	Resource::school_map[27][18] = 1;
-	Resource::school_map[28][17] = 1;
-	Resource::school_map[28][18] = 1;
-	Resource::school_map[28][19] = 1;
-	Resource::school_map[29][16] = 1;
-	Resource::school_map[29][15] = 1;
-	Resource::school_map[29][14] = 1;
-	Resource::school_map[29][13] = 1;
-	Resource::school_map[29][12] = 1;
-	Resource::school_map[29][11] = 1;
-	Resource::school_map[29][10] = 1;
-	Resource::school_map[29][9] = 1;
-	Resource::school_map[29][8] = 1;
-	Resource::school_map[29][7] = 1;
-	Resource::school_map[29][20] = 1;
-	Resource::school_map[29][21] = 1;
-	Resource::school_map[29][22] = 1;
-	Resource::school_map[29][23] = 1;
-	Resource::school_map[29][24] = 1;
-	Resource::school_map[29][25] = 1;
+	try
+	{
+		std::fstream file;
+		file.open("data\\school_map.txt", std::ios::in);
 
-	Resource::school_map[28][19] = 2;
+		int x = 0, y = 0;
+		while (1)
+		{
+			file >> x >> y;
+			if (file.eof())
+				break;
+			Resource::school_map[x][y] = 1;
+		}
+	}
+	catch (std::exception e)
+	{
+		std::cout << e.what() << std::endl;
+	}
+
 }
 
 void Init::init_map()
 {
 	school_init();
 }
+
 
 void Init::init_item()
 {
@@ -137,6 +83,37 @@ void Init::init_loot()
 	Resource::player_backpack.add(1);
 }
 
+void data1()
+{
+	/*
+		2号是垃圾桶  0号容器
+	*/
+	Resource::school_map[28][19] = 2;
+	Resource::interaction_map.push_back(Interaction(Interaction::TYPE::ItemBox, 0, "求生欲使你忍住刺鼻的味道翻了翻这个垃圾桶"));
+	Container temp(20, 20);
+	temp.add(0);
+	temp.add(0);
+	temp.add(0);
+	temp.add(0);
+	Resource::itemBox_map.push_back(temp);
+}
+
+void data2()
+{
+	/*
+		3号是长椅  0号事件
+	*/
+	Resource::school_map[10][10] = 3;
+	Resource::school_map[11][10] = 3;
+	Resource::interaction_map.push_back(Interaction(Interaction::TYPE::Event, 0, "看起来是个颇具有年代感的长椅"));
+	InteractiveEvent temp("应该是一个可以休息的地方");
+	Result selection1("在椅子上休息一会儿", "你在椅子上躺了一会儿，感觉还不错", Result::TYPE::UpdatePlayerState, 0, 0, -5, 5);
+	Result selection2("算了算了");
+	temp.addResult(selection1);
+	temp.addResult(selection2);
+	Resource::interactionEvent_map.push_back(temp);
+}
+
 void Init::init_data()
 {
 	Resource::Event_queue.clear();
@@ -147,19 +124,14 @@ void Init::init_data()
 		前两个没用，因为下标是从2开始的，前两个用来占位
 	*/
 	Resource::interaction_map.clear();
-	Resource::interaction_map.push_back(Interaction(Interaction::TYPE::ItemBox, 0));
-	Resource::interaction_map.push_back(Interaction(Interaction::TYPE::ItemBox, 0));
+	Resource::interaction_map.push_back(Interaction());
+	Resource::interaction_map.push_back(Interaction());
 
 	/*
 		这里开始添加可互动物品
 	*/
-
-	Resource::interaction_map.push_back(Interaction(Interaction::TYPE::ItemBox, 0));
-	Container temp(20, 20);
-	temp.add(0);
-	temp.add(0);
-	temp.add(0);
-	temp.add(0);
-	Resource::itemBox_map.push_back(temp);
+	
+	data1();
+	data2();
 
 }

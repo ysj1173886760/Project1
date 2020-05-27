@@ -42,6 +42,12 @@
     <ClCompile Include="UI.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="InteractiveEvent.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Result.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PlayerState.h">
@@ -69,6 +75,12 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="UI.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="InteractiveEvent.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Result.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
