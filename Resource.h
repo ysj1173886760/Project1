@@ -2,13 +2,15 @@
 #include<easyx.h>
 #include<vector>
 #include<queue>
+#include<list>
 #include"Item.h"
-#include"Container.h"
 #include"Event.h"
 #include"Interaction.h"
 #include"InteractiveEvent.h"
+#include"Container.h"
 
 class Item;
+class Container;
 
 class Resource
 {

@@ -47,7 +47,7 @@ void use_item()
 			Item temp = Resource::item_map[it->first];
 			temp.use();
 			Resource::player_backpack.remove(it->first);
-			if (Resource::player_backpack.items.size() >= UI::backpack_pointer)		//修改了一个小bug
+			if (Resource::player_backpack.items.size() <= UI::backpack_pointer)		//修改了一个小bug
 				UI::backpack_pointer = 0;
 			return;
 		}
@@ -118,12 +118,17 @@ void move_item()
 		{
 			if (now == UI::itemBox_pointer.second)
 			{
-				Resource::itemBox_map[UI::interact_key].add(it->first);
-				Resource::player_backpack.remove(it->first);
+				if (Resource::itemBox_map[UI::interact_key].canPut(it->first))
+				{
+					Resource::itemBox_map[UI::interact_key].add(it->first);
+					Resource::player_backpack.remove(it->first);
+				}
 
 				UI::now_itemBox = Resource::itemBox_map[UI::interact_key];					//把物品信息更新
-				if (Resource::player_backpack.items.size() >= UI::itemBox_pointer.second)
+				if (Resource::player_backpack.items.size() <= UI::itemBox_pointer.second)
+				{
 					UI::itemBox_pointer.second = 0;
+				}
 				return;
 			}
 			now++;
@@ -135,12 +140,17 @@ void move_item()
 		{
 			if (now == UI::itemBox_pointer.second)
 			{
-				Resource::player_backpack.add(it->first);
-				Resource::itemBox_map[UI::interact_key].remove(it->first);
+				if (Resource::player_backpack.canPut(it->first))
+				{
+					Resource::player_backpack.add(it->first);
+					Resource::itemBox_map[UI::interact_key].remove(it->first);
+				}
 
 				UI::now_itemBox = Resource::itemBox_map[UI::interact_key];					//把物品信息更新
-				if (UI::now_itemBox.items.size() >= UI::itemBox_pointer.second)
+				if (UI::now_itemBox.items.size() <= UI::itemBox_pointer.second)
+				{
 					UI::itemBox_pointer.second = 0;
+				}
 				return;
 			}
 			now++;
@@ -304,6 +314,10 @@ void draw_backpack()
 {
 	putimage(BACKPACK_X, BACKPACK_Y, &Resource::backpack);
 	
+	out_number(BACKPACK_X + 240, BACKPACK_Y + 10, Resource::player_backpack.space);
+	outtextxy(BACKPACK_X + 260, BACKPACK_Y + 10, _T("/"));
+	out_number(BACKPACK_X + 270, BACKPACK_Y + 10, Resource::player_backpack.capacity);
+	
 	if (Resource::player_backpack.items.size() == 0)
 		return;
 	
@@ -462,6 +476,14 @@ void draw_itemBox()
 		左边是 0， 180 右边是 360， 180
 	*/
 	putimage(0, 180, &Resource::itemBox);
+	
+	out_number(240, 180 + 10, Resource::player_backpack.space);
+	outtextxy(260, 180 + 10, _T("/"));
+	out_number(270, 180 + 10, Resource::player_backpack.capacity);
+
+	out_number(360 + 240, 180 + 10, UI::now_itemBox.space);
+	outtextxy(360 + 260, 180 + 10, _T("/"));
+	out_number(360 + 270, 180 + 10, UI::now_itemBox.capacity);
 
 	if (Resource::player_backpack.items.size() == 0 && UI::now_itemBox.items.size() == 0)
 		return;
@@ -520,9 +542,9 @@ void init()
 int main()
 {
 	//调试用
-	//initgraph(1080, 720, EW_SHOWCONSOLE);
+	initgraph(1080, 720, EW_SHOWCONSOLE);
 
-	initgraph(1080, 720);
+	//initgraph(1080, 720);
 
 	//setaspectratio(1.5, 1.5);		//设置缩放因子
 

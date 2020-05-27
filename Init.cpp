@@ -62,12 +62,17 @@ void Init::init_map()
 void Init::init_item()
 {
 	Resource::item_map.clear();
-	Resource::item_map.push_back(Item(1, 0, 0, 5, 0, 0, 1, 1, "苹果", "香甜可口的苹果，和牛顿有某种关系", "你吃了个苹果，感觉还不错"));
-	Resource::item_map.push_back(Item(1, 1, 0, 0, 5, 0, 1, 1, "矿泉水", "一瓶普通的矿泉水，在这资源匮乏的末世显得异常罕见", "你喝了瓶水，口渴程度有所缓解"));
+	Resource::item_map.push_back(Item(1, 0, 0, 5, 0, 0, 1, "苹果", "香甜可口的苹果，和牛顿有某种关系", "你吃了个苹果，感觉还不错"));
+	Resource::item_map.push_back(Item(1, 1, 0, 0, 5, 0, 1, "矿泉水", "一瓶普通的矿泉水，在这资源匮乏的末世显得异常罕见", "你喝了瓶水，口渴程度有所缓解"));
 }
 
 void Init::init_loot()
 {
+
+	/*
+		玩家背包
+	*/
+	Resource::player_backpack.set(0, 25);			//设置空间
 	Resource::player_backpack.add(0);
 	Resource::player_backpack.add(0);
 	Resource::player_backpack.add(0);
@@ -90,7 +95,19 @@ void data1()
 	*/
 	Resource::school_map[28][19] = 2;
 	Resource::interaction_map.push_back(Interaction(Interaction::TYPE::ItemBox, 0, "求生欲使你忍住刺鼻的味道翻了翻这个垃圾桶"));
-	Container temp(20, 20);
+	Container temp(0, 20);
+	temp.add(0);
+	temp.add(0);
+	temp.add(0);
+	temp.add(0);
+	temp.add(0);
+	temp.add(0);
+	temp.add(0);
+	temp.add(0);
+	temp.add(0);
+	temp.add(0);
+	temp.add(0);
+	temp.add(0);
 	temp.add(0);
 	temp.add(0);
 	temp.add(0);

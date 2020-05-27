@@ -1,6 +1,7 @@
 #pragma once
 #include"Resource.h"
 #include"PlayerState.h"
+#include"Container.h"
 #include<fstream>
 #include<exception>
 #include<iostream>

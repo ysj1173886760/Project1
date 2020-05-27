@@ -1,6 +1,7 @@
 #pragma once
 
 #include<list>
+#include"Resource.h"
 
 class Container
 {
@@ -21,8 +22,16 @@ class Container
 			this->capacity = capacity;
 			items.clear();
 		}
+		Container(int capacity)
+		{
+			this->space = 0;
+			this->capacity = capacity;
+			items.clear();
+		}
+		void set(int);
 		void set(int, int);
 		void add(int);
 		void remove(int);
+		bool canPut(int);
 };
 
