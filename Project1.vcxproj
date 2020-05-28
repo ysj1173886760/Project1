@@ -140,6 +140,7 @@
   <ItemGroup>
     <ClCompile Include="Container.cpp" />
     <ClCompile Include="Event.cpp" />
+    <ClCompile Include="Gametime.cpp" />
     <ClCompile Include="Init.cpp" />
     <ClCompile Include="Interaction.cpp" />
     <ClCompile Include="InteractiveEvent.cpp" />
@@ -153,6 +154,7 @@
   <ItemGroup>
     <ClInclude Include="Container.h" />
     <ClInclude Include="Event.h" />
+    <ClInclude Include="GameTime.h" />
     <ClInclude Include="head.h" />
     <ClInclude Include="Init.h" />
     <ClInclude Include="Interaction.h" />

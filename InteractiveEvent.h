@@ -5,6 +5,8 @@
 /*
 	可交互事件类
 */
+class Result;
+
 class InteractiveEvent
 {
 	public:

@@ -8,9 +8,13 @@
 #include"Interaction.h"
 #include"InteractiveEvent.h"
 #include"Container.h"
+#include"GameTime.h"
+
 
 class Item;
 class Container;
+class InteractiveEvent;
+class Result;
 
 class Resource
 {
@@ -41,6 +45,8 @@ class Resource
 		static std::vector<Interaction>interaction_map;
 
 		static std::vector<InteractiveEvent>interactionEvent_map;
+
+		static GameTime Maintime;
 };
 
 

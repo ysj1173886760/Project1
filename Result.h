@@ -1,6 +1,7 @@
 #pragma once
 #include<string>
 #include"PlayerState.h"
+#include"Resource.h"
 
 class Result
 {
@@ -18,8 +19,11 @@ class Result
 		int water;
 		int fatigue;
 		int sanity;
+		int sec;
+		int min;
+		int hou;
 
-		Result(std::string des, std::string result, TYPE type, int food, int water, int fatigue, int sanity)
+		Result(std::string des, std::string result, TYPE type, int food, int water, int fatigue, int sanity, int sec, int min, int hou)
 		{
 			this->des = des;
 			this->result = result;
@@ -28,6 +32,9 @@ class Result
 			this->water = water;
 			this->fatigue = fatigue;
 			this->sanity = sanity;
+			this->sec = sec;
+			this->min = min;
+			this->hou = hou;
 		}
 		
 		Result()
@@ -39,6 +46,9 @@ class Result
 			this->water = 0;
 			this->fatigue = 0;
 			this->sanity = 0;
+			this->sec = 0;
+			this->min = 0;
+			this->hou = 0;
 		}
 
 		Result(std::string des)
@@ -50,6 +60,9 @@ class Result
 			this->water = 0;
 			this->fatigue = 0;
 			this->sanity = 0;
+			this->sec = 0;
+			this->min = 0;
+			this->hou = 0;
 		}
 
 		void updateState();

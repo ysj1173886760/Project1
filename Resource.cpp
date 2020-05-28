@@ -22,3 +22,5 @@ std::vector<Container>Resource::itemBox_map;
 std::vector<Interaction>Resource::interaction_map;
 
 std::vector<InteractiveEvent>Resource::interactionEvent_map;
+
+GameTime Resource::Maintime(0, 0, 0, 0);

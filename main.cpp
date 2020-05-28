@@ -10,6 +10,7 @@
 #include "head.h"
 #pragma comment( lib, "MSIMG32.LIB")
 
+
 void out_number(int x, int y, int num)
 {
 	TCHAR s[10];
@@ -310,6 +311,12 @@ void updateWithInput()
 	
 }
 
+void updateWithoutInput()
+{
+	Resource::Maintime.add();
+
+}
+
 void draw_backpack()
 {
 	putimage(BACKPACK_X, BACKPACK_Y, &Resource::backpack);
@@ -451,6 +458,11 @@ void draw_state()
 		outtextxy(850, 210, _T("西方"));
 	}
 
+	outtextxy(750, 240, _T("当前时间:"));
+	std::string now_time = std::to_string(Resource::Maintime.days) + ":" + std::to_string(Resource::Maintime.hours) + ":";
+	now_time += std::to_string(Resource::Maintime.minutes) + ":" + std::to_string(Resource::Maintime.seconds);
+	out_string(830, 240, now_time);
+
 }
 
 /*
@@ -542,9 +554,9 @@ void init()
 int main()
 {
 	//调试用
-	initgraph(1080, 720, EW_SHOWCONSOLE);
+	//initgraph(1080, 720, EW_SHOWCONSOLE);
 
-	//initgraph(1080, 720);
+	initgraph(1080, 720);
 
 	//setaspectratio(1.5, 1.5);		//设置缩放因子
 
@@ -553,6 +565,7 @@ int main()
 	while (1)
 	{
 		updateWithInput();
+		updateWithoutInput();
 		cleardevice();
 		draw();
 		FlushBatchDraw();

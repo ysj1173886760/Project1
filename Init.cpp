@@ -62,8 +62,8 @@ void Init::init_map()
 void Init::init_item()
 {
 	Resource::item_map.clear();
-	Resource::item_map.push_back(Item(1, 0, 0, 5, 0, 0, 1, "苹果", "香甜可口的苹果，和牛顿有某种关系", "你吃了个苹果，感觉还不错"));
-	Resource::item_map.push_back(Item(1, 1, 0, 0, 5, 0, 1, "矿泉水", "一瓶普通的矿泉水，在这资源匮乏的末世显得异常罕见", "你喝了瓶水，口渴程度有所缓解"));
+	Resource::item_map.push_back(Item(Item::TYPE::Consumables, 0, 0, 5, 0, 0, 1, 60, "苹果", "香甜可口的苹果，和牛顿有某种关系", "你吃了个苹果，感觉还不错"));
+	Resource::item_map.push_back(Item(Item::TYPE::Consumables, 1, 0, 0, 5, 0, 1, 60, "矿泉水", "一瓶普通的矿泉水，在这资源匮乏的末世显得异常罕见", "你喝了瓶水，口渴程度有所缓解"));
 }
 
 void Init::init_loot()
@@ -124,7 +124,7 @@ void data2()
 	Resource::school_map[11][10] = 3;
 	Resource::interaction_map.push_back(Interaction(Interaction::TYPE::Event, 0, "看起来是个颇具有年代感的长椅"));
 	InteractiveEvent temp("应该是一个可以休息的地方");
-	Result selection1("在椅子上休息一会儿", "你在椅子上躺了一会儿，感觉还不错", Result::TYPE::UpdatePlayerState, 0, 0, -5, 5);
+	Result selection1("在椅子上休息一会儿", "你在椅子上躺了一会儿，感觉还不错", Result::TYPE::UpdatePlayerState, 0, 0, -5, 5, 0, 45, 0);
 	Result selection2("算了算了");
 	temp.addResult(selection1);
 	temp.addResult(selection2);

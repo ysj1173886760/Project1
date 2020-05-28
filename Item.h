@@ -2,21 +2,29 @@
 #include<string>
 #include"PlayerState.h"
 #include"Resource.h"
+#include"GameTime.h"
+
 
 class Item
 {
 	public:
-		int type;
+		enum class TYPE
+		{
+			Equipment,
+			Consumables,
+			OtherItems
+		}type;
 		int id;
 		int hp;
 		int food;
 		int water;
 		int fatigue;
 		int size;
+		int time;
 		std::string name;
 		std::string description;
 		std::string event;
-		Item(int type, int id, int  hp, int food, int water, int fatigue, int size, std::string name, std::string des, std::string event)
+		Item(TYPE type, int id, int  hp, int food, int water, int fatigue, int size, int time, std::string name, std::string des, std::string event)
 		{
 			this->type = type;
 			this->id = id;
@@ -28,10 +36,11 @@ class Item
 			this->description = des;
 			this->event = event;
 			this->size = size;
+			this->time = time;
 		}
 		Item()
 		{
-			this->type = 0;
+			this->type = TYPE::OtherItems;
 			this->id = 0;
 			this->hp = 0;
 			this->food = 0;
@@ -41,6 +50,7 @@ class Item
 			this->name = "";
 			this->description = "";
 			this->event = "";
+			this->time = 0;
 		}
 		void use();
 };
