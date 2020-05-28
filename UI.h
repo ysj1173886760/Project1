@@ -2,6 +2,7 @@
 #include<iostream>
 #include"Container.h"
 #include"InteractiveEvent.h"
+#include"Window.h"
 
 class UI
 {
@@ -15,5 +16,7 @@ class UI
 		static bool open_event;
 		static int event_pointer;
 		static InteractiveEvent now_event;
+		static Window now_window;
+		static bool open_window;
 };
 

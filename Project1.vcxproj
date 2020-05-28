@@ -150,6 +150,7 @@
     <ClCompile Include="Resource.cpp" />
     <ClCompile Include="Result.cpp" />
     <ClCompile Include="UI.cpp" />
+    <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Container.h" />
@@ -164,6 +165,7 @@
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Result.h" />
     <ClInclude Include="UI.h" />
+    <ClInclude Include="Window.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

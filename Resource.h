@@ -27,6 +27,7 @@ class Resource
 		static IMAGE itemBox;
 		static IMAGE eventWindow;
 		static IMAGE event_pointer;
+		static IMAGE Window;
 
 		static int school_map[30][30];
 

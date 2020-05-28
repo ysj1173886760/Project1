@@ -7,5 +7,6 @@ void Item::use()
 	PlayerState::player_food += this->food;
 	PlayerState::player_water += this->water;
 	PlayerState::player_fatigue += this->fatigue;
+	PlayerState::player_sanity += this->sanity;
 	Resource::Maintime.add(this->time, 0, 0);
 }

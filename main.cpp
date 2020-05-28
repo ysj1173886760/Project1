@@ -21,7 +21,7 @@ void out_number(int x, int y, int num)
 void out_string(int x, int y, std::string str)
 {
 	char buff[100];
-	strcpy(buff, str.c_str());
+	strcpy_s(buff, str.c_str());
 	outtextxy(x, y, buff);
 }
 
@@ -46,6 +46,7 @@ void use_item()
 		if (now == UI::backpack_pointer)
 		{
 			Item temp = Resource::item_map[it->first];
+			if (temp.type == Item::TYPE::OtherItems)return;
 			temp.use();
 			Resource::player_backpack.remove(it->first);
 			if (Resource::player_backpack.items.size() <= UI::backpack_pointer)		//修改了一个小bug
@@ -160,6 +161,46 @@ void move_item()
 }
 
 /*
+	为窗口初始化
+*/
+void initWindow()
+{
+	int now = 0;
+	std::string des;
+	std::string source;
+
+	for (std::list<std::pair<int, int>>::iterator it = Resource::player_backpack.items.begin(); it != Resource::player_backpack.items.end(); it++)
+	{
+		if (now == UI::backpack_pointer)
+		{
+			Item temp = Resource::item_map[it->first];
+			des = temp.description;
+			source = temp.pic_source;
+			break;
+		}
+		now++;
+	}
+
+	/*
+		图片是70 130
+	*/
+
+	char buff[100];
+	strcpy(buff, source.c_str());
+	loadimage(&UI::now_window.img, buff);
+	UI::now_window.des = des;
+}
+
+/*
+	显示window
+*/
+void draw_window()
+{
+	putimage(180, 180, &Resource::Window);
+	UI::now_window.show();
+}
+
+/*
 	显示时间窗口
 */
 void do_event()
@@ -184,7 +225,14 @@ void do_event()
 
 void updateWithInput()
 {
-	if (UI::open_backpack)
+	if (UI::open_window)
+	{
+		if (KEYDOWN('X') || KEYDOWN(VK_ESCAPE))
+		{
+			UI::open_window = false;
+		}
+	}
+	else if (UI::open_backpack)
 	{
 		if (KEYDOWN('W'))
 		{
@@ -204,6 +252,11 @@ void updateWithInput()
 		{
 			UI::open_backpack = false;
 			UI::backpack_pointer = 0;
+		}
+		else if (KEYDOWN('X'))
+		{
+			UI::open_window = true;
+			initWindow();
 		}
 	}
 	else if(UI::open_itemBox)
@@ -357,7 +410,7 @@ void draw_eventWindow()
 	{
 		if (UI::now_event.des[i] & 0x80)
 		{
-			count += 1;
+			count += 2;
 			temp += UI::now_event.des[i];
 			temp += UI::now_event.des[++i];
 		}
@@ -366,7 +419,7 @@ void draw_eventWindow()
 			count += 1;
 			temp += UI::now_event.des[i];
 		}
-		if (count >= 20)
+		if (count >= 40)
 		{
 			count = 0;
 			out_string(180 + 30, 180 + 20 + now * 25, temp);
@@ -390,7 +443,7 @@ void draw_eventWindow()
 		{
 			if (UI::now_event.selections[i].des[j] & 0x80)
 			{
-				count += 1;
+				count += 2;
 				temp += UI::now_event.selections[i].des[j];
 				temp += UI::now_event.selections[i].des[++j];
 			}
@@ -399,7 +452,7 @@ void draw_eventWindow()
 				count += 1;
 				temp += UI::now_event.selections[i].des[j];
 			}
-			if (count >= 20)
+			if (count >= 40)
 			{
 				count = 0;
 				out_string(180 + 30, 180 + 50 + now * 25, temp);
@@ -533,7 +586,9 @@ void draw()
 	draw_state();
 	draw_Event();
 
-	if (UI::open_backpack)
+	if (UI::open_window)
+		draw_window();
+	else if (UI::open_backpack)
 		draw_backpack();
 	if (UI::open_itemBox)
 		draw_itemBox();

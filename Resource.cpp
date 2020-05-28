@@ -8,6 +8,7 @@ IMAGE Resource::backpack_pointer(0, 0);
 IMAGE Resource::itemBox(0, 0);
 IMAGE Resource::eventWindow(0, 0);
 IMAGE Resource::event_pointer(0, 0);
+IMAGE Resource::Window(0, 0);
 
 int Resource::school_map[30][30] = { 0 };
 

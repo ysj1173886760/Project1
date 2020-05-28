@@ -10,6 +10,7 @@ void Init::init_image()
 	loadimage(&Resource::itemBox, _T("Resources\\itemBox.png"));
 	loadimage(&Resource::eventWindow, _T("Resources\\eventWindow.png"));
 	loadimage(&Resource::event_pointer, _T("Resources\\event_pointer.png"));
+	loadimage(&Resource::Window, _T("Resources\\window.png"));
 }
 
 void Init::init_player_state()
@@ -62,8 +63,9 @@ void Init::init_map()
 void Init::init_item()
 {
 	Resource::item_map.clear();
-	Resource::item_map.push_back(Item(Item::TYPE::Consumables, 0, 0, 5, 0, 0, 1, 60, "苹果", "香甜可口的苹果，和牛顿有某种关系", "你吃了个苹果，感觉还不错"));
-	Resource::item_map.push_back(Item(Item::TYPE::Consumables, 1, 0, 0, 5, 0, 1, 60, "矿泉水", "一瓶普通的矿泉水，在这资源匮乏的末世显得异常罕见", "你喝了瓶水，口渴程度有所缓解"));
+	Resource::item_map.push_back(Item(Item::TYPE::Consumables, 0, 0, 5, 0, 0, 0, 1, 60, "苹果", "香甜可口的苹果，和牛顿有某种关系", "你吃了个苹果，感觉还不错", "Resources\\apple.png"));
+	Resource::item_map.push_back(Item(Item::TYPE::Consumables, 1, 0, 0, 5, 0, 0, 1, 60, "矿泉水", "一瓶普通的矿泉水，在这资源匮乏的末世显得异常罕见", "你喝了瓶水，口渴程度有所缓解", "Resources\\water.png"));
+	Resource::item_map.push_back(Item(Item::TYPE::Consumables, 2, 0, 0, 0, 0, 5, 1, 300, "任天堂的SWITCH(塞尔达传说)", "任天堂公司出品的SWITCH，上面插有塞尔达传说：荒野之息的卡带，即便是虚拟人物，里面的角色也让身处末世的你感到陪伴", "你玩了会儿switch，快乐++", "Resources\\switch.png"));
 }
 
 void Init::init_loot()
@@ -73,7 +75,7 @@ void Init::init_loot()
 		玩家背包
 	*/
 	Resource::player_backpack.set(0, 25);			//设置空间
-	Resource::player_backpack.add(0);
+	Resource::player_backpack.add(2);
 	Resource::player_backpack.add(0);
 	Resource::player_backpack.add(0);
 	Resource::player_backpack.add(0);

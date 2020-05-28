@@ -17,3 +17,7 @@ bool UI::open_event = false;
 int UI::event_pointer = 0;
 
 InteractiveEvent UI::now_event("");
+
+bool UI::open_window = false;
+
+Window UI::now_window("");
