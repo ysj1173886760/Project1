@@ -10,31 +10,29 @@ class Item
 	public:
 		enum class TYPE
 		{
-			Equipment,
-			Consumables,
-			OtherItems
+			Weapon,
+			Comestible,
+			OtherItems,
+			Cloth
 		}type;
-		int id;
-		int hp;
-		int food;
-		int water;
-		int fatigue;
+
 		int size;
 		int time;
-		int sanity;
 		std::string name;
 		std::string description;
 		std::string event;
 		std::string pic_source;
-		Item(TYPE type, int id, int  hp, int food, int water, int fatigue, int sanity, int size, int time, std::string name, std::string des, std::string event, std::string pic_source)
+
+		/*
+			name 是物品名字
+			des 是物品描述
+			event 是使用物品时显示的事件
+			pic 是物品图片地址
+		*/
+
+		Item(TYPE type, int size, int time, std::string name, std::string des, std::string event, std::string pic_source)
 		{
 			this->type = type;
-			this->id = id;
-			this->hp = hp;
-			this->food = food;
-			this->water = water;
-			this->fatigue = fatigue;
-			this->sanity = sanity;
 			this->name = name;
 			this->description = des;
 			this->event = event;
@@ -45,13 +43,8 @@ class Item
 		Item()
 		{
 			this->type = TYPE::OtherItems;
-			this->id = 0;
-			this->hp = 0;
-			this->food = 0;
-			this->water = 0;
-			this->fatigue = 0;
+	
 			this->size = 0;
-			this->sanity = 0;
 			this->name = "";
 			this->description = "";
 			this->event = "";
@@ -65,6 +58,65 @@ class Item
 			this->description = des;
 			this->pic_source = pic_source;
 		}
-		void use();
+		virtual void use()
+		{
+			/*
+				just do nothing
+			*/
+		}
+		/*
+			虚析构函数
+			防止子类无法析构导致内存泄露
+		*/
+		virtual ~Item() {}
+
+		/*
+			用于判断物品种类的函数
+		*/
+		virtual bool is_food()
+		{
+			return false;
+		}
+		virtual bool is_otherItems()
+		{
+			return false;
+		}
+		virtual bool is_weapon()
+		{
+			return false;
+		}
+		virtual bool is_cloth()
+		{
+			return false;
+		}
+};
+
+
+
+class Comestible : public Item
+{
+public:
+
+	int food;
+	int water;
+	int fagitue;
+
+	bool is_food()
+	{
+		return true;
+	}
+
+	void use();
+
+	~Comestible() {}
+
+	Comestible()		//用无参构造
+	{
+		this->fagitue = 0;
+		this->food = 0;
+		this->water = 0;
+	}
+
+
 };
 

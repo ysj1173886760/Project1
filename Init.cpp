@@ -59,13 +59,72 @@ void Init::init_map()
 	school_init();
 }
 
+void load_data_from_json(std::string source)
+{
+	try
+	{
+		std::ifstream ifs;
+		ifs.open(source);
+
+		if (!ifs)
+		{
+			std::cout << "file open error";
+		}
+
+		Json::Value root;
+		root.clear();
+
+		Json::Reader jsonReader;
+		jsonReader.parse(ifs, root); //从ifs中读取数据到jsonRoot
+
+		for (Json::Value::iterator it = root.begin(); it != root.end(); it++)//遍历数组[]
+		{
+			Json::Value temp = (*it);
+			std::string type = temp["type"].asString();
+			Item* newItem = NULL;
+
+			if (type == "comestible")
+			{
+				Comestible *newComsetible = new Comestible();
+				newComsetible->description = temp["description"].asString();
+				newComsetible->event = temp["event"].asString();
+				newComsetible->name = temp["name"].asString();
+				newComsetible->pic_source = "Resource\\" + temp["pic"].asString();
+				newComsetible->food = temp["food"].asInt();
+				newComsetible->water = temp["water"].asInt();
+				newComsetible->fagitue = temp["fagitue"].asInt();
+				newComsetible->time = temp["time"].asInt();
+				newComsetible->size = temp["size"].asInt();
+				newComsetible->type = Item::TYPE::Comestible;
+				newItem = newComsetible;
+				
+			}
+			else
+			{
+
+			}
+
+			if (newItem != NULL)
+			{
+				Resource::item_map.push_back(newItem);
+			}
+
+		}
+		ifs.close();
+	}
+	catch (Json::LogicError e)
+	{
+		std::cout << e.what();
+	}
+}
 
 void Init::init_item()
 {
 	Resource::item_map.clear();
-	Resource::item_map.push_back(Item(Item::TYPE::Consumables, 0, 0, 5, 0, 0, 0, 1, 60, "苹果", "香甜可口的苹果，和牛顿有某种关系", "你吃了个苹果，感觉还不错", "Resources\\apple.png"));
-	Resource::item_map.push_back(Item(Item::TYPE::Consumables, 1, 0, 0, 5, 0, 0, 1, 60, "矿泉水", "一瓶普通的矿泉水，在这资源匮乏的末世显得异常罕见", "你喝了瓶水，口渴程度有所缓解", "Resources\\water.png"));
-	Resource::item_map.push_back(Item(Item::TYPE::Consumables, 2, 0, 0, 0, 0, 5, 1, 300, "任天堂的SWITCH(塞尔达传说)", "任天堂公司出品的SWITCH，上面插有塞尔达传说：荒野之息的卡带，即便是虚拟人物，里面的角色也让身处末世的你感到陪伴", "你玩了会儿switch，快乐++", "Resources\\switch.png"));
+	//Resource::item_map.push_back(Item(Item::TYPE::Consumables, 0, 0, 5, 0, 0, 0, 1, 60, "苹果", "香甜可口的苹果，和牛顿有某种关系", "你吃了个苹果，感觉还不错", "Resources\\apple.png"));
+	//Resource::item_map.push_back(Item(Item::TYPE::Consumables, 1, 0, 0, 5, 0, 0, 1, 60, "矿泉水", "一瓶普通的矿泉水，在这资源匮乏的末世显得异常罕见", "你喝了瓶水，口渴程度有所缓解", "Resources\\water.png"));
+	//Resource::item_map.push_back(Item(Item::TYPE::Consumables, 2, 0, 0, 0, 0, 5, 1, 300, "任天堂的SWITCH(塞尔达传说)", "任天堂公司出品的SWITCH，上面插有塞尔达传说：荒野之息的卡带，即便是虚拟人物，里面的角色也让身处末世的你感到陪伴", "你玩了会儿switch，快乐++", "Resources\\switch.png"));
+	load_data_from_json("data\\comestible.json");
 }
 
 void Init::init_loot()
@@ -75,7 +134,6 @@ void Init::init_loot()
 		玩家背包
 	*/
 	Resource::player_backpack.set(0, 25);			//设置空间
-	Resource::player_backpack.add(2);
 	Resource::player_backpack.add(0);
 	Resource::player_backpack.add(0);
 	Resource::player_backpack.add(0);
@@ -87,7 +145,6 @@ void Init::init_loot()
 	Resource::player_backpack.add(0);
 	Resource::player_backpack.add(0);
 	Resource::player_backpack.add(0);
-	Resource::player_backpack.add(1);
 }
 
 void data1()

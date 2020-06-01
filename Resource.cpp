@@ -12,7 +12,7 @@ IMAGE Resource::Window(0, 0);
 
 int Resource::school_map[30][30] = { 0 };
 
-std::vector<Item>Resource::item_map;
+std::vector<Item*>Resource::item_map;
 
 Container Resource::player_backpack(0, 0);
 

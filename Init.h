@@ -1,10 +1,24 @@
 #pragma once
+
+/*
+	使用旧的jsoncpp api会报错，需要加上这个
+*/
+#if defined(__GNUC__)
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+#elif defined(_MSC_VER)
+#pragma warning(disable : 4996)
+#endif
+
 #include"Resource.h"
 #include"PlayerState.h"
 #include"Container.h"
+#include "json/json.h"
+#include "json/json-forwards.h"
 #include<fstream>
 #include<exception>
 #include<iostream>
+#include<fstream>
 
 #define BLOCK 24
 

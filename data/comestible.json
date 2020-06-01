@@ -1,0 +1,26 @@
+[
+  {
+    "description": "香甜可口的苹果，和牛顿有某种关系",
+    "event": "你吃了个苹果，感觉还不错",
+    "fatigue": 0,
+    "food": 5,
+    "name": "苹果",
+    "pic": "apple.png",
+    "size": 1,
+    "time": 60,
+    "type": "comestible",
+    "water": 2
+  },
+  {
+    "description": "一瓶普通的矿泉水，在这资源匮乏的末世显得异常罕见",
+    "event": "你喝了瓶水，口渴程度有所缓解",
+    "fatigue": 0,
+    "food": 0,
+    "name": "矿泉水",
+    "pic": "water.png",
+    "size": 1,
+    "time": 60,
+    "type": "comestible",
+    "water": 10
+  }
+]

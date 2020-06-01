@@ -45,9 +45,8 @@ void use_item()
 	{
 		if (now == UI::backpack_pointer)
 		{
-			Item temp = Resource::item_map[it->first];
-			if (temp.type == Item::TYPE::OtherItems)return;
-			temp.use();
+			Item *temp = Resource::item_map[it->first];
+			temp->use();
 			Resource::player_backpack.remove(it->first);
 			if (Resource::player_backpack.items.size() <= UI::backpack_pointer)		//修改了一个小bug
 				UI::backpack_pointer = 0;
@@ -173,9 +172,9 @@ void initWindow()
 	{
 		if (now == UI::backpack_pointer)
 		{
-			Item temp = Resource::item_map[it->first];
-			des = temp.description;
-			source = temp.pic_source;
+			Item *temp = Resource::item_map[it->first];
+			des = temp->description;
+			source = temp->pic_source;
 			break;
 		}
 		now++;
@@ -385,8 +384,8 @@ void draw_backpack()
 	//从30， 60开始输出物品
 	for (std::list<std::pair<int, int>>::iterator it = Resource::player_backpack.items.begin(); it != Resource::player_backpack.items.end(); it++)
 	{
-		Item temp = Resource::item_map[it->first];
-		out_string(BACKPACK_X + 30, BACKPACK_Y + 60 + now * 30, temp.name);
+		Item *temp = Resource::item_map[it->first];
+		out_string(BACKPACK_X + 30, BACKPACK_Y + 60 + now * 30, temp->name);
 		out_number(BACKPACK_X + 300, BACKPACK_Y + 60 + now * 30, it->second);
 		now++;
 	}
@@ -557,8 +556,8 @@ void draw_itemBox()
 
 	for (std::list<std::pair<int, int>>::iterator it = Resource::player_backpack.items.begin(); it != Resource::player_backpack.items.end(); it++)
 	{
-		Item temp = Resource::item_map[it->first];
-		out_string( 30, 180 + 60 + now * 30, temp.name);
+		Item *temp = Resource::item_map[it->first];
+		out_string( 30, 180 + 60 + now * 30, temp->name);
 		out_number( 300, 180 + 60 + now * 30, it->second);
 		now++;
 	}
@@ -567,8 +566,8 @@ void draw_itemBox()
 
 	for (std::list<std::pair<int, int>>::iterator it = UI::now_itemBox.items.begin(); it != UI::now_itemBox.items.end(); it++)
 	{
-		Item temp = Resource::item_map[it->first];
-		out_string(30 + 360, 180 + 60 + now * 30, temp.name);
+		Item *temp = Resource::item_map[it->first];
+		out_string(30 + 360, 180 + 60 + now * 30, temp->name);
 		out_number(300 + 360, 180 + 60 + now * 30, it->second);
 		now++;
 	}

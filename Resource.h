@@ -3,18 +3,19 @@
 #include<vector>
 #include<queue>
 #include<list>
-#include"Item.h"
 #include"Event.h"
 #include"Interaction.h"
 #include"InteractiveEvent.h"
 #include"Container.h"
 #include"GameTime.h"
+#include"Item.h"
 
 
 class Item;
 class Container;
 class InteractiveEvent;
 class Result;
+class Comestible;
 
 class Resource
 {
@@ -31,7 +32,7 @@ class Resource
 
 		static int school_map[30][30];
 
-		static std::vector<Item>item_map;
+		static std::vector<Item*>item_map;
 
 		static Container player_backpack;
 
