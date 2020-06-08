@@ -1,6 +1,7 @@
 #pragma once
 
 #include<list>
+#include<map>
 #include"Resource.h"
 
 class Container
@@ -8,7 +9,8 @@ class Container
 	public:
 		int space;
 		int capacity;
-		std::list<std::pair<int, int>> items;		//前一个是id 后一个是数量
+		//std::list<std::pair<int, int>> items;		//前一个是id 后一个是数量
+		std::map<std::string, int> items;
 
 		Container()
 		{
@@ -28,10 +30,17 @@ class Container
 			this->capacity = capacity;
 			items.clear();
 		}
+
 		void set(int);
 		void set(int, int);
-		void add(int);
-		void remove(int);
-		bool canPut(int);
+		void add(std::string);
+		void add(std::string, int);
+		bool have(std::string);
+		bool have(std::string, int);
+		void remove(std::string);
+		void remove(std::string, int);
+		bool canPut(std::string);
+		bool canPut(std::string, int);
+		int getNum(std::string);
 };
 

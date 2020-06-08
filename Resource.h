@@ -3,12 +3,14 @@
 #include<vector>
 #include<queue>
 #include<list>
+#include<map>
 #include"Event.h"
 #include"Interaction.h"
 #include"InteractiveEvent.h"
 #include"Container.h"
 #include"GameTime.h"
 #include"Item.h"
+#include"Craft.h"
 
 
 class Item;
@@ -16,6 +18,7 @@ class Container;
 class InteractiveEvent;
 class Result;
 class Comestible;
+class Craft;
 
 class Resource
 {
@@ -29,6 +32,7 @@ class Resource
 		static IMAGE eventWindow;
 		static IMAGE event_pointer;
 		static IMAGE Window;
+		static IMAGE craft_window;
 
 		static int school_map[30][30];
 
@@ -48,6 +52,10 @@ class Resource
 
 		static std::vector<InteractiveEvent>interactionEvent_map;
 
+		static std::map<std::string, int>item_map_for_string;
+
+		static std::vector<Craft*>craft_map;
+		
 		static GameTime Maintime;
 };
 

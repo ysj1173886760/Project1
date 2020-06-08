@@ -140,6 +140,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Container.cpp" />
+    <ClCompile Include="Craft.cpp" />
     <ClCompile Include="Event.cpp" />
     <ClCompile Include="Gametime.cpp" />
     <ClCompile Include="Init.cpp" />
@@ -156,6 +157,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Container.h" />
+    <ClInclude Include="Craft.h" />
     <ClInclude Include="Event.h" />
     <ClInclude Include="GameTime.h" />
     <ClInclude Include="head.h" />
@@ -170,6 +172,15 @@
     <ClInclude Include="Result.h" />
     <ClInclude Include="UI.h" />
     <ClInclude Include="Window.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="data\comestible.json" />
+    <None Include="data\craft.json" />
+    <None Include="data\material.json" />
+    <None Include="data\tool.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="data\school_map.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -57,6 +57,9 @@
     <ClCompile Include="jsoncpp.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="Craft.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PlayerState.h">
@@ -104,5 +107,27 @@
     <ClInclude Include="json\json-forwards.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="Craft.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="data\comestible.json">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="data\craft.json">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="data\material.json">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="data\tool.json">
+      <Filter>资源文件</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="data\school_map.txt">
+      <Filter>资源文件</Filter>
+    </Text>
   </ItemGroup>
 </Project>

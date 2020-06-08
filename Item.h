@@ -13,7 +13,9 @@ class Item
 			Weapon,
 			Comestible,
 			OtherItems,
-			Cloth
+			Cloth,
+			Tool,
+			Material
 		}type;
 
 		int size;
@@ -28,6 +30,8 @@ class Item
 			des 是物品描述
 			event 是使用物品时显示的事件
 			pic 是物品图片地址
+			size 是物品大小
+			time 是使用物品时间
 		*/
 
 		Item(TYPE type, int size, int time, std::string name, std::string des, std::string event, std::string pic_source)
@@ -89,34 +93,85 @@ class Item
 		{
 			return false;
 		}
+		virtual bool is_material()
+		{
+			return false;
+		}
+		virtual bool can_use()
+		{
+			return false;
+		}
+		virtual bool is_tool()
+		{
+			return false;
+		}
 };
 
 
 
 class Comestible : public Item
 {
-public:
+	public:
 
-	int food;
-	int water;
-	int fagitue;
+		int food;
+		int water;
+		int fagitue;
 
-	bool is_food()
-	{
-		return true;
-	}
+		bool is_food()
+		{
+			return true;
+		}
 
-	void use();
+		bool can_use()
+		{
+			return true;
+		}
 
-	~Comestible() {}
+		void use();
 
-	Comestible()		//用无参构造
-	{
-		this->fagitue = 0;
-		this->food = 0;
-		this->water = 0;
-	}
+		~Comestible() {}
 
+		Comestible()		//用无参构造
+		{
+			this->fagitue = 0;
+			this->food = 0;
+			this->water = 0;
+		}
 
 };
 
+class Material : public Item
+{
+	public:
+
+		~Material(){}
+
+		Material(){}
+
+		bool is_material()
+		{
+			return true;
+		}
+
+		bool can_use()
+		{
+			return false;
+		}
+};
+
+class Tool : public Item
+{
+	public:
+		~Tool(){}
+		Tool(){}
+	
+		bool is_tool()
+		{
+			return true;
+		}
+
+		bool can_use()
+		{
+			return false;
+		}
+};

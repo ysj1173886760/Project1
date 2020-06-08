@@ -11,6 +11,7 @@ void Init::init_image()
 	loadimage(&Resource::eventWindow, _T("Resources\\eventWindow.png"));
 	loadimage(&Resource::event_pointer, _T("Resources\\event_pointer.png"));
 	loadimage(&Resource::Window, _T("Resources\\window.png"));
+	loadimage(&Resource::craft_window, _T("Resources\\craft.png"));
 }
 
 void Init::init_player_state()
@@ -89,7 +90,7 @@ void load_data_from_json(std::string source)
 				newComsetible->description = temp["description"].asString();
 				newComsetible->event = temp["event"].asString();
 				newComsetible->name = temp["name"].asString();
-				newComsetible->pic_source = "Resource\\" + temp["pic"].asString();
+				newComsetible->pic_source = "Resources\\\\" + temp["pic"].asString();
 				newComsetible->food = temp["food"].asInt();
 				newComsetible->water = temp["water"].asInt();
 				newComsetible->fagitue = temp["fagitue"].asInt();
@@ -97,16 +98,54 @@ void load_data_from_json(std::string source)
 				newComsetible->size = temp["size"].asInt();
 				newComsetible->type = Item::TYPE::Comestible;
 				newItem = newComsetible;
-				
-			}
-			else
-			{
 
+				//std::cout << newComsetible->pic_source<<std::endl;
+			}
+			else if (type == "material")
+			{
+				Material* newMaterial = new Material();
+				newMaterial->description = temp["description"].asString();
+				newMaterial->event = temp["event"].asString();
+				newMaterial->name = temp["name"].asString();
+				newMaterial->pic_source = "Resources\\\\" + temp["pic"].asString();
+				newMaterial->time = temp["time"].asInt();
+				newMaterial->size = temp["size"].asInt();
+				newMaterial->type = Item::TYPE::Material;
+				newItem = newMaterial;
+			}
+			else if(type == "craft")
+			{
+				Craft* newCraft = new Craft();
+				newCraft->product = temp["product"].asString();
+				newCraft->event = temp["event"].asString();
+				newCraft->time = temp["time"].asInt();
+				int n = temp["need"].size();
+				for (int i = 0; i < n; i++)
+					newCraft->add(temp["need"][i]["name"].asString(), temp["need"][i]["sum"].asInt());
+				Resource::craft_map.push_back(newCraft);
+			}
+			else if (type == "tool")
+			{
+				Tool* newTool = new Tool();
+				newTool->name = temp["name"].asString();
+				newTool->description = temp["description"].asString();
+				newTool->pic_source = "Resources\\\\" + temp["pic"].asString();
+				newTool->size = temp["size"].asInt();
+				newTool->type = Item::TYPE::Tool;
+				newItem = newTool;
 			}
 
 			if (newItem != NULL)
 			{
 				Resource::item_map.push_back(newItem);
+				if (Resource::item_map_for_string.find(newItem->name) == Resource::item_map_for_string.end())
+				{
+					Resource::item_map_for_string[newItem->name] = Resource::item_map.size() - 1;
+				}
+				else
+				{
+					std::cout << "error! item name already exists" << std::endl;
+				}
 			}
 
 		}
@@ -121,10 +160,15 @@ void load_data_from_json(std::string source)
 void Init::init_item()
 {
 	Resource::item_map.clear();
+	Resource::item_map_for_string.clear();
+	Resource::craft_map.clear();
 	//Resource::item_map.push_back(Item(Item::TYPE::Consumables, 0, 0, 5, 0, 0, 0, 1, 60, "苹果", "香甜可口的苹果，和牛顿有某种关系", "你吃了个苹果，感觉还不错", "Resources\\apple.png"));
 	//Resource::item_map.push_back(Item(Item::TYPE::Consumables, 1, 0, 0, 5, 0, 0, 1, 60, "矿泉水", "一瓶普通的矿泉水，在这资源匮乏的末世显得异常罕见", "你喝了瓶水，口渴程度有所缓解", "Resources\\water.png"));
 	//Resource::item_map.push_back(Item(Item::TYPE::Consumables, 2, 0, 0, 0, 0, 5, 1, 300, "任天堂的SWITCH(塞尔达传说)", "任天堂公司出品的SWITCH，上面插有塞尔达传说：荒野之息的卡带，即便是虚拟人物，里面的角色也让身处末世的你感到陪伴", "你玩了会儿switch，快乐++", "Resources\\switch.png"));
 	load_data_from_json("data\\comestible.json");
+	load_data_from_json("data\\material.json");
+	load_data_from_json("data\\craft.json");
+	load_data_from_json("data\\tool.json");
 }
 
 void Init::init_loot()
@@ -134,17 +178,9 @@ void Init::init_loot()
 		玩家背包
 	*/
 	Resource::player_backpack.set(0, 25);			//设置空间
-	Resource::player_backpack.add(0);
-	Resource::player_backpack.add(0);
-	Resource::player_backpack.add(0);
-	Resource::player_backpack.add(0);
-	Resource::player_backpack.add(0);
-	Resource::player_backpack.add(0);
-	Resource::player_backpack.add(0);
-	Resource::player_backpack.add(0);
-	Resource::player_backpack.add(0);
-	Resource::player_backpack.add(0);
-	Resource::player_backpack.add(0);
+	Resource::player_backpack.add("苹果", 10);
+	Resource::player_backpack.add("木棍", 3);
+	Resource::player_backpack.add("线", 2);
 }
 
 void data1()
@@ -155,22 +191,7 @@ void data1()
 	Resource::school_map[28][19] = 2;
 	Resource::interaction_map.push_back(Interaction(Interaction::TYPE::ItemBox, 0, "求生欲使你忍住刺鼻的味道翻了翻这个垃圾桶"));
 	Container temp(0, 20);
-	temp.add(0);
-	temp.add(0);
-	temp.add(0);
-	temp.add(0);
-	temp.add(0);
-	temp.add(0);
-	temp.add(0);
-	temp.add(0);
-	temp.add(0);
-	temp.add(0);
-	temp.add(0);
-	temp.add(0);
-	temp.add(0);
-	temp.add(0);
-	temp.add(0);
-	temp.add(0);
+	temp.add("苹果", 10);
 	Resource::itemBox_map.push_back(temp);
 }
 

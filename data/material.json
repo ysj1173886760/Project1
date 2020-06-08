@@ -1,0 +1,20 @@
+[
+  {
+    "description": "一根小木棍，虽然看起来很结实，但是应该不能当做武器使用",
+    "event": "",
+    "name": "木棍",
+    "pic": "apple.png",
+    "size": 1,
+    "time": 0,
+    "type": "material"
+  },
+  {
+    "description": "细细的线，不知道有什么作用",
+    "event": "",
+    "name": "线",
+    "pic": "apple.png",
+    "size": 0,
+    "time": 0,
+    "type": "material"
+  }
+]

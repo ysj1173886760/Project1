@@ -18,5 +18,7 @@ class UI
 		static InteractiveEvent now_event;
 		static Window now_window;
 		static bool open_window;
+		static int craft_pointer;
+		static bool open_craft;
 };
 

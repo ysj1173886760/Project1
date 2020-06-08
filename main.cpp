@@ -2,6 +2,10 @@
 #define BACKPACK_X 180
 #define BACKPACK_Y 180
 
+/*
+	json代码8115
+*/
+
 #include <easyx.h>			// 引用图形库头文件
 #include <conio.h>
 #include<string>
@@ -41,15 +45,18 @@ void use_item()
 		return;
 	int now = 0;
 	
-	for (std::list<std::pair<int, int>>::iterator it = Resource::player_backpack.items.begin(); it != Resource::player_backpack.items.end(); it++)
+	for (std::map<std::string, int>::iterator it = Resource::player_backpack.items.begin(); it != Resource::player_backpack.items.end(); it++)
 	{
 		if (now == UI::backpack_pointer)
 		{
-			Item *temp = Resource::item_map[it->first];
-			temp->use();
-			Resource::player_backpack.remove(it->first);
-			if (Resource::player_backpack.items.size() <= UI::backpack_pointer)		//修改了一个小bug
-				UI::backpack_pointer = 0;
+			Item *temp = Resource::item_map[Resource::item_map_for_string[it->first]];
+			if (temp->can_use())
+			{
+				temp->use();
+				Resource::player_backpack.remove(it->first);
+				if (Resource::player_backpack.items.size() <= UI::backpack_pointer)		//修改了一个小bug
+					UI::backpack_pointer = 0;
+			}
 			return;
 		}
 		now++;
@@ -115,7 +122,7 @@ void move_item()
 
 	if (UI::itemBox_pointer.first == 0)			//背包移动到物品箱中
 	{
-		for (std::list<std::pair<int, int>>::iterator it = Resource::player_backpack.items.begin(); it != Resource::player_backpack.items.end(); it++)
+		for (std::map<std::string, int>::iterator it = Resource::player_backpack.items.begin(); it != Resource::player_backpack.items.end(); it++)
 		{
 			if (now == UI::itemBox_pointer.second)
 			{
@@ -137,7 +144,7 @@ void move_item()
 	}
 	else										//物品箱移动到背包
 	{
-		for (std::list<std::pair<int, int>>::iterator it = UI::now_itemBox.items.begin(); it != UI::now_itemBox.items.end(); it++)
+		for (std::map<std::string, int>::iterator it = UI::now_itemBox.items.begin(); it != UI::now_itemBox.items.end(); it++)
 		{
 			if (now == UI::itemBox_pointer.second)
 			{
@@ -168,11 +175,11 @@ void initWindow()
 	std::string des;
 	std::string source;
 
-	for (std::list<std::pair<int, int>>::iterator it = Resource::player_backpack.items.begin(); it != Resource::player_backpack.items.end(); it++)
+	for (std::map<std::string, int>::iterator it = Resource::player_backpack.items.begin(); it != Resource::player_backpack.items.end(); it++)
 	{
 		if (now == UI::backpack_pointer)
 		{
-			Item *temp = Resource::item_map[it->first];
+			Item *temp = Resource::item_map[Resource::item_map_for_string[it->first]];
 			des = temp->description;
 			source = temp->pic_source;
 			break;
@@ -220,6 +227,11 @@ void do_event()
 			return;
 		}
 	}
+}
+
+void craft()
+{
+	Resource::craft_map[UI::craft_pointer]->craft_item();
 }
 
 void updateWithInput()
@@ -314,6 +326,27 @@ void updateWithInput()
 			UI::open_event = false;
 		}
 	}
+	else if (UI::open_craft)
+	{
+		if (KEYDOWN('T') || KEYDOWN(VK_ESCAPE))
+		{
+			UI::open_craft = false;
+		}
+		else if (KEYDOWN('W'))
+		{
+			if (UI::craft_pointer - 1 >= 0)
+				UI::craft_pointer--;
+		}
+		else if (KEYDOWN('S'))
+		{
+			if (UI::craft_pointer + 1 < Resource::craft_map.size())
+				UI::craft_pointer++;
+		}
+		else if (KEYDOWN('F'))
+		{
+			craft();
+		}
+	}
 	else
 	{
 		int nx = PlayerState::player_x;
@@ -348,6 +381,11 @@ void updateWithInput()
 		{
 			UI::open_backpack = true;
 		}
+		else if (KEYDOWN('T'))
+		{
+			UI::open_craft = true;
+			UI::craft_pointer = 0;
+		}
 		if (nx >= 0 && nx <= 29 && ny >= 0 && ny <= 29)
 			if ((PlayerState::player_position == "废弃的学校") && (Resource::school_map[nx][ny] == 0))
 				flag = true;
@@ -369,6 +407,23 @@ void updateWithoutInput()
 
 }
 
+void draw_craft()
+{
+	putimage(0, 180, &Resource::craft_window);
+
+	for (int i = 0; i < Resource::craft_map.size(); i++)
+	{
+		out_string(0 + 30, 180 + 30 + i * 30, Resource::craft_map[i]->product);
+
+		if (i == UI::craft_pointer)
+		{
+			Resource::craft_map[i]->show();
+		}
+	}
+
+	putimage(0, 180 + 23 + UI::craft_pointer * 30, &Resource::backpack_pointer);
+}
+
 void draw_backpack()
 {
 	putimage(BACKPACK_X, BACKPACK_Y, &Resource::backpack);
@@ -382,9 +437,9 @@ void draw_backpack()
 	
 	int now = 0;
 	//从30， 60开始输出物品
-	for (std::list<std::pair<int, int>>::iterator it = Resource::player_backpack.items.begin(); it != Resource::player_backpack.items.end(); it++)
+	for (std::map<std::string, int>::iterator it = Resource::player_backpack.items.begin(); it != Resource::player_backpack.items.end(); it++)
 	{
-		Item *temp = Resource::item_map[it->first];
+		Item *temp = Resource::item_map[Resource::item_map_for_string[it->first]];
 		out_string(BACKPACK_X + 30, BACKPACK_Y + 60 + now * 30, temp->name);
 		out_number(BACKPACK_X + 300, BACKPACK_Y + 60 + now * 30, it->second);
 		now++;
@@ -512,7 +567,7 @@ void draw_state()
 
 	outtextxy(750, 240, _T("当前时间:"));
 	std::string now_time = std::to_string(Resource::Maintime.days) + ":" + std::to_string(Resource::Maintime.hours) + ":";
-	now_time += std::to_string(Resource::Maintime.minutes) + ":" + std::to_string(Resource::Maintime.seconds);
+	now_time += std::to_string(Resource::Maintime.minutes);
 	out_string(830, 240, now_time);
 
 }
@@ -554,9 +609,9 @@ void draw_itemBox()
 
 	int now = 0;
 
-	for (std::list<std::pair<int, int>>::iterator it = Resource::player_backpack.items.begin(); it != Resource::player_backpack.items.end(); it++)
+	for (std::map<std::string, int>::iterator it = Resource::player_backpack.items.begin(); it != Resource::player_backpack.items.end(); it++)
 	{
-		Item *temp = Resource::item_map[it->first];
+		Item *temp = Resource::item_map[Resource::item_map_for_string[it->first]];
 		out_string( 30, 180 + 60 + now * 30, temp->name);
 		out_number( 300, 180 + 60 + now * 30, it->second);
 		now++;
@@ -564,9 +619,9 @@ void draw_itemBox()
 
 	now = 0;
 
-	for (std::list<std::pair<int, int>>::iterator it = UI::now_itemBox.items.begin(); it != UI::now_itemBox.items.end(); it++)
+	for (std::map<std::string, int>::iterator it = UI::now_itemBox.items.begin(); it != UI::now_itemBox.items.end(); it++)
 	{
-		Item *temp = Resource::item_map[it->first];
+		Item *temp = Resource::item_map[Resource::item_map_for_string[it->first]];
 		out_string(30 + 360, 180 + 60 + now * 30, temp->name);
 		out_number(300 + 360, 180 + 60 + now * 30, it->second);
 		now++;
@@ -593,6 +648,8 @@ void draw()
 		draw_itemBox();
 	if (UI::open_event)
 		draw_eventWindow();
+	if (UI::open_craft)
+		draw_craft();
 }
 
 void init()
@@ -608,9 +665,9 @@ void init()
 int main()
 {
 	//调试用
-	//initgraph(1080, 720, EW_SHOWCONSOLE);
+	initgraph(1080, 720, EW_SHOWCONSOLE);
 
-	initgraph(1080, 720);
+	//initgraph(1080, 720);
 
 	//setaspectratio(1.5, 1.5);		//设置缩放因子
 

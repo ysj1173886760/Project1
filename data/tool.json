@@ -1,0 +1,9 @@
+[
+  {
+    "name": "鱼竿",
+    "type": "tool",
+    "size": 2,
+    "pic": "apple.png",
+    "description": "一根简陋的鱼竿，上面没有鱼饵，不像是能钓起来鱼的样子"
+  }
+]
