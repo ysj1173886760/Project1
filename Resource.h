@@ -20,6 +20,13 @@ class Result;
 class Comestible;
 class Craft;
 
+struct detail
+{
+	int x;
+	int y;
+	std::string name;
+};
+
 class Resource
 {
 	public:
@@ -33,8 +40,19 @@ class Resource
 		static IMAGE event_pointer;
 		static IMAGE Window;
 		static IMAGE craft_window;
+		static IMAGE way_to_school;
+		static IMAGE campfire;
 
+		static std::map<std::string, IMAGE>placeable_map;
+
+		static std::map<std::string, std::vector<detail>>placeable_position;
+
+		/*
+			µØÍ¼Êý¾Ý
+		*/
 		static int school_map[30][30];
+		
+		static int way_to_school_map[30][30];
 
 		static std::vector<Item*>item_map;
 

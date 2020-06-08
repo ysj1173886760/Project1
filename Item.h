@@ -15,7 +15,8 @@ class Item
 			OtherItems,
 			Cloth,
 			Tool,
-			Material
+			Material,
+			Placeable
 		}type;
 
 		int size;
@@ -68,6 +69,13 @@ class Item
 				just do nothing
 			*/
 		}
+		virtual bool place()
+		{
+			/*
+				do nothing neither
+			*/
+			return false;
+		}
 		/*
 			虚析构函数
 			防止子类无法析构导致内存泄露
@@ -102,6 +110,14 @@ class Item
 			return false;
 		}
 		virtual bool is_tool()
+		{
+			return false;
+		}
+		virtual bool is_placeable()
+		{
+			return false;
+		}
+		virtual bool can_place()
 		{
 			return false;
 		}
@@ -174,4 +190,21 @@ class Tool : public Item
 		{
 			return false;
 		}
+};
+
+class Placeable : public Item
+{
+	public:
+		~Placeable() {}
+		Placeable() {}
+
+		bool is_placeable()
+		{
+			return true;
+		}
+		bool can_place()
+		{
+			return true;
+		}
+		bool place();
 };

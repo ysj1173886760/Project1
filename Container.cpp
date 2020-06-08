@@ -121,6 +121,8 @@ void Container::remove(std::string name)
 	if (!have(name))return;
 	items[name]--;
 	this->space -= Resource::item_map[Resource::item_map_for_string[name]]->size;
+	if (!items[name])
+		items.erase(name);
 }
 
 void Container::remove(std::string name, int sum)
@@ -128,6 +130,8 @@ void Container::remove(std::string name, int sum)
 	if (!have(name, sum))return;
 	items[name] -= sum;
 	this->space -= Resource::item_map[Resource::item_map_for_string[name]]->size * sum;
+	if (!items[name])
+		items.erase(name);
 }
 
 bool Container::canPut(std::string name)

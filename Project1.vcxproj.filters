@@ -124,9 +124,15 @@
     <None Include="data\tool.json">
       <Filter>资源文件</Filter>
     </None>
+    <None Include="data\placeable.json">
+      <Filter>资源文件</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Text Include="data\school_map.txt">
+      <Filter>资源文件</Filter>
+    </Text>
+    <Text Include="data\way_to_school.txt">
       <Filter>资源文件</Filter>
     </Text>
   </ItemGroup>

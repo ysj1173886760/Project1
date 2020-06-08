@@ -28,6 +28,12 @@ void out_string(int x, int y, std::string str)
 	strcpy_s(buff, str.c_str());
 	outtextxy(x, y, buff);
 }
+/*
+//		dstimg: 目标 IMAGE 对象指针。NULL 表示默认窗体
+//		x, y:	目标贴图位置
+//		srcimg: 源 IMAGE 对象指针。NULL 表示默认窗体
+//		transparentcolor: 透明色。srcimg 的该颜色并不会复制到 dstimg 上，从而实现透明贴图
+*/
 
 void transparentimage(IMAGE* dstimg, int x, int y, IMAGE* srcimg, UINT transparentcolor = 0)
 {
@@ -39,6 +45,7 @@ void transparentimage(IMAGE* dstimg, int x, int y, IMAGE* srcimg, UINT transpare
 	// 使用 Windows GDI 函数实现透明位图
 	TransparentBlt(dstDC, x, y, w, h, srcDC, 0, 0, w, h, transparentcolor);
 }
+
 void use_item()
 {
 	if (Resource::player_backpack.items.size() == 0)
@@ -55,6 +62,13 @@ void use_item()
 				temp->use();
 				Resource::player_backpack.remove(it->first);
 				if (Resource::player_backpack.items.size() <= UI::backpack_pointer)		//修改了一个小bug
+					UI::backpack_pointer = 0;
+			}
+			else if (temp->can_place())
+			{
+				if(temp->place())
+					Resource::player_backpack.remove(it->first);
+				if (Resource::player_backpack.items.size() <= UI::backpack_pointer)
 					UI::backpack_pointer = 0;
 			}
 			return;
@@ -163,6 +177,17 @@ void move_item()
 			}
 			now++;
 		}
+	}
+}
+/*
+	绘制放置物品
+*/
+void draw_placeable()
+{
+	for (int i = 0; i < Resource::placeable_position[PlayerState::player_position].size(); i++)
+	{
+		detail temp = Resource::placeable_position[PlayerState::player_position][i];
+		transparentimage(NULL, temp.x * BLOCK, temp.y * BLOCK, &Resource::placeable_map[temp.name]);
 	}
 }
 
@@ -386,9 +411,38 @@ void updateWithInput()
 			UI::open_craft = true;
 			UI::craft_pointer = 0;
 		}
-		if (nx >= 0 && nx <= 29 && ny >= 0 && ny <= 29)
+		if (nx >= 0 && nx <= 29 && ny >= 0 && ny <= 29)			//移动信息
+		{
 			if ((PlayerState::player_position == "废弃的学校") && (Resource::school_map[nx][ny] == 0))
 				flag = true;
+			else if ((PlayerState::player_position == "通往学校的路") && (Resource::way_to_school_map[nx][ny] == 0))
+				flag = true;
+		}
+		else										//场景转换方面暂时没有想到更好的处理方法
+		{
+			if (PlayerState::player_position == "废弃的学校")
+			{
+				if (ny > 29)
+				{
+					PlayerState::player_position = "通往学校的路";
+					std::string info = "你来到了" + PlayerState::player_position;
+					Resource::Event_queue.push_back(info);
+					ny = 0;
+					flag = true;
+				}
+			}
+			else if (PlayerState::player_position == "通往学校的路")
+			{
+				if (ny < 0)
+				{
+					PlayerState::player_position = "废弃的学校";
+					std::string info = "你来到了" + PlayerState::player_position;
+					Resource::Event_queue.push_back(info);
+					ny = 29;
+					flag = true;
+				}
+			}
+		}
 
 		//std::cout << nx << " " << ny << std::endl;
 
@@ -633,10 +687,19 @@ void draw_itemBox()
 
 void draw()
 {
-	putimage(0, 0, &Resource::school);
+	if (PlayerState::player_position == "废弃的学校")
+	{
+		putimage(0, 0, &Resource::school);
+	}
+	else if (PlayerState::player_position == "通往学校的路")
+	{
+		putimage(0, 0, &Resource::way_to_school);
+	}
+	
 	transparentimage(NULL, PlayerState::player_x * BLOCK, PlayerState::player_y * BLOCK, &Resource::player);
 	putimage(721, 0, &Resource::state);
 
+	draw_placeable();
 	draw_state();
 	draw_Event();
 

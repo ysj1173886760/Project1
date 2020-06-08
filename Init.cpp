@@ -12,6 +12,8 @@ void Init::init_image()
 	loadimage(&Resource::event_pointer, _T("Resources\\event_pointer.png"));
 	loadimage(&Resource::Window, _T("Resources\\window.png"));
 	loadimage(&Resource::craft_window, _T("Resources\\craft.png"));
+	loadimage(&Resource::way_to_school, _T("Resources\\way_to_school.png"));
+	loadimage(&Resource::placeable_map["营火"], _T("Resources\\campfire.png"));
 }
 
 void Init::init_player_state()
@@ -55,9 +57,32 @@ void school_init()
 
 }
 
+void wayToSchool_init()
+{
+	try
+	{
+		std::fstream file;
+		file.open("data\\way_to_school.txt", std::ios::in);
+
+		int x = 0, y = 0;
+		while (1)
+		{
+			file >> x >> y;
+			if (file.eof())
+				break;
+			Resource::way_to_school_map[x][y] = 1;
+		}
+	}
+	catch (std::exception e)
+	{
+		std::cout << e.what() << std::endl;
+	}
+}
+
 void Init::init_map()
 {
 	school_init();
+	wayToSchool_init();
 }
 
 void load_data_from_json(std::string source)
@@ -134,6 +159,18 @@ void load_data_from_json(std::string source)
 				newTool->type = Item::TYPE::Tool;
 				newItem = newTool;
 			}
+			else if (type == "placeable")
+			{
+				Placeable* newPlaceable = new Placeable();
+				newPlaceable->name = temp["name"].asString();
+				newPlaceable->description = temp["description"].asString();
+				newPlaceable->pic_source = "Resources\\\\" + temp["pic"].asString();
+				newPlaceable->size = temp["size"].asInt();
+				newPlaceable->time = temp["time"].asInt();
+				newPlaceable->event = temp["event"].asString();
+				newPlaceable->type = Item::TYPE::Placeable;
+				newItem = newPlaceable;
+			}
 
 			if (newItem != NULL)
 			{
@@ -169,6 +206,7 @@ void Init::init_item()
 	load_data_from_json("data\\material.json");
 	load_data_from_json("data\\craft.json");
 	load_data_from_json("data\\tool.json");
+	load_data_from_json("data\\placeable.json");
 }
 
 void Init::init_loot()
@@ -181,6 +219,8 @@ void Init::init_loot()
 	Resource::player_backpack.add("苹果", 10);
 	Resource::player_backpack.add("木棍", 3);
 	Resource::player_backpack.add("线", 2);
+	Resource::player_backpack.add("矿泉水");
+	Resource::player_backpack.add("营火");
 }
 
 void data1()

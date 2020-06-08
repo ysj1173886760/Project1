@@ -1,0 +1,11 @@
+[
+  {
+    "description": "小型的营火，应该能烧一阵子",
+    "event": "你放了部署了一个小型营火",
+    "name": "营火",
+    "pic": "apple.png",
+    "size": 5,
+    "time": 300,
+    "type": "placeable"
+  }
+]
