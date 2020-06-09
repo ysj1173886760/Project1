@@ -220,7 +220,118 @@ void Init::init_loot()
 	Resource::player_backpack.add("木棍", 3);
 	Resource::player_backpack.add("线", 2);
 	Resource::player_backpack.add("矿泉水");
-	Resource::player_backpack.add("营火");
+	Resource::player_backpack.add("营火", 2);
+}
+
+void load_event_from_json(std::string source)
+{
+	try
+	{
+		std::ifstream ifs;
+		ifs.open(source);
+
+		if (!ifs)
+		{
+			std::cout << "file open error";
+		}
+
+		Json::Value root;
+		root.clear();
+
+		Json::Reader jsonReader;
+		jsonReader.parse(ifs, root); //从ifs中读取数据到jsonRoot
+
+		for (Json::Value::iterator it = root.begin(); it != root.end(); it++)//遍历数组[]
+		{
+			Json::Value temp = (*it);
+			std::string type = temp["type"].asString();
+			Interaction newInteraction;
+			if (type == "itembox")
+			{
+				int newId = Resource::itemBox_map.size();
+				newInteraction.key = newId;
+				newInteraction.des = temp["des"].asString();
+				newInteraction.type = Interaction::TYPE::ItemBox;
+
+				int size = temp["size"].asInt();
+				Container newContainer(size);
+				Resource::itemBox_map.push_back(newContainer);
+			}
+			else if (type == "event")
+			{
+				
+				int newId = Resource::interactionEvent_map.size();
+				newInteraction.key = newId;
+				newInteraction.des = temp["des"].asString();
+				newInteraction.type = Interaction::TYPE::Event;
+
+				InteractiveEvent newInteractiveEvent;
+				newInteractiveEvent.des = temp["event_des"].asString();
+
+				
+				int n = temp["result"].size();
+				for (int i = 0; i < n; i++)
+				{
+					Result* newResult = NULL;
+					std::string resultType = temp["result"][i]["type"].asString();
+					if (resultType == "update")
+					{
+						UpdatePlayerState* newUpdate = new UpdatePlayerState();
+						newUpdate->des = temp["result"][i]["des"].asString();			//选项
+						newUpdate->result = temp["result"][i]["result_des"].asString();	//做完选项后的后果
+						newUpdate->type = Result::TYPE::UpdatePlayerState;
+						newUpdate->food = temp["result"][i]["food"].asInt();
+						newUpdate->water = temp["result"][i]["water"].asInt();
+						newUpdate->fatigue = temp["result"][i]["fatigue"].asInt();
+						newUpdate->sanity = temp["result"][i]["sanity"].asInt();
+						newResult = newUpdate;
+					}
+					else if (resultType == "nothing")
+					{
+						DoNothing* newNothing = new DoNothing();
+						newNothing->des = temp["result"][i]["des"].asString();
+						newNothing->type = Result::TYPE::DoNothing;
+						newResult = newNothing;
+					}
+					if (newResult != NULL)
+					{
+						newInteractiveEvent.addResult(newResult);
+					}
+				}
+
+				Resource::interactionEvent_map.push_back(newInteractiveEvent);
+			}
+
+			std::string map_name = temp["map_name"].asString();		//获得地图名字
+			int n = temp["pos"].size();								//坐标数量
+			int id = Resource::interaction_map.size();				//key值
+
+			if (map_name == "废弃的学校")
+			{
+				for (int i = 0; i < n; i++)
+				{
+					int x = temp["pos"][i]["x"].asInt();
+					int y = temp["pos"][i]["y"].asInt();
+					Resource::school_map[x][y] = id;
+				}
+			}
+			else if (map_name == "通往学校的路")
+			{
+				for (int i = 0; i < n; i++)
+				{
+					int x = temp["pos"][i]["x"].asInt();
+					int y = temp["pos"][i]["y"].asInt();
+					Resource::way_to_school_map[x][y] = id;
+				}
+			}
+			Resource::interaction_map.push_back(newInteraction);
+		}
+		ifs.close();
+	}
+	catch (Json::LogicError e)
+	{
+		std::cout << e.what();
+	}
 }
 
 void data1()
@@ -244,10 +355,18 @@ void data2()
 	Resource::school_map[11][10] = 3;
 	Resource::interaction_map.push_back(Interaction(Interaction::TYPE::Event, 0, "看起来是个颇具有年代感的长椅"));
 	InteractiveEvent temp("应该是一个可以休息的地方");
-	Result selection1("在椅子上休息一会儿", "你在椅子上躺了一会儿，感觉还不错", Result::TYPE::UpdatePlayerState, 0, 0, -5, 5, 0, 45, 0);
-	Result selection2("算了算了");
-	temp.addResult(selection1);
-	temp.addResult(selection2);
+
+	Result *newResult = NULL;
+	UpdatePlayerState *newnode = new UpdatePlayerState();
+	newnode->des = "在椅子上休息一会儿";
+	newnode->result = "你在椅子上躺了一会儿，感觉还不错";
+	newnode->type = Result::TYPE::UpdatePlayerState;
+	newnode->food = 10;
+	newResult = newnode;
+	//Result selection1("在椅子上休息一会儿", "你在椅子上躺了一会儿，感觉还不错", Result::TYPE::UpdatePlayerState, 0, 0, -5, 5, 0, 45, 0);
+	//Result selection2("算了算了");
+	temp.addResult(newResult);
+	//temp.addResult(selection2);
 	Resource::interactionEvent_map.push_back(temp);
 }
 
@@ -268,7 +387,9 @@ void Init::init_data()
 		这里开始添加可互动物品
 	*/
 	
-	data1();
-	data2();
+	//data1();
+	//data2();
 
+	load_event_from_json("data\\interactiveEvent.json");
+	load_event_from_json("data\\itembox.json");
 }

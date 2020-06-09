@@ -1,7 +1,7 @@
 #include "Result.h"
 
 
-void Result::updateState()
+void UpdatePlayerState::do_result()
 {
 	PlayerState::player_food += this->food;
 	PlayerState::player_water += this->water;

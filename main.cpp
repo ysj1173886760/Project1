@@ -240,12 +240,12 @@ void do_event()
 	{
 		if (i == UI::event_pointer)
 		{
-			if (UI::now_event.selections[i].type == Result::TYPE::UpdatePlayerState)
+			if (UI::now_event.selections[i]->type == Result::TYPE::UpdatePlayerState)
 			{
-				UI::now_event.selections[i].updateState();
-				Resource::Event_queue.push_back(UI::now_event.selections[i].result);
+				UI::now_event.selections[i]->do_result();
+				Resource::Event_queue.push_back(UI::now_event.selections[i]->result);
 			}
-			else if (UI::now_event.selections[i].type == Result::TYPE::DoNothing)
+			else if (UI::now_event.selections[i]->type == Result::TYPE::DoNothing)
 			{
 				//just do nothing
 			}
@@ -411,6 +411,22 @@ void updateWithInput()
 			UI::open_craft = true;
 			UI::craft_pointer = 0;
 		}
+		else if (KEYDOWN(VK_UP))
+		{
+			PlayerState::player_face = 2;
+		}
+		else if (KEYDOWN(VK_DOWN))
+		{
+			PlayerState::player_face = 0;
+		}
+		else if(KEYDOWN(VK_LEFT))
+		{
+			PlayerState::player_face = 1;
+		}
+		else if (KEYDOWN(VK_RIGHT))
+		{
+			PlayerState::player_face = 3;
+		}
 		if (nx >= 0 && nx <= 29 && ny >= 0 && ny <= 29)			//移动信息
 		{
 			if ((PlayerState::player_position == "废弃的学校") && (Resource::school_map[nx][ny] == 0))
@@ -547,18 +563,18 @@ void draw_eventWindow()
 	{
 		if (i == UI::event_pointer)
 			putimage(180, 180 + 50 + now * 25, &Resource::event_pointer);
-		for (int j = 0; j < UI::now_event.selections[i].des.size(); j++)
+		for (int j = 0; j < UI::now_event.selections[i]->des.size(); j++)
 		{
-			if (UI::now_event.selections[i].des[j] & 0x80)
+			if (UI::now_event.selections[i]->des[j] & 0x80)
 			{
 				count += 2;
-				temp += UI::now_event.selections[i].des[j];
-				temp += UI::now_event.selections[i].des[++j];
+				temp += UI::now_event.selections[i]->des[j];
+				temp += UI::now_event.selections[i]->des[++j];
 			}
 			else
 			{
 				count += 1;
-				temp += UI::now_event.selections[i].des[j];
+				temp += UI::now_event.selections[i]->des[j];
 			}
 			if (count >= 40)
 			{

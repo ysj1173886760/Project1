@@ -176,6 +176,8 @@
   <ItemGroup>
     <None Include="data\comestible.json" />
     <None Include="data\craft.json" />
+    <None Include="data\interactiveEvent.json" />
+    <None Include="data\itembox.json" />
     <None Include="data\material.json" />
     <None Include="data\placeable.json" />
     <None Include="data\tool.json" />
