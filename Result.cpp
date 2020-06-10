@@ -9,3 +9,9 @@ void UpdatePlayerState::do_result()
 	PlayerState::player_fatigue += this->fatigue;
 	Resource::Maintime.add(this->sec, this->min, this->hou);
 }
+
+void OpenCraftWindow::do_result()
+{
+	UI::open_craft = true;
+	UI::craft_name = this->window_name;
+}

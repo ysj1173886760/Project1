@@ -2,6 +2,9 @@
 #include<string>
 #include"PlayerState.h"
 #include"Resource.h"
+#include"UI.h"
+
+class UI;
 
 class Result
 {
@@ -12,6 +15,7 @@ class Result
 		enum class TYPE
 		{
 			UpdatePlayerState,
+			OpenCraftWindow,
 			DoNothing
 		}type;
 
@@ -67,6 +71,10 @@ class Result
 		{
 			return false;
 		}
+		virtual bool is_OpenCraftWindow()
+		{
+			return false;
+		}
 };
 
 class UpdatePlayerState : public Result
@@ -102,4 +110,23 @@ class DoNothing :public Result
 		{
 			return true;
 		}
+};
+
+class OpenCraftWindow : public Result
+{
+	public:
+		~OpenCraftWindow() {}
+		OpenCraftWindow()
+		{
+			this->window_name = "";
+		}
+
+		std::string window_name;
+
+		bool is_OpenCraftWindow()
+		{
+			return true;
+		}
+
+		void do_result();
 };

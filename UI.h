@@ -1,8 +1,13 @@
 #pragma once
 #include<iostream>
 #include"Container.h"
-#include"InteractiveEvent.h"
 #include"Window.h"
+#include"InteractiveEvent.h"
+
+class Container;
+class InteractiveEvent;
+class Window;
+class Result;
 
 class UI
 {
@@ -20,5 +25,6 @@ class UI
 		static bool open_window;
 		static int craft_pointer;
 		static bool open_craft;
+		static std::string craft_name;
 };
 

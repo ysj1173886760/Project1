@@ -46,9 +46,9 @@ bool Placeable::place()
 		Resource::Maintime.add(this->time, 0, 0);
 		Resource::Event_queue.push_back(this->event);
 		if (pos == "废弃的学校")
-			Resource::school_map[interact_x][interact_y] = 3;		//用Interactevent来处理
+			Resource::school_map[interact_x][interact_y] = Resource::placeableId_map[this->name];		//用Interactevent来处理
 		else if (pos == "通往学校的路")
-			Resource::way_to_school_map[interact_x][interact_y] = 3;
+			Resource::way_to_school_map[interact_x][interact_y] = Resource::placeableId_map[this->name];
 		detail temp;
 		temp.x = interact_x;
 		temp.y = interact_y;

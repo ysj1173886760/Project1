@@ -133,6 +133,9 @@
     <None Include="data\itembox.json">
       <Filter>资源文件</Filter>
     </None>
+    <None Include="data\placeableEvent.json">
+      <Filter>资源文件</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Text Include="data\school_map.txt">

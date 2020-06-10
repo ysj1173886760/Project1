@@ -66,13 +66,15 @@ class Resource
 
 		static std::vector<Container>itemBox_map;
 
-		static std::vector<Interaction>interaction_map;
+		static std::vector<Interaction*>interaction_map;
 
 		static std::vector<InteractiveEvent>interactionEvent_map;
 
 		static std::map<std::string, int>item_map_for_string;
 
-		static std::vector<Craft*>craft_map;
+		static std::map<std::string, std::vector<Craft*>>craft_map;
+
+		static std::map<std::string, int>placeableId_map;
 		
 		static GameTime Maintime;
 };

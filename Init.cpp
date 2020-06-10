@@ -147,7 +147,8 @@ void load_data_from_json(std::string source)
 				int n = temp["need"].size();
 				for (int i = 0; i < n; i++)
 					newCraft->add(temp["need"][i]["name"].asString(), temp["need"][i]["sum"].asInt());
-				Resource::craft_map.push_back(newCraft);
+				std::string name = temp["name"].asString();
+				Resource::craft_map[name].push_back(newCraft);
 			}
 			else if (type == "tool")
 			{
@@ -245,25 +246,27 @@ void load_event_from_json(std::string source)
 		{
 			Json::Value temp = (*it);
 			std::string type = temp["type"].asString();
-			Interaction newInteraction;
+			Interaction *newInteraction;
 			if (type == "itembox")
 			{
+				ItemBox* newItemBox = new ItemBox();
 				int newId = Resource::itemBox_map.size();
-				newInteraction.key = newId;
-				newInteraction.des = temp["des"].asString();
-				newInteraction.type = Interaction::TYPE::ItemBox;
+				newItemBox->key = newId;
+				newItemBox->des = temp["des"].asString();
+				newItemBox->type = Interaction::TYPE::ItemBox;
 
 				int size = temp["size"].asInt();
 				Container newContainer(size);
 				Resource::itemBox_map.push_back(newContainer);
+				newInteraction = newItemBox;
 			}
 			else if (type == "event")
 			{
-				
+				InteractEvent* newInteractEvent = new InteractEvent();
 				int newId = Resource::interactionEvent_map.size();
-				newInteraction.key = newId;
-				newInteraction.des = temp["des"].asString();
-				newInteraction.type = Interaction::TYPE::Event;
+				newInteractEvent->key = newId;
+				newInteractEvent->des = temp["des"].asString();
+				newInteractEvent->type = Interaction::TYPE::Event;
 
 				InteractiveEvent newInteractiveEvent;
 				newInteractiveEvent.des = temp["event_des"].asString();
@@ -293,12 +296,21 @@ void load_event_from_json(std::string source)
 						newNothing->type = Result::TYPE::DoNothing;
 						newResult = newNothing;
 					}
+					else if (resultType == "craft_window")
+					{
+						OpenCraftWindow* newOpen = new OpenCraftWindow();
+						newOpen->des = temp["result"][i]["des"].asString();
+						newOpen->type = Result::TYPE::UpdatePlayerState;
+						newOpen->window_name = temp["result"][i]["name"].asString();
+						newResult = newOpen;
+					}
+
 					if (newResult != NULL)
 					{
 						newInteractiveEvent.addResult(newResult);
 					}
 				}
-
+				newInteraction = newInteractEvent;
 				Resource::interactionEvent_map.push_back(newInteractiveEvent);
 			}
 
@@ -324,6 +336,7 @@ void load_event_from_json(std::string source)
 					Resource::way_to_school_map[x][y] = id;
 				}
 			}
+
 			Resource::interaction_map.push_back(newInteraction);
 		}
 		ifs.close();
@@ -334,23 +347,97 @@ void load_event_from_json(std::string source)
 	}
 }
 
+void load_placeable_event_from_json(std::string source)
+{
+	try
+	{
+		std::ifstream ifs;
+		ifs.open(source);
+
+		if (!ifs)
+		{
+			std::cout << "file open error";
+		}
+
+		Json::Value root;
+		root.clear();
+
+		Json::Reader jsonReader;
+		jsonReader.parse(ifs, root); //从ifs中读取数据到jsonRoot
+
+		for (Json::Value::iterator it = root.begin(); it != root.end(); it++)//遍历数组[]
+		{
+			Json::Value temp = (*it);
+			std::string type = temp["type"].asString();
+			PlaceableEvent* newPlaceableEvent = new PlaceableEvent();
+			int newId = Resource::interactionEvent_map.size();
+			newPlaceableEvent->key = newId;
+			newPlaceableEvent->des = temp["des"].asString();
+			newPlaceableEvent->type = Interaction::TYPE::PlaceableEvent;
+			newPlaceableEvent->name = temp["name"].asString();
+
+			InteractiveEvent newInteractiveEvent;
+			newInteractiveEvent.des = temp["event_des"].asString();
+
+
+			int n = temp["result"].size();
+			for (int i = 0; i < n; i++)
+			{
+				Result* newResult = NULL;
+				std::string resultType = temp["result"][i]["type"].asString();
+				if (resultType == "nothing")
+				{
+					DoNothing* newNothing = new DoNothing();
+					newNothing->des = temp["result"][i]["des"].asString();
+					newNothing->type = Result::TYPE::DoNothing;
+					newResult = newNothing;
+				}
+				else if (resultType == "craft_window")
+				{
+					OpenCraftWindow* newOpen = new OpenCraftWindow();
+					newOpen->des = temp["result"][i]["des"].asString();
+					newOpen->type = Result::TYPE::OpenCraftWindow;
+					newOpen->window_name = temp["result"][i]["name"].asString();
+					newResult = newOpen;
+				}
+
+				if (newResult != NULL)
+				{
+					newInteractiveEvent.addResult(newResult);
+				}
+			}
+			Resource::interactionEvent_map.push_back(newInteractiveEvent);
+
+			int id = Resource::interaction_map.size();				//key值
+			Resource::placeableId_map[newPlaceableEvent->name] = id;
+			Resource::interaction_map.push_back(newPlaceableEvent);
+		}
+		ifs.close();
+	}
+	catch (Json::LogicError e)
+	{
+		std::cout << e.what();
+	}
+}
+/*
 void data1()
 {
-	/*
+	
 		2号是垃圾桶  0号容器
-	*/
+	
 	Resource::school_map[28][19] = 2;
 	Resource::interaction_map.push_back(Interaction(Interaction::TYPE::ItemBox, 0, "求生欲使你忍住刺鼻的味道翻了翻这个垃圾桶"));
 	Container temp(0, 20);
 	temp.add("苹果", 10);
 	Resource::itemBox_map.push_back(temp);
 }
-
+*/
+/*
 void data2()
 {
-	/*
+	
 		3号是长椅  0号事件
-	*/
+	
 	Resource::school_map[10][10] = 3;
 	Resource::school_map[11][10] = 3;
 	Resource::interaction_map.push_back(Interaction(Interaction::TYPE::Event, 0, "看起来是个颇具有年代感的长椅"));
@@ -369,7 +456,7 @@ void data2()
 	//temp.addResult(selection2);
 	Resource::interactionEvent_map.push_back(temp);
 }
-
+*/
 void Init::init_data()
 {
 	Resource::Event_queue.clear();
@@ -380,8 +467,8 @@ void Init::init_data()
 		前两个没用，因为下标是从2开始的，前两个用来占位
 	*/
 	Resource::interaction_map.clear();
-	Resource::interaction_map.push_back(Interaction());
-	Resource::interaction_map.push_back(Interaction());
+	Resource::interaction_map.push_back(new Interaction());
+	Resource::interaction_map.push_back(new Interaction());
 
 	/*
 		这里开始添加可互动物品
@@ -392,4 +479,5 @@ void Init::init_data()
 
 	load_event_from_json("data\\interactiveEvent.json");
 	load_event_from_json("data\\itembox.json");
+	load_placeable_event_from_json("data\\placeableEvent.json");
 }

@@ -1,0 +1,19 @@
+[
+  {
+    "type": "placealbe_event",
+    "des": "你凑近了营火",
+    "event_des": "温暖的火",
+    "name": "营火",
+    "result": [
+      {
+        "type": "craft_window",
+        "des": "制作物品",
+        "name": "营火"
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  }
+]

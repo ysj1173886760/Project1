@@ -3,6 +3,7 @@
 #define BACKPACK_Y 180
 
 /*
+	b*[^:b#/]+.*$
 	json代码8115
 */
 
@@ -105,23 +106,23 @@ void interact()
 	{
 		if (PlayerState::player_position == "废弃的学校" && Resource::school_map[interact_x][interact_y] >= 2)
 		{
-			Interaction temp = Resource::interaction_map[Resource::school_map[interact_x][interact_y]];
-			Interaction::TYPE type = temp.type;
-			Resource::Event_queue.push_back(temp.des);
+			Interaction *temp = Resource::interaction_map[Resource::school_map[interact_x][interact_y]];
+			Interaction::TYPE type = temp->type;
+			Resource::Event_queue.push_back(temp->des);
 
 			if (type == Interaction::TYPE::ItemBox)
 			{
-				UI::now_itemBox = Resource::itemBox_map[temp.key];
-				UI::interact_key = temp.key;
+				UI::now_itemBox = Resource::itemBox_map[temp->key];
+				UI::interact_key = temp->key;
 				UI::open_itemBox = true;
 				UI::itemBox_pointer.first = 0;
 				UI::itemBox_pointer.second = 0;
 			}
-			else if (type == Interaction::TYPE::Event)
+			else if (type == Interaction::TYPE::Event || type == Interaction::TYPE::PlaceableEvent)
 			{
 				UI::open_event = true;
 				UI::event_pointer = 0;
-				UI::now_event = Resource::interactionEvent_map[temp.key];
+				UI::now_event = Resource::interactionEvent_map[temp->key];
 			}
 		}
 		
@@ -245,10 +246,15 @@ void do_event()
 				UI::now_event.selections[i]->do_result();
 				Resource::Event_queue.push_back(UI::now_event.selections[i]->result);
 			}
+			else if (UI::now_event.selections[i]->type == Result::TYPE::OpenCraftWindow)
+			{
+				UI::now_event.selections[i]->do_result();
+			}
 			else if (UI::now_event.selections[i]->type == Result::TYPE::DoNothing)
 			{
 				//just do nothing
 			}
+			
 			return;
 		}
 	}
@@ -256,7 +262,7 @@ void do_event()
 
 void craft()
 {
-	Resource::craft_map[UI::craft_pointer]->craft_item();
+	Resource::craft_map[UI::craft_name][UI::craft_pointer]->craft_item();
 }
 
 void updateWithInput()
@@ -364,7 +370,7 @@ void updateWithInput()
 		}
 		else if (KEYDOWN('S'))
 		{
-			if (UI::craft_pointer + 1 < Resource::craft_map.size())
+			if (UI::craft_pointer + 1 < Resource::craft_map[UI::craft_name].size())
 				UI::craft_pointer++;
 		}
 		else if (KEYDOWN('F'))
@@ -409,6 +415,7 @@ void updateWithInput()
 		else if (KEYDOWN('T'))
 		{
 			UI::open_craft = true;
+			UI::craft_name = "player";
 			UI::craft_pointer = 0;
 		}
 		else if (KEYDOWN(VK_UP))
@@ -481,13 +488,13 @@ void draw_craft()
 {
 	putimage(0, 180, &Resource::craft_window);
 
-	for (int i = 0; i < Resource::craft_map.size(); i++)
+	for (int i = 0; i < Resource::craft_map[UI::craft_name].size(); i++)
 	{
-		out_string(0 + 30, 180 + 30 + i * 30, Resource::craft_map[i]->product);
+		out_string(0 + 30, 180 + 30 + i * 30, Resource::craft_map[UI::craft_name][i]->product);
 
 		if (i == UI::craft_pointer)
 		{
-			Resource::craft_map[i]->show();
+			Resource::craft_map[UI::craft_name][i]->show();
 		}
 	}
 

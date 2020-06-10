@@ -180,6 +180,7 @@
     <None Include="data\itembox.json" />
     <None Include="data\material.json" />
     <None Include="data\placeable.json" />
+    <None Include="data\placeableEvent.json" />
     <None Include="data\tool.json" />
   </ItemGroup>
   <ItemGroup>
