@@ -14,6 +14,7 @@ void Init::init_image()
 	loadimage(&Resource::craft_window, _T("Resources\\craft.png"));
 	loadimage(&Resource::way_to_school, _T("Resources\\way_to_school.png"));
 	loadimage(&Resource::placeable_map["营火"], _T("Resources\\campfire.png"));
+	loadimage(&Resource::zombie, _T("Resources\\zombie.png"));
 }
 
 void Init::init_player_state()
@@ -27,6 +28,7 @@ void Init::init_player_state()
 	PlayerState::player_position = "废弃的学校";
 	PlayerState::player_face = 0;
 	PlayerState::player_sanity = 100;
+	PlayerState::attack_min = 10;
 }
 
 /*
@@ -36,6 +38,7 @@ void Init::init_player_state()
 */
 void school_init()
 {
+	std::vector<std::vector<int>>school_map(30, std::vector<int>(30));
 	try
 	{
 		std::fstream file;
@@ -47,18 +50,19 @@ void school_init()
 			file >> x >> y;
 			if (file.eof())
 				break;
-			Resource::school_map[x][y] = 1;
+			school_map[x][y] = 1;
 		}
 	}
 	catch (std::exception e)
 	{
 		std::cout << e.what() << std::endl;
 	}
-
+	Resource::mainMap["废弃的学校"] = school_map;
 }
 
 void wayToSchool_init()
 {
+	std::vector<std::vector<int>>way_to_school_map(30, std::vector<int>(30));
 	try
 	{
 		std::fstream file;
@@ -70,17 +74,19 @@ void wayToSchool_init()
 			file >> x >> y;
 			if (file.eof())
 				break;
-			Resource::way_to_school_map[x][y] = 1;
+			way_to_school_map[x][y] = 1;
 		}
 	}
 	catch (std::exception e)
 	{
 		std::cout << e.what() << std::endl;
 	}
+	Resource::mainMap["通往学校的路"] = way_to_school_map;
 }
 
 void Init::init_map()
 {
+	
 	school_init();
 	wayToSchool_init();
 }
@@ -318,23 +324,11 @@ void load_event_from_json(std::string source)
 			int n = temp["pos"].size();								//坐标数量
 			int id = Resource::interaction_map.size();				//key值
 
-			if (map_name == "废弃的学校")
+			for (int i = 0; i < n; i++)
 			{
-				for (int i = 0; i < n; i++)
-				{
-					int x = temp["pos"][i]["x"].asInt();
-					int y = temp["pos"][i]["y"].asInt();
-					Resource::school_map[x][y] = id;
-				}
-			}
-			else if (map_name == "通往学校的路")
-			{
-				for (int i = 0; i < n; i++)
-				{
-					int x = temp["pos"][i]["x"].asInt();
-					int y = temp["pos"][i]["y"].asInt();
-					Resource::way_to_school_map[x][y] = id;
-				}
+				int x = temp["pos"][i]["x"].asInt();
+				int y = temp["pos"][i]["y"].asInt();
+				Resource::mainMap[map_name][x][y] = id;
 			}
 
 			Resource::interaction_map.push_back(newInteraction);
@@ -480,4 +474,19 @@ void Init::init_data()
 	load_event_from_json("data\\interactiveEvent.json");
 	load_event_from_json("data\\itembox.json");
 	load_placeable_event_from_json("data\\placeableEvent.json");
+
+	/*
+		测试敌人
+	*/
+	zombie* newzombie = new zombie();
+	newzombie->hp = 30;
+	newzombie->x = 25;
+	newzombie->y = 25;
+	newzombie->speed = 10;
+	newzombie->chaseRange = 5;
+	newzombie->alive = true;
+	newzombie->id = -1 - Resource::zombie_map["废弃的学校"].size();
+	newzombie->attack_min = 5;
+	Resource::mainMap["废弃的学校"][25][25] = -1;
+	Resource::zombie_map["废弃的学校"].push_back(newzombie);
 }

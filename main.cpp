@@ -16,6 +16,7 @@
 #pragma comment( lib, "MSIMG32.LIB")
 
 
+
 void out_number(int x, int y, int num)
 {
 	TCHAR s[10];
@@ -104,9 +105,12 @@ void interact()
 
 	if (interact_x >= 0 && interact_x <= 29 && interact_y >= 0 && interact_y <= 29)
 	{
-		if (PlayerState::player_position == "废弃的学校" && Resource::school_map[interact_x][interact_y] >= 2)
+		Interaction* temp = NULL;
+
+		temp = Resource::interaction_map[Resource::mainMap[PlayerState::player_position][interact_x][interact_y]];
+		
+		if (temp != NULL)
 		{
-			Interaction *temp = Resource::interaction_map[Resource::school_map[interact_x][interact_y]];
 			Interaction::TYPE type = temp->type;
 			Resource::Event_queue.push_back(temp->des);
 
@@ -125,7 +129,6 @@ void interact()
 				UI::now_event = Resource::interactionEvent_map[temp->key];
 			}
 		}
-		
 	}
 }
 /*
@@ -256,6 +259,45 @@ void do_event()
 			}
 			
 			return;
+		}
+	}
+}
+
+void attack()
+{
+	int interact_x = PlayerState::player_x;
+	int interact_y = PlayerState::player_y;
+
+	switch (PlayerState::player_face)
+	{
+	case 1:
+		interact_x--;
+		break;
+	case 3:
+		interact_x++;
+		break;
+	case 2:
+		interact_y--;
+		break;
+	case 0:
+		interact_y++;
+		break;
+	}
+
+	if (interact_x >= 0 && interact_x <= 29 && interact_y >= 0 && interact_y <= 29)
+	{
+		Enemy* temp = NULL;
+
+		if (Resource::mainMap[PlayerState::player_position][interact_x][interact_y] < 0)
+		{
+			temp = Resource::zombie_map[PlayerState::player_position][-1 - Resource::mainMap[PlayerState::player_position][interact_x][interact_y]];
+		}
+		
+		if (temp != NULL)
+		{
+			temp->hp -= PlayerState::attack_min;
+			std::string info = "你造成了" + std::to_string(PlayerState::attack_min) + "点伤害";
+			Resource::Event_queue.push_back(info);
 		}
 	}
 }
@@ -418,6 +460,10 @@ void updateWithInput()
 			UI::craft_name = "player";
 			UI::craft_pointer = 0;
 		}
+		else if (KEYDOWN('J'))
+		{
+			attack();
+		}
 		else if (KEYDOWN(VK_UP))
 		{
 			PlayerState::player_face = 2;
@@ -436,9 +482,7 @@ void updateWithInput()
 		}
 		if (nx >= 0 && nx <= 29 && ny >= 0 && ny <= 29)			//移动信息
 		{
-			if ((PlayerState::player_position == "废弃的学校") && (Resource::school_map[nx][ny] == 0))
-				flag = true;
-			else if ((PlayerState::player_position == "通往学校的路") && (Resource::way_to_school_map[nx][ny] == 0))
+			if (Resource::mainMap[PlayerState::player_position][nx][ny] == 0)
 				flag = true;
 		}
 		else										//场景转换方面暂时没有想到更好的处理方法
@@ -482,6 +526,44 @@ void updateWithoutInput()
 {
 	Resource::Maintime.add();
 
+	/*
+		update zombie
+	*/
+	bool flag = false;
+
+	for (std::vector<Enemy*>::iterator it = Resource::zombie_map[PlayerState::player_position].begin(); it != Resource::zombie_map[PlayerState::player_position].end(); it++)
+	{
+		Enemy* temp = *it;
+
+		if (!temp->alive)
+			continue;
+		if (temp->hp <= 0)
+		{
+			Resource::mainMap[PlayerState::player_position][temp->x][temp->y] = 0;
+			temp->alive = false;
+			//it = Resource::zombie_map[PlayerState::player_position].erase(it);
+		}
+		else
+		{
+			if (temp->chaseing())
+			{
+				flag = true;
+				if (temp->add_step())
+				{
+					if (temp->can_attack())
+					{
+						int val = temp->attack();
+						std::string info = "你受到了" + std::to_string(val) + "点伤害";
+						Resource::Event_queue.push_back(info);
+					}
+					else
+						temp->move();
+				}
+			}
+		}
+	}
+
+	PlayerState::chased = flag;
 }
 
 void draw_craft()
@@ -648,6 +730,17 @@ void draw_state()
 	out_string(830, 240, now_time);
 
 }
+/*
+	绘制敌人
+*/
+void draw_zombie()
+{
+	for (int i = 0; i < Resource::zombie_map[PlayerState::player_position].size(); i++)
+	{
+		if(Resource::zombie_map[PlayerState::player_position][i]->alive)
+			transparentimage(NULL, Resource::zombie_map[PlayerState::player_position][i]->x * BLOCK, Resource::zombie_map[PlayerState::player_position][i]->y * BLOCK, &Resource::zombie);
+	}
+}
 
 /*
 	事件最多20个字
@@ -725,6 +818,7 @@ void draw()
 	draw_placeable();
 	draw_state();
 	draw_Event();
+	draw_zombie();
 
 	if (UI::open_window)
 		draw_window();

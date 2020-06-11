@@ -11,6 +11,7 @@
 #include"GameTime.h"
 #include"Item.h"
 #include"Craft.h"
+#include"Enemy.h"
 
 
 class Item;
@@ -19,6 +20,7 @@ class InteractiveEvent;
 class Result;
 class Comestible;
 class Craft;
+class Enemy;
 
 struct detail
 {
@@ -42,6 +44,7 @@ class Resource
 		static IMAGE craft_window;
 		static IMAGE way_to_school;
 		static IMAGE campfire;
+		static IMAGE zombie;
 
 		static std::map<std::string, IMAGE>placeable_map;
 
@@ -50,9 +53,8 @@ class Resource
 		/*
 			µØÍ¼Êý¾Ý
 		*/
-		static int school_map[30][30];
-		
-		static int way_to_school_map[30][30];
+
+		static std::map<std::string, std::vector<std::vector<int>>>mainMap;
 
 		static std::vector<Item*>item_map;
 
@@ -77,6 +79,8 @@ class Resource
 		static std::map<std::string, int>placeableId_map;
 		
 		static GameTime Maintime;
+
+		static std::map<std::string, std::vector<Enemy*>>zombie_map;
 };
 
 

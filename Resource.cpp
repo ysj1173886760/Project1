@@ -12,14 +12,11 @@ IMAGE Resource::event_pointer(0, 0);
 IMAGE Resource::Window(0, 0);
 IMAGE Resource::craft_window(0, 0);
 IMAGE Resource::way_to_school(0, 0);
+IMAGE Resource::zombie(0, 0);
 
 std::map<std::string, IMAGE>Resource::placeable_map;
 
 std::map<std::string, std::vector<detail>>Resource::placeable_position;
-
-int Resource::school_map[30][30] = { 0 };
-
-int Resource::way_to_school_map[30][30] = { 0 };
 
 std::vector<Item*>Resource::item_map;
 
@@ -40,3 +37,7 @@ GameTime Resource::Maintime(0, 0, 0, 0);
 std::map<std::string, int>Resource::item_map_for_string;
 
 std::map<std::string, int>Resource::placeableId_map;
+
+std::map<std::string, std::vector<Enemy*>>Resource::zombie_map;
+
+std::map<std::string, std::vector<std::vector<int>>>Resource::mainMap;

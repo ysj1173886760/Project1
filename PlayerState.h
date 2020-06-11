@@ -13,5 +13,10 @@ class PlayerState
 		static std::string player_position;
 		static int player_face;
 		static int player_sanity;
+
+		static int attack_min;
+		static int attack_max;
+
+		static bool chased;
 };
 
