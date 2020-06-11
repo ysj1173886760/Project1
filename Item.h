@@ -16,7 +16,8 @@ class Item
 			Cloth,
 			Tool,
 			Material,
-			Placeable
+			Placeable,
+			Backpack
 		}type;
 
 		int size;
@@ -76,6 +77,12 @@ class Item
 			*/
 			return false;
 		}
+		virtual void equip()
+		{
+			/*
+				just do nothing
+			*/
+		}
 		/*
 			虚析构函数
 			防止子类无法析构导致内存泄露
@@ -118,6 +125,14 @@ class Item
 			return false;
 		}
 		virtual bool can_place()
+		{
+			return false;
+		}
+		virtual bool is_backpack()
+		{
+			return false;
+		}
+		virtual bool can_equip()
 		{
 			return false;
 		}
@@ -207,4 +222,87 @@ class Placeable : public Item
 			return true;
 		}
 		bool place();
+};
+
+class Weapon : public Item
+{
+	public:
+		~Weapon() {}
+		Weapon()
+		{
+			this->attack_max = 0;
+			this->attack_min = 0;
+			this->where = "";
+		}
+		int attack_max;
+		int attack_min;
+		std::string where;
+
+		bool is_weapon()
+		{
+			return true;
+		}
+
+		bool can_equip()
+		{
+			return true;
+		}
+
+		void equip();
+};
+
+class Backpack : public Item
+{
+	public:
+		~Backpack() {}
+		Backpack()
+		{
+			this->capacity = 0;
+			this->where = "";
+			this->bloat = 0;
+		}
+
+		int capacity;
+		int bloat;
+		std::string where;
+
+		bool is_backpack()
+		{
+			return true;
+		}
+
+		bool can_equip()
+		{
+			return true;
+		}
+
+		void equip();
+};
+
+class Cloth :public Item
+{
+	public:
+		~Cloth() {}
+		Cloth()
+		{
+			this->bloat = 0;
+			this->defense = 0;
+			this->where = "";
+		}
+
+		int bloat;
+		int defense;
+		std::string where;
+
+		bool is_cloth()
+		{
+			return true;
+		}
+
+		bool can_equip()
+		{
+			return true;
+		}
+
+		void equip();
 };

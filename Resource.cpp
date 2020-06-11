@@ -13,6 +13,7 @@ IMAGE Resource::Window(0, 0);
 IMAGE Resource::craft_window(0, 0);
 IMAGE Resource::way_to_school(0, 0);
 IMAGE Resource::zombie(0, 0);
+IMAGE Resource::hit(0, 0);
 
 std::map<std::string, IMAGE>Resource::placeable_map;
 

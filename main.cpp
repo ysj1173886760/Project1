@@ -50,6 +50,12 @@ void transparentimage(IMAGE* dstimg, int x, int y, IMAGE* srcimg, UINT transpare
 
 void use_item()
 {
+	/*
+		战斗状态下不可以使用物品
+	*/
+	if (PlayerState::chased)
+		return;
+
 	if (Resource::player_backpack.items.size() == 0)
 		return;
 	int now = 0;
@@ -73,6 +79,10 @@ void use_item()
 				if (Resource::player_backpack.items.size() <= UI::backpack_pointer)
 					UI::backpack_pointer = 0;
 			}
+			else if (temp->can_equip())
+			{
+				temp->equip();
+			}
 			return;
 		}
 		now++;
@@ -84,6 +94,12 @@ void use_item()
 */
 void interact()
 {
+	/*
+		战斗状态下不可以进行交互
+	*/
+	if (PlayerState::chased)
+		return;
+
 	int interact_x = PlayerState::player_x;
 	int interact_y = PlayerState::player_y;
 	
@@ -265,23 +281,28 @@ void do_event()
 
 void attack()
 {
+	if (PlayerState::step != PlayerState::speed)
+		return;
+
+	PlayerState::step = 0;
+
 	int interact_x = PlayerState::player_x;
 	int interact_y = PlayerState::player_y;
 
 	switch (PlayerState::player_face)
 	{
-	case 1:
-		interact_x--;
-		break;
-	case 3:
-		interact_x++;
-		break;
-	case 2:
-		interact_y--;
-		break;
-	case 0:
-		interact_y++;
-		break;
+		case 1:
+			interact_x--;
+			break;
+		case 3:
+			interact_x++;
+			break;
+		case 2:
+			interact_y--;
+			break;
+		case 0:
+			interact_y++;
+			break;
 	}
 
 	if (interact_x >= 0 && interact_x <= 29 && interact_y >= 0 && interact_y <= 29)
@@ -297,6 +318,7 @@ void attack()
 		{
 			temp->hp -= PlayerState::attack_min;
 			std::string info = "你造成了" + std::to_string(PlayerState::attack_min) + "点伤害";
+			//transparentimage(NULL, interact_x, interact_y, &Resource::hit);
 			Resource::Event_queue.push_back(info);
 		}
 	}
@@ -522,9 +544,46 @@ void updateWithInput()
 	
 }
 
+/*
+	清理死亡的僵尸
+*/
+void clean_zombie()
+{
+	//std::cout << Resource::zombie_map[PlayerState::player_position].size() << std::endl;
+	for (std::vector<Enemy*>::iterator it = Resource::zombie_map[PlayerState::player_position].begin(); it != Resource::zombie_map[PlayerState::player_position].end();)
+	{
+		Enemy* temp = *it;
+		if (!temp->alive)
+		{
+			it = Resource::zombie_map[PlayerState::player_position].erase(it);
+		}
+		else it++;
+	}
+	int now = 0;
+	for (std::vector<Enemy*>::iterator it = Resource::zombie_map[PlayerState::player_position].begin(); it != Resource::zombie_map[PlayerState::player_position].end(); it++)
+	{
+		Enemy* temp = *it;
+		temp->id = -1 - now;
+		Resource::mainMap[PlayerState::player_position][temp->x][temp->y] = temp->id;
+		now++;
+	}
+}
+
 void updateWithoutInput()
 {
+	/*
+		update time
+	*/
 	Resource::Maintime.add();
+
+	/*
+		update player
+	*/
+
+	if (PlayerState::step < PlayerState::speed)
+	{
+		PlayerState::step++;
+	}
 
 	/*
 		update zombie
@@ -539,6 +598,8 @@ void updateWithoutInput()
 			continue;
 		if (temp->hp <= 0)
 		{
+			std::string info = "你击杀了一只" + temp->name;
+			Resource::Event_queue.push_back(info);
 			Resource::mainMap[PlayerState::player_position][temp->x][temp->y] = 0;
 			temp->alive = false;
 			//it = Resource::zombie_map[PlayerState::player_position].erase(it);
@@ -553,6 +614,7 @@ void updateWithoutInput()
 					if (temp->can_attack())
 					{
 						int val = temp->attack();
+						//transparentimage(NULL, PlayerState::player_x, PlayerState::player_y, &Resource::hit);
 						std::string info = "你受到了" + std::to_string(val) + "点伤害";
 						Resource::Event_queue.push_back(info);
 					}
@@ -564,6 +626,13 @@ void updateWithoutInput()
 	}
 
 	PlayerState::chased = flag;
+
+	/*
+		清除死亡的僵尸
+	*/
+	
+	if (Resource::zombie_map[PlayerState::player_position].size() > 20)
+		clean_zombie();
 }
 
 void draw_craft()
@@ -729,6 +798,20 @@ void draw_state()
 	now_time += std::to_string(Resource::Maintime.minutes);
 	out_string(830, 240, now_time);
 
+	/*
+		绘制体力条
+	*/
+	rectangle(900, 30, 940, 130);
+	//setfillcolor(GREEN);
+	fillrectangle(900, 30, 940, 30 + PlayerState::step * 10);
+	
+	/*
+		是否被发现
+	*/
+	std::string state;
+	if (PlayerState::chased)state = "被发现";
+	else state = "未被发现";
+	out_string(960, 30, state);
 }
 /*
 	绘制敌人
@@ -840,6 +923,7 @@ void init()
 	Init::init_item();
 	Init::init_loot();
 	Init::init_data();
+	Init::init_easyx();
 }
 
 int main()

@@ -21,11 +21,14 @@ class Enemy
 			this->chaseRange = 0;
 			this->alive = false;
 			this->id = 0;
+			this->name = "";
 		}
 
 		int x;
 		int y;
 		std::string map_name;
+
+		std::string name;
 		
 		int hp;
 		int attack_min;

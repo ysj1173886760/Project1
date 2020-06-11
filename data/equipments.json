@@ -1,0 +1,98 @@
+[
+  {
+    "type": "cloth",
+    "description": "一件普通的白色T恤",
+    "event": "",
+    "name": "白色T恤",
+    "pic": "apple.png",
+    "where": "上衣",
+    "size": 3,
+    "time": 60,
+    "bloat": 0,
+    "defense": 0
+  },
+  {
+    "type": "cloth",
+    "description": "一件普通的运动裤",
+    "event": "",
+    "name": "运动裤",
+    "pic": "apple.png",
+    "where": "裤子",
+    "size": 3,
+    "time": 60,
+    "bloat": 0,
+    "defense": 0
+  },
+  {
+    "type": "cloth",
+    "description": "一件普通的运动鞋",
+    "event": "",
+    "name": "运动鞋",
+    "pic": "apple.png",
+    "where": "鞋子",
+    "size": 3,
+    "time": 60,
+    "bloat": 0,
+    "defense": 0
+  },
+  {
+    "type": "cloth",
+    "description": "一件普通的卫衣",
+    "event": "",
+    "name": "卫衣",
+    "pic": "apple.png",
+    "where": "上衣",
+    "size": 3,
+    "time": 60,
+    "bloat": 1,
+    "defense": 1
+  },
+  {
+    "type": "weapon",
+    "description": "看起来没什么杀伤力",
+    "event": "",
+    "name": "黄油刀",
+    "pic": "apple.png",
+    "where": "武器",
+    "size": 2,
+    "time": 30,
+    "attack_max": 10,
+    "attack_min": 5
+  },
+  {
+    "type": "weapon",
+    "description": "很有安全感的一把武器",
+    "event": "",
+    "name": "消防斧",
+    "pic": "apple.png",
+    "where": "武器",
+    "size": 10,
+    "time": 30,
+    "attack_max": 50,
+    "attack_min": 40
+  },
+  {
+    "type": "backpack",
+    "description": "小书包",
+    "event": "",
+    "name": "书包",
+    "pic": "apple.png",
+    "where": "背包",
+    "size": 5,
+    "time": 30,
+    "bloat": 3,
+    "capacity": 20
+  },
+  {
+    "type": "backpack",
+    "description": "能装很多东西的登山包",
+    "event": "",
+    "name": "登山包",
+    "pic": "apple.png",
+    "where": "背包",
+    "size": 15,
+    "time": 30,
+    "bloat": 10,
+    "capacity": 50
+  }
+]

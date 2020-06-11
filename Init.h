@@ -31,5 +31,6 @@ class Init
 		static void init_item();
 		static void init_loot();
 		static void init_data();
+		static void init_easyx();
 };
 

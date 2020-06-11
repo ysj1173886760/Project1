@@ -7,8 +7,8 @@
 class Container
 {
 	public:
-		int space;
-		int capacity;
+		int space;		//当前容量
+		int capacity;	//最大容量
 		//std::list<std::pair<int, int>> items;		//前一个是id 后一个是数量
 		std::map<std::string, int> items;
 

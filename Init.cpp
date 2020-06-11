@@ -15,6 +15,7 @@ void Init::init_image()
 	loadimage(&Resource::way_to_school, _T("Resources\\way_to_school.png"));
 	loadimage(&Resource::placeable_map["营火"], _T("Resources\\campfire.png"));
 	loadimage(&Resource::zombie, _T("Resources\\zombie.png"));
+	loadimage(&Resource::hit, _T("Resources\\hit.png"));
 }
 
 void Init::init_player_state()
@@ -29,6 +30,8 @@ void Init::init_player_state()
 	PlayerState::player_face = 0;
 	PlayerState::player_sanity = 100;
 	PlayerState::attack_min = 10;
+	PlayerState::speed = 10;
+	PlayerState::step = 0;
 }
 
 /*
@@ -89,6 +92,11 @@ void Init::init_map()
 	
 	school_init();
 	wayToSchool_init();
+}
+
+void Init::init_easyx()
+{
+	setfillcolor(GREEN);
 }
 
 void load_data_from_json(std::string source)
@@ -178,6 +186,50 @@ void load_data_from_json(std::string source)
 				newPlaceable->type = Item::TYPE::Placeable;
 				newItem = newPlaceable;
 			}
+			else if (type == "cloth")
+			{
+				Cloth* newCloth = new Cloth();
+				newCloth->description = temp["description"].asString();
+				newCloth->event = temp["event"].asString();
+				newCloth->name = temp["name"].asString();
+				newCloth->pic_source = "Resources\\\\" + temp["pic"].asString();
+				newCloth->time = temp["time"].asInt();
+				newCloth->size = temp["size"].asInt();
+				newCloth->type = Item::TYPE::Cloth;
+				newCloth->bloat = temp["bloat"].asInt();
+				newCloth->defense = temp["defense"].asInt();
+				newCloth->where = temp["where"].asString();
+				newItem = newCloth;
+			}
+			else if (type == "weapon")
+			{
+				Weapon* newWeapon = new Weapon();
+				newWeapon->description = temp["description"].asString();
+				newWeapon->event = temp["event"].asString();
+				newWeapon->name = temp["name"].asString();
+				newWeapon->pic_source = "Resources\\\\" + temp["pic"].asString();
+				newWeapon->time = temp["time"].asInt();
+				newWeapon->size = temp["size"].asInt();
+				newWeapon->type = Item::TYPE::Weapon;
+				newWeapon->attack_max = temp["attack_max"].asInt();
+				newWeapon->attack_min = temp["attack_min"].asInt();
+				newWeapon->where = temp["where"].asString();
+				newItem = newWeapon;
+			}
+			else if (type == "backpack")
+			{
+				Backpack* newBackpack = new Backpack();
+				newBackpack->description = temp["description"].asString();
+				newBackpack->event = temp["event"].asString();
+				newBackpack->name = temp["name"].asString();
+				newBackpack->pic_source = "Resources\\\\" + temp["pic"].asString();
+				newBackpack->time = temp["time"].asInt();
+				newBackpack->size = temp["size"].asInt();
+				newBackpack->capacity = temp["capacity"].asInt();
+				newBackpack->type = Item::TYPE::Backpack;
+				newBackpack->bloat = temp["bloat"].asInt();
+				newItem = newBackpack;
+			}
 
 			if (newItem != NULL)
 			{
@@ -214,6 +266,7 @@ void Init::init_item()
 	load_data_from_json("data\\craft.json");
 	load_data_from_json("data\\tool.json");
 	load_data_from_json("data\\placeable.json");
+	load_data_from_json("data\\equipments.json");
 }
 
 void Init::init_loot()
@@ -222,12 +275,22 @@ void Init::init_loot()
 	/*
 		玩家背包
 	*/
-	Resource::player_backpack.set(0, 25);			//设置空间
+	Resource::player_backpack.set(0, 5);			//设置空间
+	/*
 	Resource::player_backpack.add("苹果", 10);
 	Resource::player_backpack.add("木棍", 3);
 	Resource::player_backpack.add("线", 2);
 	Resource::player_backpack.add("矿泉水");
 	Resource::player_backpack.add("营火", 2);
+	*/
+	Resource::item_map[Resource::item_map_for_string["登山包"]]->equip();
+	Resource::item_map[Resource::item_map_for_string["白色T恤"]]->equip();
+	Resource::item_map[Resource::item_map_for_string["运动裤"]]->equip();
+	Resource::item_map[Resource::item_map_for_string["运动鞋"]]->equip();
+
+	Resource::player_backpack.add("卫衣");
+	Resource::player_backpack.add("消防斧");
+	Resource::player_backpack.add("黄油刀");
 }
 
 void load_event_from_json(std::string source)
@@ -451,6 +514,22 @@ void data2()
 	Resource::interactionEvent_map.push_back(temp);
 }
 */
+
+void create_zombie(int x, int y)
+{
+	zombie* newzombie = new zombie();
+	newzombie->hp = 30;
+	newzombie->name = "普通僵尸";
+	newzombie->x = x;
+	newzombie->y = y;
+	newzombie->speed = 10;
+	newzombie->chaseRange = 5;
+	newzombie->alive = true;
+	newzombie->id = -1 - Resource::zombie_map["废弃的学校"].size();
+	newzombie->attack_min = 5;
+	Resource::mainMap["废弃的学校"][x][y] = newzombie->id;
+	Resource::zombie_map["废弃的学校"].push_back(newzombie);
+}
 void Init::init_data()
 {
 	Resource::Event_queue.clear();
@@ -478,15 +557,7 @@ void Init::init_data()
 	/*
 		测试敌人
 	*/
-	zombie* newzombie = new zombie();
-	newzombie->hp = 30;
-	newzombie->x = 25;
-	newzombie->y = 25;
-	newzombie->speed = 10;
-	newzombie->chaseRange = 5;
-	newzombie->alive = true;
-	newzombie->id = -1 - Resource::zombie_map["废弃的学校"].size();
-	newzombie->attack_min = 5;
-	Resource::mainMap["废弃的学校"][25][25] = -1;
-	Resource::zombie_map["废弃的学校"].push_back(newzombie);
+	
+	create_zombie(25, 25);
+	create_zombie(25, 26);
 }

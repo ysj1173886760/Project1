@@ -29,9 +29,9 @@ void zombie::move()
 	int ny = this->y;
 	if (flag && PlayerState::player_x < this->x)
 	{
-		nx--;
-		if (Resource::mainMap[PlayerState::player_position][nx][ny] == 0)
+		if (Resource::mainMap[PlayerState::player_position][this->x - 1][this->y] == 0)
 		{
+			nx--;
 			flag = false;
 			Resource::mainMap[PlayerState::player_position][this->x][this->y] = 0;
 			Resource::mainMap[PlayerState::player_position][nx][ny] = this->id;
@@ -39,9 +39,9 @@ void zombie::move()
 	}
 	if (flag && PlayerState::player_x > this->x)
 	{
-		nx++;
-		if (Resource::mainMap[PlayerState::player_position][nx][ny] == 0)
+		if (Resource::mainMap[PlayerState::player_position][this->x + 1][this->y] == 0)
 		{
+			nx++;
 			flag = false;
 			Resource::mainMap[PlayerState::player_position][this->x][this->y] = 0;
 			Resource::mainMap[PlayerState::player_position][nx][ny] = this->id;
@@ -49,10 +49,10 @@ void zombie::move()
 	}
 	if (flag && PlayerState::player_y < this->y)
 	{
-		ny--;
-		if (Resource::mainMap[PlayerState::player_position][nx][ny] == 0)
+		if (Resource::mainMap[PlayerState::player_position][this->x][this->y - 1] == 0)
 		{
 			flag = false;
+			ny--;
 			Resource::mainMap[PlayerState::player_position][this->x][this->y] = 0;
 			Resource::mainMap[PlayerState::player_position][nx][ny] = this->id;
 		}
@@ -60,16 +60,19 @@ void zombie::move()
 	}
 	if (flag && PlayerState::player_y > this->y)
 	{
-		ny++;
-		if (Resource::mainMap[PlayerState::player_position][nx][ny] == 0)
+		if (Resource::mainMap[PlayerState::player_position][this->x][this->y + 1] == 0)
 		{
 			flag = false;
+			ny++;
 			Resource::mainMap[PlayerState::player_position][this->x][this->y] = 0;
 			Resource::mainMap[PlayerState::player_position][nx][ny] = this->id;
 		}
 	}
-	this->x = nx;
-	this->y = ny;
+	if (!flag)
+	{
+		this->x = nx;
+		this->y = ny;
+	}
 }
 
 bool zombie::chaseing()

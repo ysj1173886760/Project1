@@ -45,6 +45,7 @@ class Resource
 		static IMAGE way_to_school;
 		static IMAGE campfire;
 		static IMAGE zombie;
+		static IMAGE hit;
 
 		static std::map<std::string, IMAGE>placeable_map;
 

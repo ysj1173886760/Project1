@@ -13,4 +13,12 @@ int PlayerState::player_sanity = 0;
 int PlayerState::attack_max = 0;
 int PlayerState::attack_min = 0;
 
+int PlayerState::speed = 0;
+int PlayerState::step = 0;
+
 bool PlayerState::chased = false;
+
+int PlayerState::bloat = 0;
+int PlayerState::defense = 0;
+std::map<std::string, bool>PlayerState::debuff;
+std::map<std::string, std::string>PlayerState::equip;
