@@ -48,6 +48,22 @@ void transparentimage(IMAGE* dstimg, int x, int y, IMAGE* srcimg, UINT transpare
 	TransparentBlt(dstDC, x, y, w, h, srcDC, 0, 0, w, h, transparentcolor);
 }
 
+void update_backpack_pointer()
+{
+	if (UI::backpack_pointer.first * 10 + UI::backpack_pointer.second >= Resource::player_backpack.items.size())
+	{
+		if (UI::backpack_pointer.second - 1 >= 0 || UI::backpack_pointer.first > 0)
+		{
+			UI::backpack_pointer.second--;
+			if (UI::backpack_pointer.second < 0)
+			{
+				UI::backpack_pointer.second += 10;
+				UI::backpack_pointer.first--;
+			}
+		}
+	}
+}
+
 void use_item()
 {
 	/*
@@ -58,7 +74,7 @@ void use_item()
 
 	if (Resource::player_backpack.items.size() == 0)
 		return;
-	int now = 0;
+	std::pair<int, int>now(0, 0);
 	
 	for (std::map<std::string, int>::iterator it = Resource::player_backpack.items.begin(); it != Resource::player_backpack.items.end(); it++)
 	{
@@ -69,25 +85,31 @@ void use_item()
 			{
 				temp->use();
 				Resource::player_backpack.remove(it->first);
+				update_backpack_pointer();
+				/*
 				if (Resource::player_backpack.items.size() <= UI::backpack_pointer)		//修改了一个小bug
 					UI::backpack_pointer = 0;
+				*/
 			}
 			else if (temp->can_place())
 			{
 				if(temp->place())
 					Resource::player_backpack.remove(it->first);
-				if (Resource::player_backpack.items.size() <= UI::backpack_pointer)
-					UI::backpack_pointer = 0;
+				update_backpack_pointer();
 			}
 			else if (temp->can_equip())
 			{
 				temp->equip();
-				if (Resource::player_backpack.items.size() <= UI::backpack_pointer)
-					UI::backpack_pointer = 0;
+				update_backpack_pointer();
 			}
 			return;
 		}
-		now++;
+		now.second++;
+		if (now.second >= 10)
+		{
+			now.second -= 10;
+			now.first++;
+		}
 	}
 }
 
@@ -190,8 +212,9 @@ void interact()
 				UI::now_itemBox = Resource::itemBox_map[temp->key];
 				UI::interact_key = temp->key;
 				UI::open_itemBox = true;
-				UI::itemBox_pointer.first = 0;
-				UI::itemBox_pointer.second = 0;
+				UI::itemBox_pointer = 0;
+				UI::itemBox_pointer_left = std::make_pair(0, 0);
+				UI::itemBox_pointer_right = std::make_pair(0, 0);
 			}
 			else if (type == Interaction::TYPE::Event || type == Interaction::TYPE::PlaceableEvent)
 			{
@@ -207,13 +230,13 @@ void interact()
 */
 void move_item()
 {
-	int now = 0;
+	std::pair<int, int>now(0, 0);
 
-	if (UI::itemBox_pointer.first == 0)			//背包移动到物品箱中
+	if (UI::itemBox_pointer == 0)			//背包移动到物品箱中
 	{
 		for (std::map<std::string, int>::iterator it = Resource::player_backpack.items.begin(); it != Resource::player_backpack.items.end(); it++)
 		{
-			if (now == UI::itemBox_pointer.second)
+			if (now == UI::itemBox_pointer_left)
 			{
 				if (Resource::itemBox_map[UI::interact_key].canPut(it->first))
 				{
@@ -222,20 +245,34 @@ void move_item()
 				}
 
 				UI::now_itemBox = Resource::itemBox_map[UI::interact_key];					//把物品信息更新
-				if (Resource::player_backpack.items.size() <= UI::itemBox_pointer.second)
+				
+				if (UI::itemBox_pointer_left.first * 10 + UI::itemBox_pointer_left.second >= Resource::player_backpack.items.size())
 				{
-					UI::itemBox_pointer.second = 0;
+					if (UI::itemBox_pointer_left.second - 1 >= 0 || UI::itemBox_pointer_left.first > 0)
+					{
+						UI::itemBox_pointer_left.second--;
+						if (UI::itemBox_pointer_left.second < 0)
+						{
+							UI::itemBox_pointer_left.second += 10;
+							UI::itemBox_pointer_left.first--;
+						}
+					}
 				}
 				return;
 			}
-			now++;
+			now.second++;
+			if (now.second >= 10)
+			{
+				now.first++;
+				now.second -= 10;
+			}
 		}
 	}
 	else										//物品箱移动到背包
 	{
 		for (std::map<std::string, int>::iterator it = UI::now_itemBox.items.begin(); it != UI::now_itemBox.items.end(); it++)
 		{
-			if (now == UI::itemBox_pointer.second)
+			if (now == UI::itemBox_pointer_right)
 			{
 				if (Resource::player_backpack.canPut(it->first))
 				{
@@ -244,13 +281,27 @@ void move_item()
 				}
 
 				UI::now_itemBox = Resource::itemBox_map[UI::interact_key];					//把物品信息更新
-				if (UI::now_itemBox.items.size() <= UI::itemBox_pointer.second)
+
+				if (UI::itemBox_pointer_right.first * 10 + UI::itemBox_pointer_right.second >= UI::now_itemBox.items.size())
 				{
-					UI::itemBox_pointer.second = 0;
+					if (UI::itemBox_pointer_right.second - 1 >= 0 || UI::itemBox_pointer_right.first > 0)
+					{
+						UI::itemBox_pointer_right.second--;
+						if (UI::itemBox_pointer_right.second < 0)
+						{
+							UI::itemBox_pointer_right.second += 10;
+							UI::itemBox_pointer_right.first--;
+						}
+					}
 				}
 				return;
 			}
-			now++;
+			now.second++;
+			if (now.second >= 10)
+			{
+				now.first++;
+				now.second -= 10;
+			}
 		}
 	}
 }
@@ -271,7 +322,7 @@ void draw_placeable()
 */
 void initWindow()
 {
-	int now = 0;
+	std::pair<int, int> now(0, 0);
 	std::string des;
 	std::string source;
 
@@ -284,7 +335,12 @@ void initWindow()
 			source = temp->pic_source;
 			break;
 		}
-		now++;
+		now.second++;
+		if (now.second >= 10)
+		{
+			now.second -= 10;
+			now.first++;
+		}
 	}
 
 	/*
@@ -397,13 +453,27 @@ void updateWithInput()
 	{
 		if (KEYDOWN('W'))
 		{
-			if (UI::backpack_pointer - 1 >= 0)
-				UI::backpack_pointer--;
+			if (UI::backpack_pointer.second - 1 >= 0 || UI::backpack_pointer.first >= 0)
+			{
+				UI::backpack_pointer.second--;
+				if (UI::backpack_pointer.second < 0)
+				{
+					UI::backpack_pointer.second += 10;
+					UI::backpack_pointer.first--;
+				}
+			}
 		}
 		else if (KEYDOWN('S'))
 		{
-			if (UI::backpack_pointer + 1 < int(Resource::player_backpack.items.size()))
-				UI::backpack_pointer++;
+			if (UI::backpack_pointer.first * 10 + UI::backpack_pointer.second + 1 < int(Resource::player_backpack.items.size()))
+			{
+				UI::backpack_pointer.second++;
+				if (UI::backpack_pointer.second >= 10)
+				{
+					UI::backpack_pointer.first++;
+					UI::backpack_pointer.second -= 10;
+				}
+			}
 		}
 		else if (KEYDOWN('F'))
 		{
@@ -412,7 +482,7 @@ void updateWithInput()
 		else if (KEYDOWN('E') || KEYDOWN(VK_ESCAPE))
 		{
 			UI::open_backpack = false;
-			UI::backpack_pointer = 0;
+			UI::backpack_pointer = std::make_pair(0, 0);
 		}
 		else if (KEYDOWN('X'))
 		{
@@ -445,30 +515,69 @@ void updateWithInput()
 	{
 		if (KEYDOWN('W'))
 		{
-			if (UI::itemBox_pointer.second- 1 >= 0)
-				UI::itemBox_pointer.second--;
+			if (UI::itemBox_pointer == 0)
+			{
+				if (UI::itemBox_pointer_left.second - 1 >= 0 || UI::itemBox_pointer_left.first > 0)
+				{
+					UI::itemBox_pointer_left.second--;
+					if (UI::itemBox_pointer_left.second < 0)
+					{
+						UI::itemBox_pointer_left.second += 10;
+						UI::itemBox_pointer_left.first--;
+					}
+				}
+			}
+			else
+			{
+				if (UI::itemBox_pointer_right.second - 1 >= 0 || UI::itemBox_pointer_right.first > 0)
+				{
+					UI::itemBox_pointer_right.second--;
+					if (UI::itemBox_pointer_right.second < 0)
+					{
+						UI::itemBox_pointer_right.second += 10;
+						UI::itemBox_pointer_right.first--;
+					}
+				}
+			}
 		}
 		else if (KEYDOWN('S'))
 		{
-			if (UI::itemBox_pointer.first == 1)
+			if (UI::itemBox_pointer == 0)
 			{
-				if (UI::itemBox_pointer.second + 1 < int(UI::now_itemBox.items.size()))
-					UI::itemBox_pointer.second++;
+				if (UI::itemBox_pointer_left.first * 10 + UI::itemBox_pointer_left.second + 1 < int(Resource::player_backpack.items.size()))
+				{
+					UI::itemBox_pointer_left.second++;
+					if (UI::itemBox_pointer_left.second >= 10)
+					{
+						UI::itemBox_pointer_left.first++;
+						UI::itemBox_pointer_left.second -= 10;
+					}
+				}
 			}
 			else
-				if (UI::itemBox_pointer.second + 1 < int(Resource::player_backpack.items.size()))
-					UI::itemBox_pointer.second++;
+			{	
+				//std::cout << UI::itemBox_pointer_right.first << " " << UI::itemBox_pointer_right.second << std::endl;
+				if (UI::itemBox_pointer_right.first * 10 + UI::itemBox_pointer_right.second + 1 < int(UI::now_itemBox.items.size()))
+				{
+					UI::itemBox_pointer_right.second++;
+					if (UI::itemBox_pointer_right.second >= 10)
+					{
+						UI::itemBox_pointer_right.first++;
+						UI::itemBox_pointer_right.second -= 10;
+					}
+				}
+			}
 				
 		}
 		else if (KEYDOWN('D'))
 		{
-			if (UI::itemBox_pointer.first == 0)
-				UI::itemBox_pointer.first = 1;
+			if (UI::itemBox_pointer == 0)
+				UI::itemBox_pointer = 1;
 		}
 		else if (KEYDOWN('A'))
 		{
-			if (UI::itemBox_pointer.first == 1)
-				UI::itemBox_pointer.first = 0;
+			if (UI::itemBox_pointer == 1)
+				UI::itemBox_pointer = 0;
 		}
 		else if (KEYDOWN('E') || KEYDOWN(VK_ESCAPE))
 		{
@@ -551,6 +660,7 @@ void updateWithInput()
 		else if (KEYDOWN('E'))
 		{
 			UI::open_backpack = true;
+			UI::backpack_pointer = std::make_pair(0, 0);
 		}
 		else if (KEYDOWN('T'))
 		{
@@ -744,17 +854,25 @@ void draw_backpack()
 	if (Resource::player_backpack.items.size() == 0)
 		return;
 	
-	int now = 0;
+	std::pair<int, int>now(0, 0);
 	//从30， 60开始输出物品
 	for (std::map<std::string, int>::iterator it = Resource::player_backpack.items.begin(); it != Resource::player_backpack.items.end(); it++)
 	{
-		Item *temp = Resource::item_map[Resource::item_map_for_string[it->first]];
-		out_string(BACKPACK_X + 30, BACKPACK_Y + 60 + now * 30, temp->name);
-		out_number(BACKPACK_X + 300, BACKPACK_Y + 60 + now * 30, it->second);
-		now++;
+		if (now.first == UI::backpack_pointer.first)
+		{
+			Item* temp = Resource::item_map[Resource::item_map_for_string[it->first]];
+			out_string(BACKPACK_X + 30, BACKPACK_Y + 60 + now.second * 30, temp->name);
+			out_number(BACKPACK_X + 300, BACKPACK_Y + 60 + now.second * 30, it->second);
+		}
+		now.second++;
+		if (now.second == 10)
+		{
+			now.second = 0;
+			now.first++;
+		}
 	}
 
-	putimage(BACKPACK_X, BACKPACK_Y + 53 + UI::backpack_pointer * 30, &Resource::backpack_pointer);
+	putimage(BACKPACK_X, BACKPACK_Y + 53 + UI::backpack_pointer.second * 30, &Resource::backpack_pointer);
 }
 
 /*
@@ -941,27 +1059,49 @@ void draw_itemBox()
 	if (Resource::player_backpack.items.size() == 0 && UI::now_itemBox.items.size() == 0)
 		return;
 
-	int now = 0;
+	std::pair<int, int>now;
 
 	for (std::map<std::string, int>::iterator it = Resource::player_backpack.items.begin(); it != Resource::player_backpack.items.end(); it++)
 	{
-		Item *temp = Resource::item_map[Resource::item_map_for_string[it->first]];
-		out_string( 30, 180 + 60 + now * 30, temp->name);
-		out_number( 300, 180 + 60 + now * 30, it->second);
-		now++;
+		if (now.first == UI::itemBox_pointer_left.first)
+		{
+			Item* temp = Resource::item_map[Resource::item_map_for_string[it->first]];
+			out_string(30, 180 + 60 + now.second * 30, temp->name);
+			out_number(300, 180 + 60 + now.second * 30, it->second);
+		}
+		now.second++;
+		if (now.second == 10)
+		{
+			now.second = 0;
+			now.first++;
+		}
 	}
 
-	now = 0;
+	now = std::make_pair(0, 0);
 
 	for (std::map<std::string, int>::iterator it = UI::now_itemBox.items.begin(); it != UI::now_itemBox.items.end(); it++)
 	{
-		Item *temp = Resource::item_map[Resource::item_map_for_string[it->first]];
-		out_string(30 + 360, 180 + 60 + now * 30, temp->name);
-		out_number(300 + 360, 180 + 60 + now * 30, it->second);
-		now++;
+		if (now.first == UI::itemBox_pointer_right.first)
+		{
+			Item* temp = Resource::item_map[Resource::item_map_for_string[it->first]];
+			out_string(30 + 360, 180 + 60 + now.second * 30, temp->name);
+			out_number(300 + 360, 180 + 60 + now.second * 30, it->second);
+		}
+		now.second++;
+		if (now.second == 10)
+		{
+			now.second = 0;
+			now.first++;
+		}
 	}
-
-	putimage(UI::itemBox_pointer.first * 360, 180 + 53 + UI::itemBox_pointer.second * 30, &Resource::backpack_pointer);
+	if (UI::itemBox_pointer == 0)
+	{
+		putimage(0, 180 + 53 + UI::itemBox_pointer_left.second * 30, &Resource::backpack_pointer);
+	}
+	else
+	{
+		putimage(360, 180 + 53 + UI::itemBox_pointer_right.second * 30, &Resource::backpack_pointer);
+	}
 
 }
 

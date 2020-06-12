@@ -293,6 +293,15 @@ void Init::init_loot()
 	Resource::player_backpack.add("卫衣");
 	Resource::player_backpack.add("消防斧");
 	Resource::player_backpack.add("黄油刀");
+	Resource::player_backpack.add("苹果");
+	Resource::player_backpack.add("矿泉水");
+	Resource::player_backpack.add("果汁");
+	Resource::player_backpack.add("能量饮料");
+	Resource::player_backpack.add("可乐");
+	Resource::player_backpack.add("啤酒");
+	Resource::player_backpack.add("白色T恤");
+	Resource::player_backpack.add("运动鞋");
+	Resource::player_backpack.add("运动裤");
 }
 
 void load_event_from_json(std::string source)
@@ -560,6 +569,6 @@ void Init::init_data()
 		测试敌人
 	*/
 	
-	create_zombie(25, 25);
-	create_zombie(25, 26);
+	//create_zombie(25, 25);
+	//create_zombie(25, 26);
 }

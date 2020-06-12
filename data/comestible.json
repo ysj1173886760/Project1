@@ -22,5 +22,53 @@
     "time": 60,
     "type": "comestible",
     "water": 10
+  },
+  {
+    "description": "一瓶果汁，密封的较为完好，上面的字已经模糊不清",
+    "event": "你喝了一瓶果汁，尝起来像是没过期的样子",
+    "fatigue": 0,
+    "food": 2,
+    "name": "果汁",
+    "pic": "water.png",
+    "size": 1,
+    "time": 60,
+    "type": "comestible",
+    "water": 8
+  },
+  {
+    "description": "redbull，知名能量饮料，口感绝佳",
+    "event": "你感觉活力充沛",
+    "fatigue": 5,
+    "food": 1,
+    "name": "能量饮料",
+    "pic": "water.png",
+    "size": 1,
+    "time": 60,
+    "type": "comestible",
+    "water": 3
+  },
+  {
+    "description": "末世后的稀有物资，人人都爱喝",
+    "event": "快乐++",
+    "fatigue": 0,
+    "food": 0,
+    "name": "可乐",
+    "pic": "water.png",
+    "size": 1,
+    "time": 60,
+    "type": "comestible",
+    "water": 5
+  },
+  {
+    "description": "一瓶啤酒，虽然酒精含量不高，但是可以解决燃眉之急",
+    "event": "你喝了一瓶啤酒，有点上头",
+    "fatigue": -2,
+    "food": 0,
+    "name": "啤酒",
+    "pic": "water.png",
+    "size": 1,
+    "time": 60,
+    "type": "comestible",
+    "water": 4
   }
 ]

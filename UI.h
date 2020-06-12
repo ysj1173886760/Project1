@@ -14,8 +14,10 @@ class UI
 	public:
 		static bool open_backpack;
 		static bool open_itemBox;
-		static std::pair<int, int>itemBox_pointer;
-		static int backpack_pointer;
+		static std::pair<int, int>itemBox_pointer_left;
+		static std::pair<int, int>itemBox_pointer_right;
+		static int itemBox_pointer;
+		static std::pair<int, int> backpack_pointer;
 		static Container now_itemBox;
 		static int interact_key;
 		static bool open_event;
