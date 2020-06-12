@@ -11,6 +11,10 @@
         "name": "营火"
       },
       {
+        "type": "break",
+        "des": "拆除营火"
+      },
+      {
         "type": "nothing",
         "des": "还是算了"
       }

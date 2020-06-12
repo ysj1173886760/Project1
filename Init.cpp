@@ -290,18 +290,8 @@ void Init::init_loot()
 	Resource::item_map[Resource::item_map_for_string["运动裤"]]->equip();
 	Resource::item_map[Resource::item_map_for_string["运动鞋"]]->equip();
 
-	Resource::player_backpack.add("卫衣");
-	Resource::player_backpack.add("消防斧");
-	Resource::player_backpack.add("黄油刀");
-	Resource::player_backpack.add("苹果");
-	Resource::player_backpack.add("矿泉水");
-	Resource::player_backpack.add("果汁");
-	Resource::player_backpack.add("能量饮料");
-	Resource::player_backpack.add("可乐");
-	Resource::player_backpack.add("啤酒");
-	Resource::player_backpack.add("白色T恤");
-	Resource::player_backpack.add("运动鞋");
-	Resource::player_backpack.add("运动裤");
+	Resource::player_backpack.add("生鱼");
+	Resource::player_backpack.add("营火");
 }
 
 void load_event_from_json(std::string source)
@@ -380,7 +370,7 @@ void load_event_from_json(std::string source)
 					{
 						OpenCraftWindow* newOpen = new OpenCraftWindow();
 						newOpen->des = temp["result"][i]["des"].asString();
-						newOpen->type = Result::TYPE::UpdatePlayerState;
+						newOpen->type = Result::TYPE::OpenCraftWindow;
 						newOpen->window_name = temp["result"][i]["name"].asString();
 						newResult = newOpen;
 					}
@@ -467,6 +457,13 @@ void load_placeable_event_from_json(std::string source)
 					newOpen->type = Result::TYPE::OpenCraftWindow;
 					newOpen->window_name = temp["result"][i]["name"].asString();
 					newResult = newOpen;
+				}
+				else if (resultType == "break")
+				{
+					Break* newBreak = new Break();
+					newBreak->type = Result::TYPE::Break;
+					newBreak->des = temp["result"][i]["des"].asString();
+					newResult = newBreak;
 				}
 
 				if (newResult != NULL)

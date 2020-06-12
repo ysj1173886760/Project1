@@ -16,7 +16,8 @@ class Result
 		{
 			UpdatePlayerState,
 			OpenCraftWindow,
-			DoNothing
+			DoNothing,
+			Break
 		}type;
 
 		/*
@@ -75,6 +76,10 @@ class Result
 		{
 			return false;
 		}
+		virtual bool is_Break()
+		{
+			return false;
+		}
 };
 
 class UpdatePlayerState : public Result
@@ -129,4 +134,18 @@ class OpenCraftWindow : public Result
 		}
 
 		void do_result();
+};
+
+class Break :public Result
+{
+	public:
+		~Break() {}
+		Break() {}
+
+		void do_result();
+
+		bool is_Break()
+		{
+			return true;
+		}
 };

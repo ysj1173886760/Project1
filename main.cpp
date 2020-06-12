@@ -362,6 +362,7 @@ void draw_window()
 	UI::now_window.show();
 }
 
+
 /*
 	显示时间窗口
 */
@@ -377,6 +378,10 @@ void do_event()
 				Resource::Event_queue.push_back(UI::now_event.selections[i]->result);
 			}
 			else if (UI::now_event.selections[i]->type == Result::TYPE::OpenCraftWindow)
+			{
+				UI::now_event.selections[i]->do_result();
+			}
+			else if (UI::now_event.selections[i]->type == Result::TYPE::Break)
 			{
 				UI::now_event.selections[i]->do_result();
 			}

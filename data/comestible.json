@@ -70,5 +70,29 @@
     "time": 60,
     "type": "comestible",
     "water": 4
+  },
+  {
+    "description": "一条生鱼，rawfish",
+    "event": "你吃了条生鱼，感觉有点恶心",
+    "fatigue": 0,
+    "food": 7,
+    "name": "生鱼",
+    "pic": "water.png",
+    "size": 1,
+    "time": 180,
+    "type": "comestible",
+    "water": 0
+  },
+  {
+    "description": "碳烤鲈鱼，绝佳美味",
+    "event": "你吃了一条香喷喷的鱼",
+    "fatigue": 0,
+    "food": 15,
+    "name": "熟鱼",
+    "pic": "baconfish.png",
+    "size": 1,
+    "time": 300,
+    "type": "comestible",
+    "water": -2
   }
 ]
