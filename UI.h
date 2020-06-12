@@ -26,5 +26,7 @@ class UI
 		static int craft_pointer;
 		static bool open_craft;
 		static std::string craft_name;
+		static int equip_pointer;
+		static bool open_equip;
 };
 

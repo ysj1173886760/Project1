@@ -22,6 +22,8 @@ int zombie::attack()
 	return this->attack_min;
 }
 
+/*
+	Õâ¸ömove¼òÖ±ÄÔÒçÑª
 void zombie::move()
 {
 	bool flag = true;
@@ -73,6 +75,16 @@ void zombie::move()
 		this->x = nx;
 		this->y = ny;
 	}
+}
+*/
+void zombie::move()
+{
+	Resource::myAstar.reset();
+	std::pair<int, int>nxt = Resource::myAstar.calc(this->x, this->y);
+	Resource::mainMap[PlayerState::player_position][this->x][this->y] = 0;
+	this->x = nxt.first;
+	this->y = nxt.second;
+	Resource::mainMap[PlayerState::player_position][this->x][this->y] = this->id;
 }
 
 bool zombie::chaseing()

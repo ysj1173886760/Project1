@@ -12,6 +12,7 @@
 #include"Item.h"
 #include"Craft.h"
 #include"Enemy.h"
+#include"Astar.h"
 
 
 class Item;
@@ -21,6 +22,7 @@ class Result;
 class Comestible;
 class Craft;
 class Enemy;
+class Astar;
 
 struct detail
 {
@@ -46,6 +48,7 @@ class Resource
 		static IMAGE campfire;
 		static IMAGE zombie;
 		static IMAGE hit;
+		static IMAGE equip;
 
 		static std::map<std::string, IMAGE>placeable_map;
 
@@ -82,6 +85,8 @@ class Resource
 		static GameTime Maintime;
 
 		static std::map<std::string, std::vector<Enemy*>>zombie_map;
+
+		static Astar myAstar;
 };
 
 

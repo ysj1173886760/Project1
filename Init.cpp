@@ -16,6 +16,7 @@ void Init::init_image()
 	loadimage(&Resource::placeable_map["Óª»ð"], _T("Resources\\campfire.png"));
 	loadimage(&Resource::zombie, _T("Resources\\zombie.png"));
 	loadimage(&Resource::hit, _T("Resources\\hit.png"));
+	loadimage(&Resource::equip, _T("Resources\\equip.png"));
 }
 
 void Init::init_player_state()
@@ -228,6 +229,7 @@ void load_data_from_json(std::string source)
 				newBackpack->capacity = temp["capacity"].asInt();
 				newBackpack->type = Item::TYPE::Backpack;
 				newBackpack->bloat = temp["bloat"].asInt();
+				newBackpack->where = temp["where"].asString();
 				newItem = newBackpack;
 			}
 

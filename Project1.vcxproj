@@ -139,6 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Astar.cpp" />
     <ClCompile Include="Container.cpp" />
     <ClCompile Include="Craft.cpp" />
     <ClCompile Include="Enemy.cpp" />
@@ -157,6 +158,7 @@
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Astar.h" />
     <ClInclude Include="Container.h" />
     <ClInclude Include="Craft.h" />
     <ClInclude Include="Enemy.h" />
@@ -178,6 +180,7 @@
   <ItemGroup>
     <None Include="data\comestible.json" />
     <None Include="data\craft.json" />
+    <None Include="data\equipments.json" />
     <None Include="data\interactiveEvent.json" />
     <None Include="data\itembox.json" />
     <None Include="data\material.json" />

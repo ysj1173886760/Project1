@@ -15,7 +15,7 @@
 #include "head.h"
 #pragma comment( lib, "MSIMG32.LIB")
 
-
+std::string equip_order[6] = { "头部", "上衣", "裤子", "鞋子", "背包", "武器" };
 
 void out_number(int x, int y, int num)
 {
@@ -82,10 +82,65 @@ void use_item()
 			else if (temp->can_equip())
 			{
 				temp->equip();
+				if (Resource::player_backpack.items.size() <= UI::backpack_pointer)
+					UI::backpack_pointer = 0;
 			}
 			return;
 		}
 		now++;
+	}
+}
+
+void unequip()
+{
+	std::string name = PlayerState::equip[equip_order[UI::equip_pointer]];
+	if (name == "")
+		return;
+	std::string info = "";
+
+	if (Resource::player_backpack.canPut(name))
+	{
+		Item* temp = Resource::item_map[Resource::item_map_for_string[name]];
+		if (temp->is_cloth())
+		{
+			Cloth* now = (Cloth*)temp;
+			PlayerState::bloat -= now->bloat;
+			PlayerState::defense -= now->defense;
+			Resource::player_backpack.add(name);
+			PlayerState::equip[equip_order[UI::equip_pointer]] = "";
+		}
+		else if (temp->is_backpack())
+		{
+			Backpack* now = (Backpack*)temp;
+			if (Resource::player_backpack.space + now->size <= Resource::player_backpack.capacity - now->capacity)	//能脱下背包
+			{
+				Resource::player_backpack.capacity -= now->capacity;
+				PlayerState::bloat -= now->bloat;
+				Resource::player_backpack.add(name);
+				PlayerState::equip[equip_order[UI::equip_pointer]] = "";
+			}
+			else
+			{
+				info = "空间不足";
+			}
+		}
+		else if (temp->is_weapon())
+		{
+			Weapon* now = (Weapon*)temp;
+			PlayerState::attack_max -= now->attack_max;
+			PlayerState::attack_min -= now->attack_min;
+			Resource::player_backpack.add(name);
+			PlayerState::equip[equip_order[UI::equip_pointer]] = "";
+		}
+	}
+	else
+	{
+		info = "空间不足";
+	}
+
+	if (info != "")
+	{
+		Resource::Event_queue.push_back(info);
 	}
 }
 
@@ -365,6 +420,27 @@ void updateWithInput()
 			initWindow();
 		}
 	}
+	else if (UI::open_equip)
+	{
+		if (KEYDOWN('W'))
+		{
+			if (UI::equip_pointer - 1 >= 0)
+				UI::equip_pointer--;
+		}
+		else if (KEYDOWN('S'))
+		{				
+			if (UI::equip_pointer + 1 < 6)	//头部 上衣 裤子 鞋子 背包 武器
+				UI::equip_pointer++;
+		}
+		else if (KEYDOWN('I') || KEYDOWN(VK_ESCAPE))
+		{
+			UI::open_equip = false;
+		}
+		else if (KEYDOWN('F'))
+		{
+			unequip();
+		}
+	}
 	else if(UI::open_itemBox)
 	{
 		if (KEYDOWN('W'))
@@ -485,6 +561,11 @@ void updateWithInput()
 		else if (KEYDOWN('J'))
 		{
 			attack();
+		}
+		else if (KEYDOWN('I'))
+		{
+			UI::open_equip = true;
+			UI::equip_pointer = 0;
 		}
 		else if (KEYDOWN(VK_UP))
 		{
@@ -884,6 +965,39 @@ void draw_itemBox()
 
 }
 
+
+void draw_equip()
+{
+	putimage(180, 180, &Resource::equip);
+
+	for (int i = 0; i < 6; i++)
+	{
+		std::string res = PlayerState::equip[equip_order[i]];
+		if (res == "")
+			res = "[空]";
+		out_string(180 + 35, 180 + 37 + i * 40, res);
+	}
+
+	putimage(180, 180 + 30 + UI::equip_pointer * 40, &Resource::backpack_pointer);
+
+	std::string info = "";
+	
+	info = "最大攻击力" + std::to_string(PlayerState::attack_max);
+	out_string(300 + 30, 180 + 30, info);
+
+	info = "最小攻击力" + std::to_string(PlayerState::attack_min);
+	out_string(300 + 30, 180 + 30 + 40, info);
+
+	info = "当前速度" + std::to_string(PlayerState::speed);
+	out_string(300 + 30, 180 + 30 + 80, info);
+
+	info = "累赘度" + std::to_string(PlayerState::bloat);
+	out_string(300 + 30, 180 + 30 + 120, info);
+
+	info = "防御力" + std::to_string(PlayerState::defense);
+	out_string(300 + 30, 180 + 30 + 160, info);
+}
+
 void draw()
 {
 	if (PlayerState::player_position == "废弃的学校")
@@ -913,6 +1027,8 @@ void draw()
 		draw_eventWindow();
 	if (UI::open_craft)
 		draw_craft();
+	if (UI::open_equip)
+		draw_equip();
 }
 
 void init()

@@ -1,6 +1,7 @@
 #pragma once
 
 #include<string>
+#include<queue>
 #include"PlayerState.h"
 #include"Resource.h"
 

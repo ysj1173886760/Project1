@@ -63,6 +63,9 @@
     <ClCompile Include="Enemy.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="Astar.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PlayerState.h">
@@ -116,6 +119,9 @@
     <ClInclude Include="Enemy.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="Astar.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="data\comestible.json">
@@ -140,6 +146,9 @@
       <Filter>资源文件</Filter>
     </None>
     <None Include="data\placeableEvent.json">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="data\equipments.json">
       <Filter>资源文件</Filter>
     </None>
   </ItemGroup>

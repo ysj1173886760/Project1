@@ -27,3 +27,7 @@ int UI::craft_pointer = 0;
 bool UI::open_craft = false;
 
 std::string UI::craft_name = "";
+
+int UI::equip_pointer = 0;
+
+bool UI::open_equip = false;
