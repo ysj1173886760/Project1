@@ -13,6 +13,7 @@
 #include"Craft.h"
 #include"Enemy.h"
 #include"Astar.h"
+#include"Random.h"
 
 
 class Item;
@@ -23,6 +24,7 @@ class Comestible;
 class Craft;
 class Enemy;
 class Astar;
+class Random;
 
 struct detail
 {
@@ -35,7 +37,6 @@ class Resource
 {
 	public:
 		static IMAGE player;
-		static IMAGE school;
 		static IMAGE state;
 		static IMAGE backpack;
 		static IMAGE backpack_pointer;
@@ -44,11 +45,15 @@ class Resource
 		static IMAGE event_pointer;
 		static IMAGE Window;
 		static IMAGE craft_window;
-		static IMAGE way_to_school;
 		static IMAGE campfire;
 		static IMAGE zombie;
 		static IMAGE hit;
 		static IMAGE equip;
+		static IMAGE main;
+		static IMAGE begin;
+		static IMAGE main_pointer;
+		static IMAGE help;
+		static IMAGE help_page;
 
 		static std::map<std::string, IMAGE>placeable_map;
 
@@ -87,6 +92,10 @@ class Resource
 		static std::map<std::string, std::vector<Enemy*>>zombie_map;
 
 		static Astar myAstar;
+
+		static std::map<std::string, IMAGE>map_image;
+
+		static Random myrandom;
 };
 
 

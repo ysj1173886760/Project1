@@ -1,14 +1,2968 @@
 [
   {
     "type": "itembox",
-    "map_name": "废弃的学校",
-    "des": "求生欲使你忍住刺鼻的味道翻了翻这个垃圾桶",
-    "size": 20,
+    "map_name": "house01",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "low",
     "pos": [
       {
-        "x": 28,
+        "x": 18,
+        "y": 8
+      },
+      {
+        "x": 18,
+        "y": 9
+      },
+      {
+        "x": 19,
+        "y": 8
+      },
+      {
+        "x": 19,
+        "y": 9
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house01",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "low",
+    "pos": [
+      {
+        "x": 6,
+        "y": 15
+      },
+      {
+        "x": 6,
+        "y": 16
+      },
+      {
+        "x": 7,
+        "y": 15
+      },
+      {
+        "x": 7,
+        "y": 16
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house01",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "medium",
+    "pos": [
+      {
+        "x": 19,
+        "y": 15
+      },
+      {
+        "x": 19,
+        "y": 16
+      },
+      {
+        "x": 20,
+        "y": 15
+      },
+      {
+        "x": 20,
+        "y": 16
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house02",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "low",
+    "pos": [
+      {
+        "x": 18,
+        "y": 8
+      },
+      {
+        "x": 18,
+        "y": 9
+      },
+      {
+        "x": 19,
+        "y": 8
+      },
+      {
+        "x": 19,
+        "y": 9
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house02",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "medium",
+    "pos": [
+      {
+        "x": 6,
+        "y": 15
+      },
+      {
+        "x": 6,
+        "y": 16
+      },
+      {
+        "x": 7,
+        "y": 15
+      },
+      {
+        "x": 7,
+        "y": 16
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house02",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "low",
+    "pos": [
+      {
+        "x": 19,
+        "y": 15
+      },
+      {
+        "x": 19,
+        "y": 16
+      },
+      {
+        "x": 20,
+        "y": 15
+      },
+      {
+        "x": 20,
+        "y": 16
+      }
+    ]
+  }, //house03 3
+  {
+    "type": "itembox",
+    "map_name": "house03",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "medium",
+    "pos": [
+      {
+        "x": 18,
+        "y": 8
+      },
+      {
+        "x": 18,
+        "y": 9
+      },
+      {
+        "x": 19,
+        "y": 8
+      },
+      {
+        "x": 19,
+        "y": 9
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house03",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "medium",
+    "pos": [
+      {
+        "x": 6,
+        "y": 15
+      },
+      {
+        "x": 6,
+        "y": 16
+      },
+      {
+        "x": 7,
+        "y": 15
+      },
+      {
+        "x": 7,
+        "y": 16
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house03",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "low",
+    "pos": [
+      {
+        "x": 19,
+        "y": 15
+      },
+      {
+        "x": 19,
+        "y": 16
+      },
+      {
+        "x": 20,
+        "y": 15
+      },
+      {
+        "x": 20,
+        "y": 16
+      }
+    ]
+  }, //house04 2
+  {
+    "type": "itembox",
+    "map_name": "house04",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "medium",
+    "pos": [
+      {
+        "x": 7,
+        "y": 17
+      },
+      {
+        "x": 7,
+        "y": 16
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house04",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "medium",
+    "pos": [
+      {
+        "x": 17,
+        "y": 9
+      },
+      {
+        "x": 17,
+        "y": 10
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house04",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "low",
+    "pos": [
+      {
+        "x": 17,
+        "y": 17
+      },
+      {
+        "x": 17,
+        "y": 18
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house04",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "low",
+    "pos": [
+      {
+        "x": 23,
+        "y": 12
+      },
+      {
+        "x": 23,
+        "y": 13
+      }
+    ]
+  }, //house05 3
+  {
+    "type": "itembox",
+    "map_name": "house05",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "low",
+    "pos": [
+      {
+        "x": 18,
+        "y": 8
+      },
+      {
+        "x": 18,
+        "y": 9
+      },
+      {
+        "x": 19,
+        "y": 8
+      },
+      {
+        "x": 19,
+        "y": 9
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house05",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "medium",
+    "pos": [
+      {
+        "x": 6,
+        "y": 15
+      },
+      {
+        "x": 6,
+        "y": 16
+      },
+      {
+        "x": 7,
+        "y": 15
+      },
+      {
+        "x": 7,
+        "y": 16
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house05",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "low",
+    "pos": [
+      {
+        "x": 19,
+        "y": 15
+      },
+      {
+        "x": 19,
+        "y": 16
+      },
+      {
+        "x": 20,
+        "y": 15
+      },
+      {
+        "x": 20,
+        "y": 16
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house06",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "medium",
+    "pos": [
+      {
+        "x": 7,
+        "y": 17
+      },
+      {
+        "x": 7,
+        "y": 16
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house06",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "medium",
+    "pos": [
+      {
+        "x": 17,
+        "y": 9
+      },
+      {
+        "x": 17,
+        "y": 10
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house06",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "low",
+    "pos": [
+      {
+        "x": 17,
+        "y": 17
+      },
+      {
+        "x": 17,
+        "y": 18
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house06",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "low",
+    "pos": [
+      {
+        "x": 23,
+        "y": 12
+      },
+      {
+        "x": 23,
+        "y": 13
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house07",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "medium",
+    "pos": [
+      {
+        "x": 7,
+        "y": 17
+      },
+      {
+        "x": 7,
+        "y": 16
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house07",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "medium",
+    "pos": [
+      {
+        "x": 17,
+        "y": 9
+      },
+      {
+        "x": 17,
+        "y": 10
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house07",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "low",
+    "pos": [
+      {
+        "x": 17,
+        "y": 17
+      },
+      {
+        "x": 17,
+        "y": 18
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house07",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "low",
+    "pos": [
+      {
+        "x": 23,
+        "y": 12
+      },
+      {
+        "x": 23,
+        "y": 13
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house08",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "medium",
+    "pos": [
+      {
+        "x": 7,
+        "y": 17
+      },
+      {
+        "x": 7,
+        "y": 16
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house08",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "medium",
+    "pos": [
+      {
+        "x": 17,
+        "y": 9
+      },
+      {
+        "x": 17,
+        "y": 10
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house08",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "low",
+    "pos": [
+      {
+        "x": 17,
+        "y": 17
+      },
+      {
+        "x": 17,
+        "y": 18
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house08",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "low",
+    "pos": [
+      {
+        "x": 23,
+        "y": 12
+      },
+      {
+        "x": 23,
+        "y": 13
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house09",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "low",
+    "pos": [
+      {
+        "x": 18,
+        "y": 8
+      },
+      {
+        "x": 18,
+        "y": 9
+      },
+      {
+        "x": 19,
+        "y": 8
+      },
+      {
+        "x": 19,
+        "y": 9
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house09",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "medium",
+    "pos": [
+      {
+        "x": 6,
+        "y": 15
+      },
+      {
+        "x": 6,
+        "y": 16
+      },
+      {
+        "x": 7,
+        "y": 15
+      },
+      {
+        "x": 7,
+        "y": 16
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house09",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "low",
+    "pos": [
+      {
+        "x": 19,
+        "y": 15
+      },
+      {
+        "x": 19,
+        "y": 16
+      },
+      {
+        "x": 20,
+        "y": 15
+      },
+      {
+        "x": 20,
+        "y": 16
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house10",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "low",
+    "pos": [
+      {
+        "x": 18,
+        "y": 8
+      },
+      {
+        "x": 18,
+        "y": 9
+      },
+      {
+        "x": 19,
+        "y": 8
+      },
+      {
+        "x": 19,
+        "y": 9
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house10",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "medium",
+    "pos": [
+      {
+        "x": 6,
+        "y": 15
+      },
+      {
+        "x": 6,
+        "y": 16
+      },
+      {
+        "x": 7,
+        "y": 15
+      },
+      {
+        "x": 7,
+        "y": 16
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house10",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "low",
+    "pos": [
+      {
+        "x": 19,
+        "y": 15
+      },
+      {
+        "x": 19,
+        "y": 16
+      },
+      {
+        "x": 20,
+        "y": 15
+      },
+      {
+        "x": 20,
+        "y": 16
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house11",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "low",
+    "pos": [
+      {
+        "x": 18,
+        "y": 8
+      },
+      {
+        "x": 18,
+        "y": 9
+      },
+      {
+        "x": 19,
+        "y": 8
+      },
+      {
+        "x": 19,
+        "y": 9
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house11",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "medium",
+    "pos": [
+      {
+        "x": 6,
+        "y": 15
+      },
+      {
+        "x": 6,
+        "y": 16
+      },
+      {
+        "x": 7,
+        "y": 15
+      },
+      {
+        "x": 7,
+        "y": 16
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house11",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "low",
+    "pos": [
+      {
+        "x": 19,
+        "y": 15
+      },
+      {
+        "x": 19,
+        "y": 16
+      },
+      {
+        "x": 20,
+        "y": 15
+      },
+      {
+        "x": 20,
+        "y": 16
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house12",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "low",
+    "pos": [
+      {
+        "x": 18,
+        "y": 8
+      },
+      {
+        "x": 18,
+        "y": 9
+      },
+      {
+        "x": 19,
+        "y": 8
+      },
+      {
+        "x": 19,
+        "y": 9
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house12",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "medium",
+    "pos": [
+      {
+        "x": 6,
+        "y": 15
+      },
+      {
+        "x": 6,
+        "y": 16
+      },
+      {
+        "x": 7,
+        "y": 15
+      },
+      {
+        "x": 7,
+        "y": 16
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house12",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "low",
+    "pos": [
+      {
+        "x": 19,
+        "y": 15
+      },
+      {
+        "x": 19,
+        "y": 16
+      },
+      {
+        "x": 20,
+        "y": 15
+      },
+      {
+        "x": 20,
+        "y": 16
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house18",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "low",
+    "pos": [
+      {
+        "x": 18,
+        "y": 8
+      },
+      {
+        "x": 18,
+        "y": 9
+      },
+      {
+        "x": 19,
+        "y": 8
+      },
+      {
+        "x": 19,
+        "y": 9
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house18",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "medium",
+    "pos": [
+      {
+        "x": 6,
+        "y": 15
+      },
+      {
+        "x": 6,
+        "y": 16
+      },
+      {
+        "x": 7,
+        "y": 15
+      },
+      {
+        "x": 7,
+        "y": 16
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house18",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "low",
+    "pos": [
+      {
+        "x": 19,
+        "y": 15
+      },
+      {
+        "x": 19,
+        "y": 16
+      },
+      {
+        "x": 20,
+        "y": 15
+      },
+      {
+        "x": 20,
+        "y": 16
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house21",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "low",
+    "pos": [
+      {
+        "x": 18,
+        "y": 8
+      },
+      {
+        "x": 18,
+        "y": 9
+      },
+      {
+        "x": 19,
+        "y": 8
+      },
+      {
+        "x": 19,
+        "y": 9
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house21",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "medium",
+    "pos": [
+      {
+        "x": 6,
+        "y": 15
+      },
+      {
+        "x": 6,
+        "y": 16
+      },
+      {
+        "x": 7,
+        "y": 15
+      },
+      {
+        "x": 7,
+        "y": 16
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house21",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "low",
+    "pos": [
+      {
+        "x": 19,
+        "y": 15
+      },
+      {
+        "x": 19,
+        "y": 16
+      },
+      {
+        "x": 20,
+        "y": 15
+      },
+      {
+        "x": 20,
+        "y": 16
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house13",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "medium",
+    "pos": [
+      {
+        "x": 7,
+        "y": 17
+      },
+      {
+        "x": 7,
+        "y": 16
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house13",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "medium",
+    "pos": [
+      {
+        "x": 17,
+        "y": 9
+      },
+      {
+        "x": 17,
+        "y": 10
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house13",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "low",
+    "pos": [
+      {
+        "x": 17,
+        "y": 17
+      },
+      {
+        "x": 17,
+        "y": 18
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house13",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "low",
+    "pos": [
+      {
+        "x": 23,
+        "y": 12
+      },
+      {
+        "x": 23,
+        "y": 13
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house14",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "medium",
+    "pos": [
+      {
+        "x": 7,
+        "y": 17
+      },
+      {
+        "x": 7,
+        "y": 16
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house14",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "medium",
+    "pos": [
+      {
+        "x": 17,
+        "y": 9
+      },
+      {
+        "x": 17,
+        "y": 10
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house14",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "low",
+    "pos": [
+      {
+        "x": 17,
+        "y": 17
+      },
+      {
+        "x": 17,
+        "y": 18
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house14",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "low",
+    "pos": [
+      {
+        "x": 23,
+        "y": 12
+      },
+      {
+        "x": 23,
+        "y": 13
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house15",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "medium",
+    "pos": [
+      {
+        "x": 7,
+        "y": 17
+      },
+      {
+        "x": 7,
+        "y": 16
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house15",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "medium",
+    "pos": [
+      {
+        "x": 17,
+        "y": 9
+      },
+      {
+        "x": 17,
+        "y": 10
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house15",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "low",
+    "pos": [
+      {
+        "x": 17,
+        "y": 17
+      },
+      {
+        "x": 17,
+        "y": 18
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house15",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "low",
+    "pos": [
+      {
+        "x": 23,
+        "y": 12
+      },
+      {
+        "x": 23,
+        "y": 13
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house16",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "medium",
+    "pos": [
+      {
+        "x": 7,
+        "y": 17
+      },
+      {
+        "x": 7,
+        "y": 16
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house16",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "medium",
+    "pos": [
+      {
+        "x": 17,
+        "y": 9
+      },
+      {
+        "x": 17,
+        "y": 10
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house16",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "low",
+    "pos": [
+      {
+        "x": 17,
+        "y": 17
+      },
+      {
+        "x": 17,
+        "y": 18
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house16",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "low",
+    "pos": [
+      {
+        "x": 23,
+        "y": 12
+      },
+      {
+        "x": 23,
+        "y": 13
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house19",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "medium",
+    "pos": [
+      {
+        "x": 7,
+        "y": 17
+      },
+      {
+        "x": 7,
+        "y": 16
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house19",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "medium",
+    "pos": [
+      {
+        "x": 17,
+        "y": 9
+      },
+      {
+        "x": 17,
+        "y": 10
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house19",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "low",
+    "pos": [
+      {
+        "x": 17,
+        "y": 17
+      },
+      {
+        "x": 17,
+        "y": 18
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house19",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "low",
+    "pos": [
+      {
+        "x": 23,
+        "y": 12
+      },
+      {
+        "x": 23,
+        "y": 13
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house17f1",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "medium",
+    "pos": [
+      {
+        "x": 21,
+        "y": 18
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house17f1",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "medium",
+    "pos": [
+      {
+        "x": 8,
         "y": 19
       }
     ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house17f1",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "medium",
+    "pos": [
+      {
+        "x": 10,
+        "y": 10
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house17f2",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "medium",
+    "pos": [
+      {
+        "x": 22,
+        "y": 19
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house17f2",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "medium",
+    "pos": [
+      {
+        "x": 12,
+        "y": 10
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house17f2",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "medium",
+    "pos": [
+      {
+        "x": 10,
+        "y": 10
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house20f1",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "medium",
+    "pos": [
+      {
+        "x": 21,
+        "y": 18
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house20f1",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "medium",
+    "pos": [
+      {
+        "x": 8,
+        "y": 19
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house20f1",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "medium",
+    "pos": [
+      {
+        "x": 10,
+        "y": 10
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house20f2",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "medium",
+    "pos": [
+      {
+        "x": 22,
+        "y": 19
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house20f2",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "medium",
+    "pos": [
+      {
+        "x": 12,
+        "y": 10
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house20f2",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "medium",
+    "pos": [
+      {
+        "x": 10,
+        "y": 10
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house24",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "medium",
+    "pos": [
+      {
+        "x": 18,
+        "y": 8
+      },
+      {
+        "x": 18,
+        "y": 9
+      },
+      {
+        "x": 19,
+        "y": 8
+      },
+      {
+        "x": 19,
+        "y": 9
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house24",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "medium",
+    "pos": [
+      {
+        "x": 6,
+        "y": 15
+      },
+      {
+        "x": 6,
+        "y": 16
+      },
+      {
+        "x": 7,
+        "y": 15
+      },
+      {
+        "x": 7,
+        "y": 16
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house24",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "low",
+    "pos": [
+      {
+        "x": 19,
+        "y": 15
+      },
+      {
+        "x": 19,
+        "y": 16
+      },
+      {
+        "x": 20,
+        "y": 15
+      },
+      {
+        "x": 20,
+        "y": 16
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house22",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "medium",
+    "pos": [
+      {
+        "x": 8,
+        "y": 16
+      },
+      {
+        "x": 8,
+        "y": 17
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house22",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "low",
+    "pos": [
+      {
+        "x": 20,
+        "y": 19
+      },
+      {
+        "x": 20,
+        "y": 20
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house25",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "medium",
+    "pos": [
+      {
+        "x": 8,
+        "y": 16
+      },
+      {
+        "x": 8,
+        "y": 17
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house25",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "low",
+    "pos": [
+      {
+        "x": 20,
+        "y": 19
+      },
+      {
+        "x": 20,
+        "y": 20
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house26",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "medium",
+    "pos": [
+      {
+        "x": 8,
+        "y": 16
+      },
+      {
+        "x": 8,
+        "y": 17
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house26",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "low",
+    "pos": [
+      {
+        "x": 20,
+        "y": 19
+      },
+      {
+        "x": 20,
+        "y": 20
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house27",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "medium",
+    "pos": [
+      {
+        "x": 8,
+        "y": 16
+      },
+      {
+        "x": 8,
+        "y": 17
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house27",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "low",
+    "pos": [
+      {
+        "x": 20,
+        "y": 19
+      },
+      {
+        "x": 20,
+        "y": 20
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house28",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "medium",
+    "pos": [
+      {
+        "x": 7,
+        "y": 17
+      },
+      {
+        "x": 7,
+        "y": 16
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house28",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "medium",
+    "pos": [
+      {
+        "x": 17,
+        "y": 9
+      },
+      {
+        "x": 17,
+        "y": 10
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house28",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "low",
+    "pos": [
+      {
+        "x": 17,
+        "y": 17
+      },
+      {
+        "x": 17,
+        "y": 18
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house28",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "low",
+    "pos": [
+      {
+        "x": 23,
+        "y": 12
+      },
+      {
+        "x": 23,
+        "y": 13
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house29",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "medium",
+    "pos": [
+      {
+        "x": 18,
+        "y": 8
+      },
+      {
+        "x": 18,
+        "y": 9
+      },
+      {
+        "x": 19,
+        "y": 8
+      },
+      {
+        "x": 19,
+        "y": 9
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house29",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "medium",
+    "pos": [
+      {
+        "x": 6,
+        "y": 15
+      },
+      {
+        "x": 6,
+        "y": 16
+      },
+      {
+        "x": 7,
+        "y": 15
+      },
+      {
+        "x": 7,
+        "y": 16
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house29",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "low",
+    "pos": [
+      {
+        "x": 19,
+        "y": 15
+      },
+      {
+        "x": 19,
+        "y": 16
+      },
+      {
+        "x": 20,
+        "y": 15
+      },
+      {
+        "x": 20,
+        "y": 16
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house31",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "medium",
+    "pos": [
+      {
+        "x": 18,
+        "y": 8
+      },
+      {
+        "x": 18,
+        "y": 9
+      },
+      {
+        "x": 19,
+        "y": 8
+      },
+      {
+        "x": 19,
+        "y": 9
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house31",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "medium",
+    "pos": [
+      {
+        "x": 6,
+        "y": 15
+      },
+      {
+        "x": 6,
+        "y": 16
+      },
+      {
+        "x": 7,
+        "y": 15
+      },
+      {
+        "x": 7,
+        "y": 16
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house31",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "low",
+    "pos": [
+      {
+        "x": 19,
+        "y": 15
+      },
+      {
+        "x": 19,
+        "y": 16
+      },
+      {
+        "x": 20,
+        "y": 15
+      },
+      {
+        "x": 20,
+        "y": 16
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house32",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "medium",
+    "pos": [
+      {
+        "x": 18,
+        "y": 8
+      },
+      {
+        "x": 18,
+        "y": 9
+      },
+      {
+        "x": 19,
+        "y": 8
+      },
+      {
+        "x": 19,
+        "y": 9
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house32",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "medium",
+    "pos": [
+      {
+        "x": 6,
+        "y": 15
+      },
+      {
+        "x": 6,
+        "y": 16
+      },
+      {
+        "x": 7,
+        "y": 15
+      },
+      {
+        "x": 7,
+        "y": 16
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house32",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "low",
+    "pos": [
+      {
+        "x": 19,
+        "y": 15
+      },
+      {
+        "x": 19,
+        "y": 16
+      },
+      {
+        "x": 20,
+        "y": 15
+      },
+      {
+        "x": 20,
+        "y": 16
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house33",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "medium",
+    "pos": [
+      {
+        "x": 18,
+        "y": 8
+      },
+      {
+        "x": 18,
+        "y": 9
+      },
+      {
+        "x": 19,
+        "y": 8
+      },
+      {
+        "x": 19,
+        "y": 9
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house33",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "medium",
+    "pos": [
+      {
+        "x": 6,
+        "y": 15
+      },
+      {
+        "x": 6,
+        "y": 16
+      },
+      {
+        "x": 7,
+        "y": 15
+      },
+      {
+        "x": 7,
+        "y": 16
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house33",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "low",
+    "pos": [
+      {
+        "x": 19,
+        "y": 15
+      },
+      {
+        "x": 19,
+        "y": 16
+      },
+      {
+        "x": 20,
+        "y": 15
+      },
+      {
+        "x": 20,
+        "y": 16
+      }
+    ]
+  }, //
+  {
+    "type": "itembox",
+    "map_name": "house30",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "medium",
+    "pos": [
+      {
+        "x": 10,
+        "y": 12
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house30",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "medium",
+    "pos": [
+      {
+        "x": 15,
+        "y": 11
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house30",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "low",
+    "pos": [
+      {
+        "x": 18,
+        "y": 19
+      }
+    ]
+  }, //
+  {
+    "type": "itembox",
+    "map_name": "house34",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "medium",
+    "pos": [
+      {
+        "x": 7,
+        "y": 17
+      },
+      {
+        "x": 7,
+        "y": 16
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house34",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "medium",
+    "pos": [
+      {
+        "x": 17,
+        "y": 9
+      },
+      {
+        "x": 17,
+        "y": 10
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house34",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "low",
+    "pos": [
+      {
+        "x": 17,
+        "y": 17
+      },
+      {
+        "x": 17,
+        "y": 18
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house34",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "low",
+    "pos": [
+      {
+        "x": 23,
+        "y": 12
+      },
+      {
+        "x": 23,
+        "y": 13
+      }
+    ]
+  }, //
+  {
+    "type": "itembox",
+    "map_name": "house37",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "medium",
+    "pos": [
+      {
+        "x": 7,
+        "y": 17
+      },
+      {
+        "x": 7,
+        "y": 16
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house37",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "medium",
+    "pos": [
+      {
+        "x": 17,
+        "y": 9
+      },
+      {
+        "x": 17,
+        "y": 10
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house37",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "low",
+    "pos": [
+      {
+        "x": 17,
+        "y": 17
+      },
+      {
+        "x": 17,
+        "y": 18
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house37",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "low",
+    "pos": [
+      {
+        "x": 23,
+        "y": 12
+      },
+      {
+        "x": 23,
+        "y": 13
+      }
+    ]
+  }, //
+  {
+    "type": "itembox",
+    "map_name": "house35",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "medium",
+    "pos": [
+      {
+        "x": 10,
+        "y": 12
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house35",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "medium",
+    "pos": [
+      {
+        "x": 15,
+        "y": 11
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house35",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "low",
+    "pos": [
+      {
+        "x": 18,
+        "y": 19
+      }
+    ]
+  }, //
+  {
+    "type": "itembox",
+    "map_name": "house36",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "medium",
+    "pos": [
+      {
+        "x": 18,
+        "y": 8
+      },
+      {
+        "x": 18,
+        "y": 9
+      },
+      {
+        "x": 19,
+        "y": 8
+      },
+      {
+        "x": 19,
+        "y": 9
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house36",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "medium",
+    "pos": [
+      {
+        "x": 6,
+        "y": 15
+      },
+      {
+        "x": 6,
+        "y": 16
+      },
+      {
+        "x": 7,
+        "y": 15
+      },
+      {
+        "x": 7,
+        "y": 16
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house36",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "low",
+    "pos": [
+      {
+        "x": 19,
+        "y": 15
+      },
+      {
+        "x": 19,
+        "y": 16
+      },
+      {
+        "x": 20,
+        "y": 15
+      },
+      {
+        "x": 20,
+        "y": 16
+      }
+    ]
+  }, //
+  {
+    "type": "itembox",
+    "map_name": "house38f1",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "medium",
+    "pos": [
+      {
+        "x": 21,
+        "y": 18
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house38f1",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "medium",
+    "pos": [
+      {
+        "x": 8,
+        "y": 19
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house38f1",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "medium",
+    "pos": [
+      {
+        "x": 10,
+        "y": 10
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house38f2",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "medium",
+    "pos": [
+      {
+        "x": 22,
+        "y": 19
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house38f2",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "medium",
+    "pos": [
+      {
+        "x": 12,
+        "y": 10
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house38f2",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "medium",
+    "pos": [
+      {
+        "x": 10,
+        "y": 10
+      }
+    ]
+  }, //
+  {
+    "type": "itembox",
+    "map_name": "house39",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "medium",
+    "pos": [
+      {
+        "x": 8,
+        "y": 16
+      },
+      {
+        "x": 8,
+        "y": 17
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house39",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "low",
+    "pos": [
+      {
+        "x": 20,
+        "y": 19
+      },
+      {
+        "x": 20,
+        "y": 20
+      }
+    ]
+  }, //
+  {
+    "type": "itembox",
+    "map_name": "house40",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "medium",
+    "pos": [
+      {
+        "x": 8,
+        "y": 16
+      },
+      {
+        "x": 8,
+        "y": 17
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house40",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "low",
+    "pos": [
+      {
+        "x": 20,
+        "y": 19
+      },
+      {
+        "x": 20,
+        "y": 20
+      }
+    ]
+  }, //
+  {
+    "type": "itembox",
+    "map_name": "house41",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "medium",
+    "pos": [
+      {
+        "x": 8,
+        "y": 16
+      },
+      {
+        "x": 8,
+        "y": 17
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house41",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "low",
+    "pos": [
+      {
+        "x": 20,
+        "y": 19
+      },
+      {
+        "x": 20,
+        "y": 20
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house42",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "medium",
+    "pos": [
+      {
+        "x": 8,
+        "y": 16
+      },
+      {
+        "x": 8,
+        "y": 17
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house42",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "low",
+    "pos": [
+      {
+        "x": 20,
+        "y": 19
+      },
+      {
+        "x": 20,
+        "y": 20
+      }
+    ]
+  }, //
+  {
+    "type": "itembox",
+    "map_name": "house43",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "medium",
+    "pos": [
+      {
+        "x": 8,
+        "y": 16
+      },
+      {
+        "x": 8,
+        "y": 17
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house43",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "low",
+    "pos": [
+      {
+        "x": 20,
+        "y": 19
+      },
+      {
+        "x": 20,
+        "y": 20
+      }
+    ]
+  }, //
+  {
+    "type": "itembox",
+    "map_name": "house44",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "medium",
+    "pos": [
+      {
+        "x": 10,
+        "y": 12
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house44",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "medium",
+    "pos": [
+      {
+        "x": 15,
+        "y": 11
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house44",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "low",
+    "pos": [
+      {
+        "x": 18,
+        "y": 19
+      }
+    ]
+  }, //
+  {
+    "type": "itembox",
+    "map_name": "house45",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "medium",
+    "pos": [
+      {
+        "x": 18,
+        "y": 8
+      },
+      {
+        "x": 18,
+        "y": 9
+      },
+      {
+        "x": 19,
+        "y": 8
+      },
+      {
+        "x": 19,
+        "y": 9
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house45",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "medium",
+    "pos": [
+      {
+        "x": 6,
+        "y": 15
+      },
+      {
+        "x": 6,
+        "y": 16
+      },
+      {
+        "x": 7,
+        "y": 15
+      },
+      {
+        "x": 7,
+        "y": 16
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house45",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "low",
+    "pos": [
+      {
+        "x": 19,
+        "y": 15
+      },
+      {
+        "x": 19,
+        "y": 16
+      },
+      {
+        "x": 20,
+        "y": 15
+      },
+      {
+        "x": 20,
+        "y": 16
+      }
+    ]
+  }, //
+  {
+    "type": "itembox",
+    "map_name": "house46",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "medium",
+    "pos": [
+      {
+        "x": 7,
+        "y": 17
+      },
+      {
+        "x": 7,
+        "y": 16
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house46",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "medium",
+    "pos": [
+      {
+        "x": 17,
+        "y": 9
+      },
+      {
+        "x": 17,
+        "y": 10
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house46",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "low",
+    "pos": [
+      {
+        "x": 17,
+        "y": 17
+      },
+      {
+        "x": 17,
+        "y": 18
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "house46",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "low",
+    "pos": [
+      {
+        "x": 23,
+        "y": 12
+      },
+      {
+        "x": 23,
+        "y": 13
+      }
+    ]
+  }, //
+  {
+    "type": "itembox",
+    "map_name": "port_house",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "medium",
+    "pos": [
+      {
+        "x": 5,
+        "y": 12
+      },
+      {
+        "x": 5,
+        "y": 13
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "port_house",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "medium",
+    "pos": [
+      {
+        "x": 6,
+        "y": 12
+      },
+      {
+        "x": 6,
+        "y": 13
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "port_house",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "medium",
+    "pos": [
+      {
+        "x": 7,
+        "y": 12
+      },
+      {
+        "x": 7,
+        "y": 13
+      }
+    ]
+  }, //
+  {
+    "type": "itembox",
+    "map_name": "factoryf1",
+    "des": "你发现了一个箱子",
+    "size": 200,
+    "rare": "high",
+    "pos": [
+      {
+        "x": 1,
+        "y": 9
+      },
+      {
+        "x": 2,
+        "y": 9
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "factoryf1",
+    "des": "你发现了一个箱子",
+    "size": 200,
+    "rare": "high",
+    "pos": [
+      {
+        "x": 7,
+        "y": 6
+      },
+      {
+        "x": 8,
+        "y": 6
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "factoryf1",
+    "des": "你发现了一个箱子",
+    "size": 200,
+    "rare": "high",
+    "pos": [
+      {
+        "x": 25,
+        "y": 17
+      },
+      {
+        "x": 26,
+        "y": 17
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "factoryf2",
+    "des": "你发现了一个箱子",
+    "size": 50,
+    "rare": "high",
+    "pos": [
+      {
+        "x": 15,
+        "y": 11
+      }
+    ]
+  }, //
+  {
+    "type": "itembox",
+    "map_name": "waterhouse",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "medium",
+    "pos": [
+      {
+        "x": 7,
+        "y": 16
+      },
+      {
+        "x": 7,
+        "y": 17
+      }
+    ]
+  },
+  {
+    "type": "itembox",
+    "map_name": "waterhouse",
+    "des": "你发现了一个箱子",
+    "size": 100,
+    "rare": "medium",
+    "pos": [
+      {
+        "x": 17,
+        "y": 13
+      },
+      {
+        "x": 17,
+        "y": 14
+      }
+    ]
   }
+
 ]

@@ -17,7 +17,8 @@ class Result
 			UpdatePlayerState,
 			OpenCraftWindow,
 			DoNothing,
-			Break
+			Break,
+			ChangePos
 		}type;
 
 		/*
@@ -77,6 +78,10 @@ class Result
 			return false;
 		}
 		virtual bool is_Break()
+		{
+			return false;
+		}
+		virtual bool is_ChangePos()
 		{
 			return false;
 		}
@@ -148,4 +153,26 @@ class Break :public Result
 		{
 			return true;
 		}
+};
+
+class ChangePos :public Result
+{
+	public:
+		~ChangePos() {}
+		ChangePos()
+		{
+			map_name = "";
+			x = 0;
+			y = 0;
+		}
+		std::string map_name;
+		int x;
+		int y;
+
+		bool is_ChangePos()
+		{
+			return true;
+		}
+
+		void do_result();
 };

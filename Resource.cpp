@@ -1,6 +1,5 @@
 #include "Resource.h"
 
-IMAGE Resource::school(0, 0);
 
 IMAGE Resource::player(0, 0);
 IMAGE Resource::state(0, 0);
@@ -11,12 +10,18 @@ IMAGE Resource::eventWindow(0, 0);
 IMAGE Resource::event_pointer(0, 0);
 IMAGE Resource::Window(0, 0);
 IMAGE Resource::craft_window(0, 0);
-IMAGE Resource::way_to_school(0, 0);
 IMAGE Resource::zombie(0, 0);
 IMAGE Resource::hit(0, 0);
 IMAGE Resource::equip(0, 0);
+IMAGE Resource::main(0, 0);
+IMAGE Resource::begin(0, 0);
+IMAGE Resource::main_pointer(0, 0);
+IMAGE Resource::help(0, 0);
+IMAGE Resource::help_page(0, 0);
 
 std::map<std::string, IMAGE>Resource::placeable_map;
+
+std::map<std::string, IMAGE>Resource::map_image;
 
 std::map<std::string, std::vector<detail>>Resource::placeable_position;
 
@@ -45,3 +50,5 @@ std::map<std::string, std::vector<Enemy*>>Resource::zombie_map;
 std::map<std::string, std::vector<std::vector<int>>>Resource::mainMap;
 
 Astar Resource::myAstar;
+
+Random Resource::myrandom;

@@ -2,7 +2,6 @@
 
 void Init::init_image()
 {
-	loadimage(&Resource::school, _T("Resources\\school.png"));
 	loadimage(&Resource::player, _T("Resources\\test.png"));
 	loadimage(&Resource::state, _T("Resources\\state.png"));
 	loadimage(&Resource::backpack, _T("Resources\\backpack.png"));
@@ -12,11 +11,41 @@ void Init::init_image()
 	loadimage(&Resource::event_pointer, _T("Resources\\event_pointer.png"));
 	loadimage(&Resource::Window, _T("Resources\\window.png"));
 	loadimage(&Resource::craft_window, _T("Resources\\craft.png"));
-	loadimage(&Resource::way_to_school, _T("Resources\\way_to_school.png"));
-	loadimage(&Resource::placeable_map["营火"], _T("Resources\\campfire.png"));
 	loadimage(&Resource::zombie, _T("Resources\\zombie.png"));
 	loadimage(&Resource::hit, _T("Resources\\hit.png"));
 	loadimage(&Resource::equip, _T("Resources\\equip.png"));
+	loadimage(&Resource::main, _T("Resources\\main.png"));
+	loadimage(&Resource::begin, _T("Resources\\begin.png"));
+	loadimage(&Resource::main_pointer, _T("Resources\\main_pointer.png"));
+	loadimage(&Resource::help, _T("Resources\\help.png"));
+	loadimage(&Resource::help_page, _T("Resources\\help_page.png"));
+
+	/*
+		placeable pic
+	*/
+
+	loadimage(&Resource::placeable_map["营火"], _T("Resources\\campfire.png"));
+	loadimage(&Resource::placeable_map["武器台"], _T("Resources\\weaponcraft.png"));
+	loadimage(&Resource::placeable_map["不详的武器台"], _T("Resources\\evilweaponcraft.png"));
+
+	/*
+		load map
+	*/
+	/*
+	std::string now = "A1";
+	char buff[50];
+	for(int i = 0; i < 4; i++)
+		for (int j = 0; j < 4; j++)
+		{
+			std::string temp1 = now;
+			temp1[0] += i;
+			temp1[1] += j;
+			std::string temp2 = "Resources\\map\\" + temp1 + ".png";
+			strcpy_s(buff, temp2.c_str());
+			loadimage(&Resource::map_image[temp1], buff);
+		}
+	*/
+
 }
 
 void Init::init_player_state()
@@ -27,7 +56,7 @@ void Init::init_player_state()
 	PlayerState::player_food = 100;
 	PlayerState::player_water = 100;
 	PlayerState::player_fatigue = 0;
-	PlayerState::player_position = "废弃的学校";
+	PlayerState::player_position = "B7";
 	PlayerState::player_face = 0;
 	PlayerState::player_sanity = 100;
 	PlayerState::attack_min = 10;
@@ -40,13 +69,18 @@ void Init::init_player_state()
 	1是障碍
 	2 到 2147483647 是 可交互物品
 */
-void school_init()
+void init_block(std::string now)
 {
-	std::vector<std::vector<int>>school_map(30, std::vector<int>(30));
+	char buff[50];
+	std::string temp1 = "Resources\\map\\" + now + ".png";
+	strcpy_s(buff, temp1.c_str());
+	loadimage(&Resource::map_image[now], buff);
+
+	std::vector<std::vector<int>>temp(30, std::vector<int>(30));
 	try
 	{
 		std::fstream file;
-		file.open("data\\school_map.txt", std::ios::in);
+		file.open("data\\map\\" + now + ".txt", std::ios::in);
 
 		int x = 0, y = 0;
 		while (1)
@@ -54,45 +88,83 @@ void school_init()
 			file >> x >> y;
 			if (file.eof())
 				break;
-			school_map[x][y] = 1;
+			temp[x][y] = 1;
 		}
+		file.close();
+		Resource::mainMap[now] = temp;
+		std::cout << now << " init complete" << std::endl;
 	}
 	catch (std::exception e)
 	{
-		std::cout << e.what() << std::endl;
+		std::cout << now << " " << e.what() << std::endl;
 	}
-	Resource::mainMap["废弃的学校"] = school_map;
 }
 
-void wayToSchool_init()
-{
-	std::vector<std::vector<int>>way_to_school_map(30, std::vector<int>(30));
-	try
-	{
-		std::fstream file;
-		file.open("data\\way_to_school.txt", std::ios::in);
-
-		int x = 0, y = 0;
-		while (1)
-		{
-			file >> x >> y;
-			if (file.eof())
-				break;
-			way_to_school_map[x][y] = 1;
-		}
-	}
-	catch (std::exception e)
-	{
-		std::cout << e.what() << std::endl;
-	}
-	Resource::mainMap["通往学校的路"] = way_to_school_map;
-}
 
 void Init::init_map()
 {
-	
-	school_init();
-	wayToSchool_init();
+	std::string now = "A";
+
+	for(int i = 0; i < 10; i++)
+		for (int j = 1; j <= 15; j++)
+		{
+			std::string temp = now;
+			temp[0] += i;
+			init_block(temp + std::to_string(j));
+		}
+	init_block("house01");
+	init_block("house02");
+	init_block("house03");
+	init_block("house04");
+	init_block("house05");
+	init_block("house06");
+	init_block("house07");
+	init_block("house08");
+	init_block("house09");
+	init_block("house10");
+	init_block("house11");
+	init_block("house12");
+	init_block("house13");
+	init_block("house14");
+	init_block("house15");
+	init_block("house16");
+	init_block("house18");
+	init_block("house19");
+	init_block("house21");
+	init_block("house17f1");
+	init_block("house17f2");
+	init_block("house20f1");
+	init_block("house20f2");
+	init_block("house22");
+	init_block("house23");
+	init_block("house24");
+	init_block("house25");
+	init_block("house26");
+	init_block("house27");
+	init_block("house28");
+	init_block("house29");
+	init_block("house30");
+	init_block("house31");
+	init_block("house32");
+	init_block("house33");
+	init_block("house34");
+	init_block("house35");
+	init_block("house36");
+	init_block("house37");
+	init_block("house38f1");
+	init_block("house38f2");
+	init_block("house39");
+	init_block("house40");
+	init_block("house41");
+	init_block("house42");
+	init_block("house43");
+	init_block("house44");
+	init_block("house45");
+	init_block("house46");
+	init_block("port_house");
+	init_block("factoryf1");
+	init_block("factoryf2");
+	init_block("waterhouse");
 }
 
 void Init::init_easyx()
@@ -278,20 +350,51 @@ void Init::init_loot()
 		玩家背包
 	*/
 	Resource::player_backpack.set(0, 5);			//设置空间
-	/*
-	Resource::player_backpack.add("苹果", 10);
-	Resource::player_backpack.add("木棍", 3);
-	Resource::player_backpack.add("线", 2);
-	Resource::player_backpack.add("矿泉水");
-	Resource::player_backpack.add("营火", 2);
-	*/
-	Resource::item_map[Resource::item_map_for_string["登山包"]]->equip();
 	Resource::item_map[Resource::item_map_for_string["白色T恤"]]->equip();
 	Resource::item_map[Resource::item_map_for_string["运动裤"]]->equip();
 	Resource::item_map[Resource::item_map_for_string["运动鞋"]]->equip();
 
-	Resource::player_backpack.add("生鱼");
-	Resource::player_backpack.add("营火");
+	/*
+		箱子
+	*/
+	
+	int n = Resource::itemBox_map.size();
+	int sumOfItem = Resource::item_map.size();
+	std::cout << n << " " << sumOfItem << " " << std::endl;
+	for (int i = 0; i < n; i++)
+	{
+		int maxx = 0, minn = 0;
+		if (Resource::itemBox_map[i].rare == "low")
+		{
+			minn = 0;
+			maxx = 5;
+		}
+		else if (Resource::itemBox_map[i].rare == "medium")
+		{
+			minn = 5;
+			maxx = 10;
+		}
+		else if (Resource::itemBox_map[i].rare == "high")
+		{
+			minn = 10;
+			maxx = 15;
+		}
+		int sum = Resource::myrandom.getRandom(minn, maxx);
+		for (int j = 0; j < sum; j++)
+		{
+			int cnt = 0;
+			int temp = Resource::myrandom.getRandom(0, sumOfItem - 1);
+			while (!Resource::itemBox_map[i].canPut(Resource::item_map[temp]->name))
+			{
+				temp = Resource::myrandom.getRandom(0, sumOfItem - 1);
+				cnt++;
+				if (cnt > 5)break;
+			}
+			if (cnt > 5)break;
+			Resource::itemBox_map[i].add(Resource::item_map[temp]->name);
+		}
+	}
+
 }
 
 void load_event_from_json(std::string source)
@@ -327,6 +430,7 @@ void load_event_from_json(std::string source)
 
 				int size = temp["size"].asInt();
 				Container newContainer(size);
+				newContainer.rare = temp["rare"].asString();
 				Resource::itemBox_map.push_back(newContainer);
 				newInteraction = newItemBox;
 			}
@@ -373,6 +477,16 @@ void load_event_from_json(std::string source)
 						newOpen->type = Result::TYPE::OpenCraftWindow;
 						newOpen->window_name = temp["result"][i]["name"].asString();
 						newResult = newOpen;
+					}
+					else if (resultType == "change")
+					{
+						ChangePos* newChange = new ChangePos();
+						newChange->des = temp["result"][i]["des"].asString();
+						newChange->type = Result::TYPE::ChangePos;
+						newChange->map_name = temp["result"][i]["map_name"].asString();
+						newChange->x = temp["result"][i]["x"].asInt();
+						newChange->y = temp["result"][i]["y"].asInt();
+						newResult = newChange;
 					}
 
 					if (newResult != NULL)
@@ -523,7 +637,7 @@ void data2()
 }
 */
 
-void create_zombie(int x, int y)
+void create_zombie(int x, int y, std::string map_name)
 {
 	zombie* newzombie = new zombie();
 	newzombie->hp = 30;
@@ -533,10 +647,10 @@ void create_zombie(int x, int y)
 	newzombie->speed = 10;
 	newzombie->chaseRange = 5;
 	newzombie->alive = true;
-	newzombie->id = -1 - Resource::zombie_map["废弃的学校"].size();
+	newzombie->id = -1 - Resource::zombie_map[map_name].size();
 	newzombie->attack_min = 5;
-	Resource::mainMap["废弃的学校"][x][y] = newzombie->id;
-	Resource::zombie_map["废弃的学校"].push_back(newzombie);
+	Resource::mainMap[map_name][x][y] = newzombie->id;
+	Resource::zombie_map[map_name].push_back(newzombie);
 }
 void Init::init_data()
 {
@@ -568,4 +682,27 @@ void Init::init_data()
 	
 	//create_zombie(25, 25);
 	//create_zombie(25, 26);
+	std::string first = "A";
+	for(int i = 0; i < 10; i++)
+		for (int j = 1; j <= 15; j++)
+		{
+			std::string now = first;
+			now[0] += i;
+			now += std::to_string(j);
+			for (int k = 0; k < 3; k++)
+			{
+				int x = Resource::myrandom.getRandom(1, 28);
+				int y = Resource::myrandom.getRandom(1, 28);
+				int cnt = 0;
+				while (Resource::mainMap[now][x][y] != 0)
+				{
+					cnt++;
+					x = Resource::myrandom.getRandom(1, 28);
+					y = Resource::myrandom.getRandom(1, 28);
+					if (cnt > 5)break;
+				}
+				if (cnt > 5)break;
+				create_zombie(x, y, now);
+			}
+		}
 }

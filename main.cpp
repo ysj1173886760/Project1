@@ -14,6 +14,7 @@
 #include<iostream>
 #include "head.h"
 #pragma comment( lib, "MSIMG32.LIB")
+#pragma comment( lib, "winmm.lib")
 
 std::string equip_order[6] = { "头部", "上衣", "裤子", "鞋子", "背包", "武器" };
 
@@ -196,7 +197,7 @@ void interact()
 			break;
 	}
 
-	if (interact_x >= 0 && interact_x <= 29 && interact_y >= 0 && interact_y <= 29)
+	if (interact_x >= 0 && interact_x <= 29 && interact_y >= 0 && interact_y <= 29 && Resource::mainMap[PlayerState::player_position][interact_x][interact_y] >= 2)
 	{
 		Interaction* temp = NULL;
 
@@ -385,6 +386,10 @@ void do_event()
 			{
 				UI::now_event.selections[i]->do_result();
 			}
+			else if (UI::now_event.selections[i]->type == Result::TYPE::ChangePos)
+			{
+				UI::now_event.selections[i]->do_result();
+			}
 			else if (UI::now_event.selections[i]->type == Result::TYPE::DoNothing)
 			{
 				//just do nothing
@@ -442,7 +447,53 @@ void attack()
 
 void craft()
 {
-	Resource::craft_map[UI::craft_name][UI::craft_pointer]->craft_item();
+	Resource::craft_map[UI::craft_name][UI::craft_pointer.first * 10 + UI::craft_pointer.second ]->craft_item();
+}
+
+int getInt(std::string s)
+{
+	if (s.size() == 2)
+	{
+		return s[1] - '0';
+	}
+	else if (s.size() == 3)
+	{
+		return (s[1] - '0') * 10 + s[2] - '0';
+	}
+	else return 0;
+}
+std::string getUpMap()
+{
+	std::string temp = PlayerState::player_position;
+	temp[0]--;
+	return temp;
+}
+
+std::string getDownMap()
+{
+	std::string temp = PlayerState::player_position;
+	temp[0]++;
+	return temp;
+}
+
+std::string getLeftMap()
+{
+	std::string temp = "A";
+	temp[0] = PlayerState::player_position[0];
+	int now = getInt(PlayerState::player_position);
+	now--;
+	temp += std::to_string(now);
+	return temp;
+}
+
+std::string getRightMap()
+{
+	std::string temp = "A";
+	temp[0] = PlayerState::player_position[0];
+	int now = getInt(PlayerState::player_position);
+	now++;
+	temp += std::to_string(now);
+	return temp;
 }
 
 void updateWithInput()
@@ -458,7 +509,7 @@ void updateWithInput()
 	{
 		if (KEYDOWN('W'))
 		{
-			if (UI::backpack_pointer.second - 1 >= 0 || UI::backpack_pointer.first >= 0)
+			if (UI::backpack_pointer.second - 1 >= 0 || UI::backpack_pointer.first > 0)
 			{
 				UI::backpack_pointer.second--;
 				if (UI::backpack_pointer.second < 0)
@@ -619,13 +670,27 @@ void updateWithInput()
 		}
 		else if (KEYDOWN('W'))
 		{
-			if (UI::craft_pointer - 1 >= 0)
-				UI::craft_pointer--;
+			if (UI::craft_pointer.second - 1 >= 0 || UI::craft_pointer.first > 0)
+			{
+				UI::craft_pointer.second--;
+				if (UI::craft_pointer.second < 0)
+				{
+					UI::craft_pointer.second += 10;
+					UI::craft_pointer.first--;
+				}
+			}
 		}
 		else if (KEYDOWN('S'))
 		{
-			if (UI::craft_pointer + 1 < Resource::craft_map[UI::craft_name].size())
-				UI::craft_pointer++;
+			if (UI::craft_pointer.first * 10 + UI::craft_pointer.second + 1 < int(Resource::craft_map[UI::craft_name].size()))
+			{
+				UI::craft_pointer.second++;
+				if (UI::craft_pointer.second >= 10)
+				{
+					UI::craft_pointer.first++;
+					UI::craft_pointer.second -= 10;
+				}
+			}
 		}
 		else if (KEYDOWN('F'))
 		{
@@ -636,27 +701,32 @@ void updateWithInput()
 	{
 		int nx = PlayerState::player_x;
 		int ny = PlayerState::player_y;
-		bool flag = false;
+		bool can_move = false;
+		bool need_move = false;
 
 		if (KEYDOWN('A'))
 		{
 			nx--;
 			PlayerState::player_face = 1;
+			need_move = true;
 		}
 		else if (KEYDOWN('D'))
 		{
 			nx++;
 			PlayerState::player_face = 3;
+			need_move = true;
 		}
 		else if (KEYDOWN('W'))
 		{
 			ny--;
 			PlayerState::player_face = 2;
+			need_move = true;
 		}
 		else if (KEYDOWN('S'))
 		{
 			ny++;
 			PlayerState::player_face = 0;
+			need_move = true;
 		}
 		else if (KEYDOWN('F'))
 		{
@@ -671,7 +741,7 @@ void updateWithInput()
 		{
 			UI::open_craft = true;
 			UI::craft_name = "player";
-			UI::craft_pointer = 0;
+			UI::craft_pointer = std::make_pair(0, 0);
 		}
 		else if (KEYDOWN('J'))
 		{
@@ -698,40 +768,70 @@ void updateWithInput()
 		{
 			PlayerState::player_face = 3;
 		}
-		if (nx >= 0 && nx <= 29 && ny >= 0 && ny <= 29)			//移动信息
+		if (need_move)
 		{
-			if (Resource::mainMap[PlayerState::player_position][nx][ny] == 0)
-				flag = true;
-		}
-		else										//场景转换方面暂时没有想到更好的处理方法
-		{
-			if (PlayerState::player_position == "废弃的学校")
+			if (nx >= 0 && nx <= 29 && ny >= 0 && ny <= 29)			//移动信息
 			{
-				if (ny > 29)
+				if (Resource::mainMap[PlayerState::player_position][nx][ny] == 0)
+					can_move = true;
+			}
+			else										//场景转换方面暂时没有想到更好的处理方法
+			{
+				if (ny > 29)			//下
 				{
-					PlayerState::player_position = "通往学校的路";
-					std::string info = "你来到了" + PlayerState::player_position;
-					Resource::Event_queue.push_back(info);
-					ny = 0;
-					flag = true;
+					std::string newPos = getDownMap();
+					if (Resource::mainMap[newPos][nx][0] == 0)
+					{
+						PlayerState::player_position = newPos;
+						std::string info = "你来到了" + PlayerState::player_position;
+						Resource::Event_queue.push_back(info);
+						ny = 0;
+						can_move = true;
+					}
+				}
+				else if (ny < 0)		//上
+				{
+					std::string newPos = getUpMap();
+					if (Resource::mainMap[newPos][nx][29] == 0)
+					{
+						PlayerState::player_position = newPos;
+						std::string info = "你来到了" + PlayerState::player_position;
+						Resource::Event_queue.push_back(info);
+						ny = 29;
+						can_move = true;
+					}
+				}
+				else if (nx < 0)		//左
+				{
+					std::string newPos = getLeftMap();
+					if (Resource::mainMap[newPos][29][ny] == 0)
+					{
+						PlayerState::player_position = newPos;
+						std::string info = "你来到了" + PlayerState::player_position;
+						Resource::Event_queue.push_back(info);
+						nx = 29;
+						can_move = true;
+					}
+				}
+				else if (nx > 29)		//右
+				{
+					std::string newPos = getRightMap();
+					if (Resource::mainMap[newPos][0][ny] == 0)
+					{
+						PlayerState::player_position = newPos;
+						std::string info = "你来到了" + PlayerState::player_position;
+						Resource::Event_queue.push_back(info);
+						nx = 0;
+						can_move = true;
+					}
 				}
 			}
-			else if (PlayerState::player_position == "通往学校的路")
-			{
-				if (ny < 0)
-				{
-					PlayerState::player_position = "废弃的学校";
-					std::string info = "你来到了" + PlayerState::player_position;
-					Resource::Event_queue.push_back(info);
-					ny = 29;
-					flag = true;
-				}
-			}
 		}
+		
 
 		//std::cout << nx << " " << ny << std::endl;
 
-		if (flag)
+		if (can_move)
 		{
 			PlayerState::player_x = nx;
 			PlayerState::player_y = ny;
@@ -835,17 +935,27 @@ void draw_craft()
 {
 	putimage(0, 180, &Resource::craft_window);
 
+	std::pair<int, int>now(0, 0);
+
 	for (int i = 0; i < Resource::craft_map[UI::craft_name].size(); i++)
 	{
-		out_string(0 + 30, 180 + 30 + i * 30, Resource::craft_map[UI::craft_name][i]->product);
-
-		if (i == UI::craft_pointer)
+		if (now.first == UI::craft_pointer.first)
+		{
+			out_string(0 + 30, 180 + 30 + now.second * 30, Resource::craft_map[UI::craft_name][i]->product);
+		}
+		if (now == UI::craft_pointer)
 		{
 			Resource::craft_map[UI::craft_name][i]->show();
 		}
+		now.second++;
+		if (now.second == 10)
+		{
+			now.second -= 10;
+			now.first++;
+		}
 	}
 
-	putimage(0, 180 + 23 + UI::craft_pointer * 30, &Resource::backpack_pointer);
+	putimage(0, 180 + 23 + UI::craft_pointer.second * 30, &Resource::backpack_pointer);
 }
 
 void draw_backpack()
@@ -1145,14 +1255,7 @@ void draw_equip()
 
 void draw()
 {
-	if (PlayerState::player_position == "废弃的学校")
-	{
-		putimage(0, 0, &Resource::school);
-	}
-	else if (PlayerState::player_position == "通往学校的路")
-	{
-		putimage(0, 0, &Resource::way_to_school);
-	}
+	putimage(0, 0, &Resource::map_image[PlayerState::player_position]);
 	
 	transparentimage(NULL, PlayerState::player_x * BLOCK, PlayerState::player_y * BLOCK, &Resource::player);
 	putimage(721, 0, &Resource::state);
@@ -1178,13 +1281,46 @@ void draw()
 
 void init()
 {
-	Init::init_player_state();
-	Init::init_image();
-	Init::init_map();
 	Init::init_item();
-	Init::init_loot();
-	Init::init_data();
+	Init::init_image();
 	Init::init_easyx();
+}
+
+void init_newgame()
+{
+	Init::init_map();
+	Init::init_data();
+	Init::init_player_state();
+	Init::init_loot();
+}
+
+std::string GetExePath(void)
+{
+	char szFilePath[MAX_PATH + 1] = { 0 };
+	GetModuleFileNameA(NULL, szFilePath, MAX_PATH);
+	//(strrchr(szFilePath, '\\'))[0] = 0; // 删除文件名，只获得路径字串
+	std::string path = szFilePath;
+
+	return path;
+}
+
+
+/*
+	main game
+*/
+void do_game()
+{
+	while (1)
+	{
+		updateWithInput();
+		updateWithoutInput();
+		if (PlayerState::player_hp <= 0)
+			break;
+		cleardevice();
+		draw();
+		FlushBatchDraw();
+		Sleep(100);
+	}
 }
 
 int main()
@@ -1197,16 +1333,83 @@ int main()
 	//setaspectratio(1.5, 1.5);		//设置缩放因子
 
 	init();
+
+	mciSendString("open Resources\\sound\\bg2.mp3 alias bgm", NULL, 0, NULL);
+	mciSendString("open Resources\\sound\\menu_move.mp3 alias move", NULL, 0, NULL);
+	mciSendString("play bgm repeat", NULL, 0, NULL);
+	//std::cout << GetExePath() << std::endl;
+
+	int main_pointer = 0;
+	bool newGame = false;
+	bool showHelp = false;
+
 	BeginBatchDraw();
 	while (1)
 	{
-		updateWithInput();
-		updateWithoutInput();
+		if (KEYDOWN('W'))
+		{
+			if (main_pointer == 1)
+			{
+				main_pointer = 0;
+				mciSendString("close move", NULL, 0, NULL);
+				mciSendString("open Resources\\sound\\menu_move.mp3 alias move", NULL, 0, NULL);
+				mciSendString("play move", NULL, 0, NULL);
+			}
+		}
+		else if (KEYDOWN('S'))
+		{
+			if (main_pointer == 0)
+			{
+				main_pointer = 1;
+				mciSendString("close move", NULL, 0, NULL);
+				mciSendString("open Resources\\sound\\menu_move.mp3 alias move", NULL, 0, NULL);
+				mciSendString("play move", NULL, 0, NULL);
+			}
+		}
+		else if (KEYDOWN(VK_RETURN))
+		{
+			if (main_pointer == 0 && showHelp == false)
+			{
+				newGame = true;
+			}
+			else if (main_pointer == 1)
+			{
+				showHelp = true;
+			}
+		}
+		else if (KEYDOWN(VK_ESCAPE))
+		{
+			if (showHelp == true)
+			{
+				showHelp = false;
+			}
+		}
 		cleardevice();
-		draw();
+		putimage(0, 0, &Resource::main);
+		putimage(425, 470, &Resource::begin);
+		putimage(450, 550, &Resource::help);
+		putimage(300, 470 + main_pointer * 80 , &Resource::main_pointer);
+		if (showHelp)
+		{
+			putimage(270, 140, &Resource::help_page);
+		}
 		FlushBatchDraw();
-		Sleep(100);
+		if (newGame)
+		{
+			mciSendString("close bgm", NULL, 0, NULL);
+			mciSendString("open Resources\\sound\\bg1.mp3 alias game", NULL, 0, NULL);
+			mciSendString("play game repeat", NULL, 0, NULL);
+			init_newgame();
+			do_game();
+			newGame = false;
+			mciSendString("close game", NULL, 0, NULL);
+			mciSendString("open Resources\\sound\\bg2.mp3 alias bgm", NULL, 0, NULL);
+			mciSendString("play bgm repeat", NULL, 0, NULL);
+		}
+		
+		Sleep(16);		//60fps
 	}
+	
 	EndBatchDraw();
 	closegraph();			
 	return 0;

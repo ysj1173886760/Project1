@@ -26,7 +26,7 @@ bool UI::open_window = false;
 
 Window UI::now_window("");
 
-int UI::craft_pointer = 0;
+std::pair<int, int> UI::craft_pointer(0, 0);
 
 bool UI::open_craft = false;
 

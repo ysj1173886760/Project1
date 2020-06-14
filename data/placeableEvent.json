@@ -19,5 +19,47 @@
         "des": "还是算了"
       }
     ]
+  },
+  {
+    "type": "placealbe_event",
+    "des": "你站在武器台前",
+    "event_des": "看起来非凡的武器台",
+    "name": "武器台",
+    "result": [
+      {
+        "type": "craft_window",
+        "des": "制作物品",
+        "name": "武器台"
+      },
+      {
+        "type": "break",
+        "des": "拆除武器台"
+      },
+      {
+        "type": "nothing",
+        "des": "离开"
+      }
+    ]
+  },
+  {
+    "type": "placealbe_event",
+    "des": "你站在不祥的武器台前",
+    "event_des": "看起来不是很正常的武器台",
+    "name": "不祥的武器台",
+    "result": [
+      {
+        "type": "craft_window",
+        "des": "制作物品",
+        "name": "不祥的武器台"
+      },
+      {
+        "type": "break",
+        "des": "拆除不祥的武器台"
+      },
+      {
+        "type": "nothing",
+        "des": "离开"
+      }
+    ]
   }
 ]

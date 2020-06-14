@@ -11,17 +11,20 @@ class Container
 		int capacity;	//最大容量
 		//std::list<std::pair<int, int>> items;		//前一个是id 后一个是数量
 		std::map<std::string, int> items;
+		std::string rare;		//生成物品的数量
 
 		Container()
 		{
 			this->space = 0;
 			this->capacity = 0;
 			items.clear();
+			this->rare = "";
 		}
 		Container(int space, int capacity)
 		{
 			this->space = space;
 			this->capacity = capacity;
+			this->rare = "";
 			items.clear();
 		}
 		Container(int capacity)
@@ -29,7 +32,9 @@ class Container
 			this->space = 0;
 			this->capacity = capacity;
 			items.clear();
+			this->rare = "";
 		}
+
 
 		void set(int);
 		void set(int, int);
@@ -43,4 +48,5 @@ class Container
 		bool canPut(std::string, int);
 		int getNum(std::string);
 };
+
 

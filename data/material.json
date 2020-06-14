@@ -16,5 +16,77 @@
     "size": 0,
     "time": 0,
     "type": "material"
+  },
+  {
+    "description": "贪婪－－希望占有比所需更多的事物。",
+    "event": "",
+    "name": "碎片“贪婪”",
+    "pic": "apple.png",
+    "size": 1,
+    "time": 0,
+    "type": "material"
+  },
+  {
+    "description": "嫉妒－－因对方所拥有的资产比自己丰富而恼恨他人。",
+    "event": "",
+    "name": "碎片“嫉妒”",
+    "pic": "apple.png",
+    "size": 1,
+    "time": 0,
+    "type": "material"
+  },
+  {
+    "description": "色欲－－放纵自己的欲望，只重视肉体的满足。",
+    "event": "",
+    "name": "碎片“色欲”",
+    "pic": "apple.png",
+    "size": 1,
+    "time": 0,
+    "type": "material"
+  },
+  {
+    "description": "暴食－－浪费食物，沉迷享乐。",
+    "event": "",
+    "name": "碎片“暴食”",
+    "pic": "apple.png",
+    "size": 1,
+    "time": 0,
+    "type": "material"
+  },
+  {
+    "description": "懒惰－－逃避现实、无责任心及浪费时间。",
+    "event": "",
+    "name": "碎片“懒惰”",
+    "pic": "apple.png",
+    "size": 1,
+    "time": 0,
+    "type": "material"
+  },
+  {
+    "description": "傲慢－－最严重的罪恶，包括对上帝不敬、对他人凶残。",
+    "event": "",
+    "name": "碎片“傲慢”",
+    "pic": "apple.png",
+    "size": 1,
+    "time": 0,
+    "type": "material"
+  },
+  {
+    "description": "你最好不要打开它。。。",
+    "event": "",
+    "name": "潘多拉的魔盒",
+    "pic": "apple.png",
+    "size": 5,
+    "time": 0,
+    "type": "material"
+  },
+  {
+    "description": "暴怒－－憎恨他人。",
+    "event": "",
+    "name": "碎片“暴怒”",
+    "pic": "apple.png",
+    "size": 1,
+    "time": 0,
+    "type": "material"
   }
 ]

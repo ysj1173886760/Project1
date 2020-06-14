@@ -1,10 +1,28 @@
 [
   {
     "description": "小型的营火，应该能烧一阵子",
-    "event": "你放了部署了一个小型营火",
+    "event": "你部署了一个小型营火",
     "name": "营火",
     "pic": "apple.png",
     "size": 5,
+    "time": 300,
+    "type": "placeable"
+  },
+  {
+    "description": "能制作一些正常的武器",
+    "event": "你部署了一个武器台",
+    "name": "武器台",
+    "pic": "apple.png",
+    "size": 10,
+    "time": 300,
+    "type": "placeable"
+  },
+  {
+    "description": "看样子可以在上面打造一些不一样的武器",
+    "event": "你部署了一个不祥的武器台",
+    "name": "不详的武器台",
+    "pic": "apple.png",
+    "size": 10,
     "time": 300,
     "type": "placeable"
   }

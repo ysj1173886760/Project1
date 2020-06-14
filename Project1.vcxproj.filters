@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="资源文件\map">
+      <UniqueIdentifier>{605df489-f212-40ac-b7ba-cd160f582e56}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PlayerState.cpp">
@@ -64,6 +67,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Astar.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="realTime.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
@@ -122,6 +128,15 @@
     <ClInclude Include="Astar.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="Random.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="realTime.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="resource1.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="data\comestible.json">
@@ -159,5 +174,616 @@
     <Text Include="data\way_to_school.txt">
       <Filter>资源文件</Filter>
     </Text>
+    <Text Include="data\map\A1.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\A2.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\A3.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\A4.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\A5.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\A6.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\A7.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\A8.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\A9.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\A10.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\A11.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\A12.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\A13.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\A14.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\A15.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\B1.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\B2.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\B3.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\B4.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\B5.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\B6.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\B7.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\B8.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\B9.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\B10.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\B11.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\B12.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\B13.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\B14.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\B15.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\C1.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\C2.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\C3.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\C4.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\C5.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\C6.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\C7.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\C8.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\C9.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\C10.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\C11.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\C12.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\C13.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\C14.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\C15.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\D1.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\D2.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\D3.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\D4.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\D5.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\D6.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\D7.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\D8.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\D9.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\D10.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\D11.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\D12.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\D13.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\D14.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\D15.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\E1.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\E2.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\E3.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\E4.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\E5.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\E6.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\E7.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\E8.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\E9.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\E10.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\E11.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\E12.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\E13.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\E14.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\E15.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\F1.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\F2.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\F3.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\F4.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\F5.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\F6.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\F7.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\F8.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\F9.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\F10.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\F11.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\F12.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\F13.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\F14.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\F15.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\factoryf1.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\factoryf2.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\G1.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\G2.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\G3.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\G4.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\G5.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\G6.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\G7.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\G8.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\G9.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\G10.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\G11.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\G12.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\G13.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\G14.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\G15.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\H1.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\H2.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\H3.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\H4.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\H5.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\H6.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\H7.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\H8.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\H9.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\H10.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\H11.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\H12.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\H13.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\H14.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\H15.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\house01.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\house02.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\house03.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\house04.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\house05.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\house06.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\house07.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\house08.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\house09.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\house10.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\house11.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\house12.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\house13.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\house14.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\house15.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\house16.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\house17f1.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\house17f2.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\house18.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\house19.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\house20f1.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\house20f2.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\house21.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\house22.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\house23.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\house24.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\house25.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\house26.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\house27.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\house28.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\house29.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\house30.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\house31.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\house32.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\house33.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\house34.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\house35.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\house36.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\house37.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\house38f1.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\house38f2.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\house39.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\house40.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\house41.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\house42.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\house43.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\house44.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\house45.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\house46.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\I1.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\I2.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\I3.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\I4.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\I5.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\I6.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\I7.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\I8.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\I9.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\I10.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\I11.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\I12.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\I13.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\I14.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\I15.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\J1.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\J2.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\J3.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\J4.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\J5.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\J6.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\J7.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\J8.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\J9.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\J10.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\J11.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\J12.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\J13.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\J14.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\J15.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+    <Text Include="data\map\port_house.txt">
+      <Filter>资源文件\map</Filter>
+    </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Project1.rc">
+      <Filter>资源文件</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>

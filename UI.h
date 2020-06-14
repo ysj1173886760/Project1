@@ -25,7 +25,7 @@ class UI
 		static InteractiveEvent now_event;
 		static Window now_window;
 		static bool open_window;
-		static int craft_pointer;
+		static std::pair<int, int>craft_pointer;
 		static bool open_craft;
 		static std::string craft_name;
 		static int equip_pointer;

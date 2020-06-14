@@ -47,3 +47,10 @@ void Break::do_result()
 		else it++;
 	}
 }
+
+void ChangePos::do_result()
+{
+	PlayerState::player_position = this->map_name;
+	PlayerState::player_x = this->x;
+	PlayerState::player_y = this->y;
+}

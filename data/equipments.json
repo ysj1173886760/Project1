@@ -94,5 +94,41 @@
     "time": 30,
     "bloat": 10,
     "capacity": 50
+  },
+  {
+    "type": "weapon",
+    "description": "看起来是一个沉重的谬杀利器",
+    "event": "",
+    "name": "电锯",
+    "pic": "apple.png",
+    "where": "武器",
+    "size": 20,
+    "time": 30,
+    "attack_max": 70,
+    "attack_min": 50
+  },
+  {
+    "type": "weapon",
+    "description": "这把不详的武器可能来自于《电锯惊魂》。。。",
+    "event": "",
+    "name": "电锯“竖锯”",
+    "pic": "apple.png",
+    "where": "武器",
+    "size": 25,
+    "time": 30,
+    "attack_max": 80,
+    "attack_min": 70
+  },
+  {
+    "type": "weapon",
+    "description": "傲慢、嫉妒、暴怒、懒惰、贪婪、暴食和色欲。",
+    "event": "",
+    "name": "“七宗罪”",
+    "pic": "apple.png",
+    "where": "武器",
+    "size": 10,
+    "time": 10,
+    "attack_max": 110,
+    "attack_min": 100
   }
 ]
