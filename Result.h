@@ -18,7 +18,8 @@ class Result
 			OpenCraftWindow,
 			DoNothing,
 			Break,
-			ChangePos
+			ChangePos,
+			Extract
 		}type;
 
 		/*
@@ -82,6 +83,10 @@ class Result
 			return false;
 		}
 		virtual bool is_ChangePos()
+		{
+			return false;
+		}
+		virtual bool is_Extract()
 		{
 			return false;
 		}
@@ -175,4 +180,16 @@ class ChangePos :public Result
 		}
 
 		void do_result();
+};
+
+class Extract : public Result
+{
+	public:
+		~Extract(){}
+		Extract(){}
+
+		bool is_Extract()
+		{
+			return true;
+		}
 };

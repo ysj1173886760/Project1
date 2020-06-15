@@ -22,3 +22,7 @@ int PlayerState::bloat = 0;
 int PlayerState::defense = 0;
 std::map<std::string, bool>PlayerState::debuff;
 std::map<std::string, std::string>PlayerState::equip;
+
+int PlayerState::experience = 0;
+
+int PlayerState::kill_zombie = 0;

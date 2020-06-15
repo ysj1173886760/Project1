@@ -17,6 +17,30 @@
 #pragma comment( lib, "winmm.lib")
 
 std::string equip_order[6] = { "头部", "上衣", "裤子", "鞋子", "背包", "武器" };
+int walk_leg = 0;
+bool extract = false;
+
+int updateMinute = 2;
+int leftMinute = 0;
+
+void play_music_once(std::string str)
+{
+	char buff[100];
+	std::string temp = "close " + str;
+	strcpy_s(buff, temp.c_str());
+	//std::cout << buff << std::endl;
+	mciSendString(buff, NULL, 0, NULL);
+
+	temp = "open Resources\\sound\\" + str + ".mp3 alias " + str;
+	strcpy_s(buff, temp.c_str());
+	//std::cout << buff << std::endl;
+	mciSendString(buff, NULL, 0, NULL);
+
+	temp = "play " + str;
+	strcpy_s(buff, temp.c_str());
+	//std::cout << buff << std::endl;
+	mciSendString(buff, NULL, 0, NULL);
+}
 
 void out_number(int x, int y, int num)
 {
@@ -27,7 +51,7 @@ void out_number(int x, int y, int num)
 
 void out_string(int x, int y, std::string str)
 {
-	char buff[100];
+	char buff[50];
 	strcpy_s(buff, str.c_str());
 	outtextxy(x, y, buff);
 }
@@ -216,6 +240,7 @@ void interact()
 				UI::itemBox_pointer = 0;
 				UI::itemBox_pointer_left = std::make_pair(0, 0);
 				UI::itemBox_pointer_right = std::make_pair(0, 0);
+				play_music_once("itembox_open");
 			}
 			else if (type == Interaction::TYPE::Event || type == Interaction::TYPE::PlaceableEvent)
 			{
@@ -388,7 +413,20 @@ void do_event()
 			}
 			else if (UI::now_event.selections[i]->type == Result::TYPE::ChangePos)
 			{
+				play_music_once("open_door");
 				UI::now_event.selections[i]->do_result();
+			}
+			else if (UI::now_event.selections[i]->type == Result::TYPE::Extract)
+			{
+				if (Resource::player_backpack.have("通行证"))
+				{
+					extract = true;
+				}
+				else
+				{
+					std::string info = "你没有权限";
+					Resource::Event_queue.push_back(info);
+				}
 			}
 			else if (UI::now_event.selections[i]->type == Result::TYPE::DoNothing)
 			{
@@ -437,10 +475,21 @@ void attack()
 		
 		if (temp != NULL)
 		{
-			temp->hp -= PlayerState::attack_min;
-			std::string info = "你造成了" + std::to_string(PlayerState::attack_min) + "点伤害";
-			//transparentimage(NULL, interact_x, interact_y, &Resource::hit);
-			Resource::Event_queue.push_back(info);
+			play_music_once("player_attack");
+			int hit = Resource::myrandom.getRandom(1, 100);
+			if (hit >= 1 && hit <= (100 - PlayerState::bloat * 3))
+			{
+				int dmg = Resource::myrandom.getRandom(PlayerState::attack_min, PlayerState::attack_max);
+				temp->hp -= dmg;
+				std::string info = "你造成了" + std::to_string(dmg) + "点伤害";
+				//transparentimage(NULL, interact_x, interact_y, &Resource::hit);
+				Resource::Event_queue.push_back(info);
+			}
+			else
+			{
+				std::string info = "你未命中敌人";
+				Resource::Event_queue.push_back(info);
+			}
 		}
 	}
 }
@@ -539,6 +588,7 @@ void updateWithInput()
 		{
 			UI::open_backpack = false;
 			UI::backpack_pointer = std::make_pair(0, 0);
+			play_music_once("close_backpack");
 		}
 		else if (KEYDOWN('X'))
 		{
@@ -638,6 +688,7 @@ void updateWithInput()
 		else if (KEYDOWN('E') || KEYDOWN(VK_ESCAPE))
 		{
 			UI::open_itemBox = false;
+			play_music_once("itembox_close");
 		}
 		else if (KEYDOWN('F'))
 		{
@@ -734,6 +785,7 @@ void updateWithInput()
 		}
 		else if (KEYDOWN('E'))
 		{
+			play_music_once("open_backpack");
 			UI::open_backpack = true;
 			UI::backpack_pointer = std::make_pair(0, 0);
 		}
@@ -833,6 +885,9 @@ void updateWithInput()
 
 		if (can_move)
 		{
+			if (walk_leg == 0)play_music_once("player_walk0");
+			else play_music_once("player_walk1");
+			walk_leg ^= 1;
 			PlayerState::player_x = nx;
 			PlayerState::player_y = ny;
 		}
@@ -881,6 +936,34 @@ void updateWithoutInput()
 		PlayerState::step++;
 	}
 
+	leftMinute += Resource::Maintime.getPastTime();
+	while (leftMinute > updateMinute)
+	{
+		leftMinute -= updateMinute;
+		PlayerState::player_food--;
+		PlayerState::player_water--;
+		PlayerState::player_fatigue++;
+		if (PlayerState::player_food < 20)
+		{
+			PlayerState::player_hp--;
+		}
+		if (PlayerState::player_water < 30)
+		{
+			PlayerState::player_hp--;
+		}
+		if (PlayerState::player_fatigue > 80)
+		{
+			PlayerState::player_hp--;
+		}
+		if (PlayerState::player_food > 100)PlayerState::player_food = 100;
+		if (PlayerState::player_water > 100)PlayerState::player_water = 100;
+		if (PlayerState::player_fatigue < 0)PlayerState::player_fatigue = 0;
+		if (PlayerState::player_food < 0)PlayerState::player_food = 0;
+		if (PlayerState::player_water < 0)PlayerState::player_water = 0;
+		if (PlayerState::player_fatigue > 100)PlayerState::player_fatigue = 100;
+		if (PlayerState::player_hp > 100)PlayerState::player_hp = 100;
+	}
+	
 	/*
 		update zombie
 	*/
@@ -894,7 +977,11 @@ void updateWithoutInput()
 			continue;
 		if (temp->hp <= 0)
 		{
+			play_music_once("zombie_death");
+			if(temp->type == Enemy::TYPE::boss)
+				Resource::player_backpack.add("通行证");
 			std::string info = "你击杀了一只" + temp->name;
+			PlayerState::kill_zombie++;
 			Resource::Event_queue.push_back(info);
 			Resource::mainMap[PlayerState::player_position][temp->x][temp->y] = 0;
 			temp->alive = false;
@@ -909,6 +996,10 @@ void updateWithoutInput()
 				{
 					if (temp->can_attack())
 					{
+						if (temp->is_boss())
+							play_music_once("boss_attack");
+						else
+							play_music_once("zombie_attack");
 						int val = temp->attack();
 						//transparentimage(NULL, PlayerState::player_x, PlayerState::player_y, &Resource::hit);
 						std::string info = "你受到了" + std::to_string(val) + "点伤害";
@@ -929,6 +1020,15 @@ void updateWithoutInput()
 	
 	if (Resource::zombie_map[PlayerState::player_position].size() > 20)
 		clean_zombie();
+
+	/*
+		spawn_zombie
+	*/
+	int code = Resource::myrandom.getRandom(1, 100);
+	if (code >= 10 && code <= 15)
+	{
+		Init::spawn_zombie(true);
+	}
 }
 
 void draw_craft()
@@ -1134,8 +1234,17 @@ void draw_zombie()
 {
 	for (int i = 0; i < Resource::zombie_map[PlayerState::player_position].size(); i++)
 	{
-		if(Resource::zombie_map[PlayerState::player_position][i]->alive)
-			transparentimage(NULL, Resource::zombie_map[PlayerState::player_position][i]->x * BLOCK, Resource::zombie_map[PlayerState::player_position][i]->y * BLOCK, &Resource::zombie);
+		if (Resource::zombie_map[PlayerState::player_position][i]->alive)
+		{
+			if (Resource::zombie_map[PlayerState::player_position][i]->type == Enemy::TYPE::zombie)
+				transparentimage(NULL, Resource::zombie_map[PlayerState::player_position][i]->x * BLOCK, Resource::zombie_map[PlayerState::player_position][i]->y * BLOCK, &Resource::zombie);
+			else if (Resource::zombie_map[PlayerState::player_position][i]->type == Enemy::TYPE::hunter)
+				transparentimage(NULL, Resource::zombie_map[PlayerState::player_position][i]->x * BLOCK, Resource::zombie_map[PlayerState::player_position][i]->y * BLOCK, &Resource::hunter);
+			else if (Resource::zombie_map[PlayerState::player_position][i]->type == Enemy::TYPE::tyrant)
+				transparentimage(NULL, Resource::zombie_map[PlayerState::player_position][i]->x * BLOCK, Resource::zombie_map[PlayerState::player_position][i]->y * BLOCK, &Resource::tyrant);
+			else if (Resource::zombie_map[PlayerState::player_position][i]->type == Enemy::TYPE::boss)
+				transparentimage(NULL, Resource::zombie_map[PlayerState::player_position][i]->x * BLOCK, Resource::zombie_map[PlayerState::player_position][i]->y * BLOCK, &Resource::boss);
+		}
 	}
 }
 
@@ -1238,19 +1347,19 @@ void draw_equip()
 	std::string info = "";
 	
 	info = "最大攻击力" + std::to_string(PlayerState::attack_max);
-	out_string(300 + 30, 180 + 30, info);
+	out_string(400 + 30, 180 + 37, info);
 
 	info = "最小攻击力" + std::to_string(PlayerState::attack_min);
-	out_string(300 + 30, 180 + 30 + 40, info);
+	out_string(400 + 30, 180 + 37 + 40, info);
 
 	info = "当前速度" + std::to_string(PlayerState::speed);
-	out_string(300 + 30, 180 + 30 + 80, info);
+	out_string(400 + 30, 180 + 37 + 80, info);
 
 	info = "累赘度" + std::to_string(PlayerState::bloat);
-	out_string(300 + 30, 180 + 30 + 120, info);
+	out_string(400 + 30, 180 + 37 + 120, info);
 
 	info = "防御力" + std::to_string(PlayerState::defense);
-	out_string(300 + 30, 180 + 30 + 160, info);
+	out_string(400 + 30, 180 + 37 + 160, info);
 }
 
 void draw()
@@ -1279,6 +1388,17 @@ void draw()
 		draw_equip();
 }
 
+char Input()
+{
+	char c = 0;
+
+	if (_kbhit())
+	{
+		c = _getch();
+	}
+	return c;
+}
+
 void init()
 {
 	Init::init_item();
@@ -1286,12 +1406,79 @@ void init()
 	Init::init_easyx();
 }
 
+void init_playerData()
+{
+	try
+	{
+		std::fstream file;
+		file.open("data\\playerdata.in", std::ios::in);
+		file >> PlayerState::experience;
+		file.close();
+		std::cout << "player init complete:"<<PlayerState::experience << std::endl;
+	}
+	catch (std::exception e)
+	{
+		std::cout << " " << e.what() << std::endl;
+	}
+}
+
 void init_newgame()
 {
+	leftMinute = 0;
+	extract = false;
+	mciSendString("close bgm", NULL, 0, NULL);
+	play_music_once("game_init");
+	cleardevice();
+	putimage(0, 0, &Resource::loaddata);
+	FlushBatchDraw();
+	init_playerData();
 	Init::init_map();
 	Init::init_data();
 	Init::init_player_state();
 	Init::init_loot();
+	Init::spawn_zombie(false);
+	UI::open_backpack = false;
+	UI::open_craft = false;
+	UI::open_equip = false;
+	UI::open_event = false;
+	UI::open_itemBox = false;
+	UI::open_window = false;
+
+	int x = Resource::myrandom.getRandom(1, 28);
+	int y = Resource::myrandom.getRandom(1, 28);
+	while (Resource::mainMap["F6"][x][y] != 0)
+	{
+		x = Resource::myrandom.getRandom(1, 28);
+		y = Resource::myrandom.getRandom(1, 28);
+	}
+	Init::create_zombie(x, y, "F6", "boss");
+
+	LOGFONT default_style;
+	gettextstyle(&default_style);
+	settextcolor(RED);
+	settextstyle(30, 30, _T("华康方圆体W7"));
+	clock_t previous = clock();
+	clock_t now;
+	int need_to_go = 10000;
+	while (1)
+	{
+		now = clock();
+		need_to_go -= (now - previous);
+		previous = clock();
+		if (need_to_go <= 0)
+			break;
+		cleardevice();
+		putimage(0, 0, &Resource::deploy);
+		std::string temp = std::to_string(need_to_go / 1000) + ":" + std::to_string(need_to_go % 1000);
+		out_string(450, 370, temp);
+		FlushBatchDraw();
+	}
+	settextstyle(&default_style);
+	settextcolor(WHITE);
+	Resource::Maintime.set(8, 0, 0, 0);
+	mciSendString("close game_init", NULL, 0, NULL);
+	mciSendString("open Resources\\sound\\bg1.mp3 alias game", NULL, 0, NULL);
+	mciSendString("play game repeat", NULL, 0, NULL);
 }
 
 std::string GetExePath(void)
@@ -1304,10 +1491,125 @@ std::string GetExePath(void)
 	return path;
 }
 
+void settlement()
+{
+	Sleep(2000);
+	mciSendString("close game", NULL, 0, NULL);
+	mciSendString("open Resources\\sound\\game_over.mp3 alias game_over", NULL, 0, NULL);
+	mciSendString("play game_over", NULL, 0, NULL);
+	putimage(0, 0, &Resource::death_page);
+	FlushBatchDraw();
+	//Sleep(5000);
+	while (1)
+	{
+		if(KEYDOWN(VK_SPACE))break;
+		Sleep(16);
+	}
+	
+}
+
+void success()
+{
+	mciSendString("close game", NULL, 0, NULL);
+	mciSendString("open Resources\\sound\\game_success.mp3 alias game_success", NULL, 0, NULL);
+	mciSendString("play game_success", NULL, 0, NULL);
+	putimage(0, 0, &Resource::success);
+	FlushBatchDraw();
+	//Sleep(5000);
+	while (1)
+	{
+		if (KEYDOWN(VK_SPACE))break;
+		Sleep(16);
+	}
+	
+}
+
+void save_playerData()
+{
+	try
+	{
+		std::fstream file;
+		file.open("data\\playerdata.in", std::ios::out | std::ios::trunc);
+		file << PlayerState::experience;
+		file.close();
+		std::cout << "player save complete" << std::endl;
+	}
+	catch (std::exception e)
+	{
+		std::cout << " " << e.what() << std::endl;
+	}
+}
+
+void success_add_experience()
+{
+	int temp = PlayerState::experience;
+	PlayerState::experience += PlayerState::kill_zombie * 2;
+
+	LOGFONT default_style;
+	gettextstyle(&default_style);
+	settextcolor(RED);
+	settextstyle(30, 30, _T("华康方圆体W7"));
+	setfillcolor(WHITE);
+	while (1)
+	{
+		double percentage = double(temp % 100) / 100.0;
+		if (temp < PlayerState::experience)temp++;
+		int level = temp / 100;
+		std::string info = "LV:" + std::to_string(level);
+		if (KEYDOWN(VK_RETURN))break;
+		cleardevice();
+		putimage(0, 0, &Resource::settlement);
+		rectangle(185, 140, 785, 200);
+		fillrectangle(185, 140, 185 + int(percentage * 600.0), 200);
+		out_string(810, 150, info);
+		out_number(410, 280, temp);
+		FlushBatchDraw();
+		Sleep(30);
+	}
+	settextstyle(&default_style);
+	settextcolor(WHITE);
+	setfillcolor(GREEN);
+	save_playerData();
+	mciSendString("close game_success", NULL, 0, NULL);
+}
+
+void fail_add_experience()
+{
+	int temp = PlayerState::experience;
+	PlayerState::experience += PlayerState::kill_zombie;
+
+	LOGFONT default_style;
+	gettextstyle(&default_style);
+	settextcolor(RED);
+	settextstyle(30, 30, _T("华康方圆体W7"));
+	setfillcolor(WHITE);
+	while (1)
+	{
+		double percentage = double(temp % 100) / 100.0;
+		if (temp < PlayerState::experience)temp++;
+		int level = temp / 100;
+		std::string info = "LV:" + std::to_string(level);
+		if (KEYDOWN(VK_RETURN))break;
+		cleardevice();
+		putimage(0, 0, &Resource::settlement);
+		rectangle(185, 140, 785, 200);
+		fillrectangle(185, 140, 185 + int(percentage * 600.0), 200);
+		out_string(810, 150, info);
+		out_number(410, 280, temp);
+		FlushBatchDraw();
+		Sleep(30);
+	}
+	settextstyle(&default_style);
+	settextcolor(WHITE);
+	setfillcolor(GREEN);
+	save_playerData();
+	mciSendString("close game_over", NULL, 0, NULL);
+}
 
 /*
 	main game
 */
+
 void do_game()
 {
 	while (1)
@@ -1315,7 +1617,18 @@ void do_game()
 		updateWithInput();
 		updateWithoutInput();
 		if (PlayerState::player_hp <= 0)
+		{
+			play_music_once("player_death");
+			settlement();
+			fail_add_experience();
 			break;
+		}
+		if (extract)
+		{
+			success();
+			success_add_experience();
+			break;
+		}
 		cleardevice();
 		draw();
 		FlushBatchDraw();
@@ -1323,12 +1636,16 @@ void do_game()
 	}
 }
 
+
+
+
+
 int main()
 {
 	//调试用
-	initgraph(1080, 720, EW_SHOWCONSOLE);
+	//initgraph(1080, 720, EW_SHOWCONSOLE);
 
-	//initgraph(1080, 720);
+	initgraph(1080, 720);
 
 	//setaspectratio(1.5, 1.5);		//设置缩放因子
 
@@ -1342,31 +1659,56 @@ int main()
 	int main_pointer = 0;
 	bool newGame = false;
 	bool showHelp = false;
+	bool showSetting = false;
+	bool keydown_w = false;
+	bool keydown_s = false;
+	/*
+	char volume;
+	mciSendString("status movie volume", &volume, sizeof(volume), 0);
+	*/
 
 	BeginBatchDraw();
 	while (1)
 	{
 		if (KEYDOWN('W'))
 		{
-			if (main_pointer == 1)
-			{
-				main_pointer = 0;
-				mciSendString("close move", NULL, 0, NULL);
-				mciSendString("open Resources\\sound\\menu_move.mp3 alias move", NULL, 0, NULL);
-				mciSendString("play move", NULL, 0, NULL);
-			}
+			keydown_w = true;
 		}
-		else if (KEYDOWN('S'))
+		if (KEYDOWN('S'))
 		{
-			if (main_pointer == 0)
+			keydown_s = true;
+		}
+		if (KEYUP('W'))
+		{
+			if (keydown_w)
 			{
-				main_pointer = 1;
-				mciSendString("close move", NULL, 0, NULL);
-				mciSendString("open Resources\\sound\\menu_move.mp3 alias move", NULL, 0, NULL);
-				mciSendString("play move", NULL, 0, NULL);
+				keydown_w = false;
+				if (main_pointer != 0)
+				{
+					main_pointer--;
+					play_music_once("menu_move");
+					//mciSendString("close move", NULL, 0, NULL);
+					//mciSendString("open Resources\\sound\\menu_move.mp3 alias move", NULL, 0, NULL);
+					//mciSendString("play move", NULL, 0, NULL);
+				}
 			}
 		}
-		else if (KEYDOWN(VK_RETURN))
+		if (KEYUP('S'))
+		{
+			if (keydown_s)
+			{
+				keydown_s = false;
+				if (main_pointer != 2)
+				{
+					main_pointer++;
+					play_music_once("menu_move");
+					//mciSendString("close move", NULL, 0, NULL);
+					//mciSendString("open Resources\\sound\\menu_move.mp3 alias move", NULL, 0, NULL);
+					//mciSendString("play move", NULL, 0, NULL);
+				}
+			}
+		}
+		if (KEYDOWN(VK_SPACE))
 		{
 			if (main_pointer == 0 && showHelp == false)
 			{
@@ -1376,35 +1718,45 @@ int main()
 			{
 				showHelp = true;
 			}
+			else if (main_pointer == 2)
+			{
+				showSetting = true;
+			}
 		}
 		else if (KEYDOWN(VK_ESCAPE))
 		{
-			if (showHelp == true)
-			{
-				showHelp = false;
-			}
+			showHelp = false;
+			showSetting = false;
 		}
 		cleardevice();
 		putimage(0, 0, &Resource::main);
 		putimage(425, 470, &Resource::begin);
 		putimage(450, 550, &Resource::help);
+		putimage(434, 630, &Resource::setting);
 		putimage(300, 470 + main_pointer * 80 , &Resource::main_pointer);
 		if (showHelp)
 		{
 			putimage(270, 140, &Resource::help_page);
 		}
+		if (showSetting)
+		{
+			//50 160
+			putimage(270, 140, &Resource::setting_page);
+
+		}
 		FlushBatchDraw();
 		if (newGame)
 		{
-			mciSendString("close bgm", NULL, 0, NULL);
-			mciSendString("open Resources\\sound\\bg1.mp3 alias game", NULL, 0, NULL);
-			mciSendString("play game repeat", NULL, 0, NULL);
 			init_newgame();
 			do_game();
 			newGame = false;
-			mciSendString("close game", NULL, 0, NULL);
 			mciSendString("open Resources\\sound\\bg2.mp3 alias bgm", NULL, 0, NULL);
 			mciSendString("play bgm repeat", NULL, 0, NULL);
+			main_pointer = 0;
+			newGame = false;
+			showHelp = false;
+			keydown_w = false;
+			keydown_s = false;
 		}
 		
 		Sleep(16);		//60fps

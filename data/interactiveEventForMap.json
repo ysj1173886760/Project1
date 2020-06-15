@@ -1,0 +1,2977 @@
+[
+  {
+    "type": "event",
+    "des": "一扇门",
+    "event_des": "想要进去吗",
+    "map_name": "C2",
+    "pos": [
+      {
+        "x": 21,
+        "y": 9
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "进去看看",
+        "map_name": "house01",
+        "x": 13,
+        "y": 18
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "des": "一扇门",
+    "event_des": "想要出去吗",
+    "map_name": "house01",
+    "pos": [
+      {
+        "x": 13,
+        "y": 19
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "出去",
+        "map_name": "C2",
+        "x": 21,
+        "y": 10
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "des": "一扇门",
+    "event_des": "想要进去吗",
+    "map_name": "C3",
+    "pos": [
+      {
+        "x": 4,
+        "y": 7
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "进去看看",
+        "map_name": "house02",
+        "x": 13,
+        "y": 18
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "des": "一扇门",
+    "event_des": "想要出去吗",
+    "map_name": "house02",
+    "pos": [
+      {
+        "x": 13,
+        "y": 19
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "出去",
+        "map_name": "C3",
+        "x": 4,
+        "y": 8
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "des": "一扇门",
+    "event_des": "想要进去吗",
+    "map_name": "C3",
+    "pos": [
+      {
+        "x": 4,
+        "y": 18
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "进去看看",
+        "map_name": "house03",
+        "x": 13,
+        "y": 18
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "des": "一扇门",
+    "event_des": "想要出去吗",
+    "map_name": "house03",
+    "pos": [
+      {
+        "x": 13,
+        "y": 19
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "出去",
+        "map_name": "C3",
+        "x": 4,
+        "y": 19
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  }, //house 04
+  {
+    "type": "event",
+    "des": "一扇门",
+    "event_des": "想要进去吗",
+    "map_name": "C3",
+    "pos": [
+      {
+        "x": 3,
+        "y": 28
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "进去看看",
+        "map_name": "house04",
+        "x": 15,
+        "y": 21
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "des": "一扇门",
+    "event_des": "想要出去吗",
+    "map_name": "house04",
+    "pos": [
+      {
+        "x": 15,
+        "y": 22
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "出去",
+        "map_name": "C3",
+        "x": 3,
+        "y": 29
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  }, //house05
+  {
+    "type": "event",
+    "des": "一扇门",
+    "event_des": "想要进去吗",
+    "map_name": "D3",
+    "pos": [
+      {
+        "x": 23,
+        "y": 0
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "进去看看",
+        "map_name": "house05",
+        "x": 13,
+        "y": 18
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "des": "一扇门",
+    "event_des": "想要出去吗",
+    "map_name": "house05",
+    "pos": [
+      {
+        "x": 13,
+        "y": 19
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "出去",
+        "map_name": "D3",
+        "x": 23,
+        "y": 1
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "des": "一扇门",
+    "event_des": "想要进去吗",
+    "map_name": "D1",
+    "pos": [
+      {
+        "x": 24,
+        "y": 19
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "进去看看",
+        "map_name": "house09",
+        "x": 13,
+        "y": 18
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "des": "一扇门",
+    "event_des": "想要出去吗",
+    "map_name": "house09",
+    "pos": [
+      {
+        "x": 13,
+        "y": 19
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "出去",
+        "map_name": "D1",
+        "x": 24,
+        "y": 20
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "des": "一扇门",
+    "event_des": "想要进去吗",
+    "map_name": "C4",
+    "pos": [
+      {
+        "x": 9,
+        "y": 19
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "进去看看",
+        "map_name": "house06",
+        "x": 15,
+        "y": 21
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "des": "一扇门",
+    "event_des": "想要出去吗",
+    "map_name": "house06",
+    "pos": [
+      {
+        "x": 15,
+        "y": 22
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "出去",
+        "map_name": "C4",
+        "x": 9,
+        "y": 20
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "des": "一扇门",
+    "event_des": "想要进去吗",
+    "map_name": "D4",
+    "pos": [
+      {
+        "x": 15,
+        "y": 17
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "进去看看",
+        "map_name": "house07",
+        "x": 15,
+        "y": 21
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "des": "一扇门",
+    "event_des": "想要出去吗",
+    "map_name": "house07",
+    "pos": [
+      {
+        "x": 15,
+        "y": 22
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "出去",
+        "map_name": "D4",
+        "x": 15,
+        "y": 18
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "des": "一扇门",
+    "event_des": "想要进去吗",
+    "map_name": "D1",
+    "pos": [
+      {
+        "x": 22,
+        "y": 10
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "进去看看",
+        "map_name": "house08",
+        "x": 15,
+        "y": 21
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "des": "一扇门",
+    "event_des": "想要出去吗",
+    "map_name": "house08",
+    "pos": [
+      {
+        "x": 15,
+        "y": 22
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "出去",
+        "map_name": "D1",
+        "x": 22,
+        "y": 11
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "des": "一扇门",
+    "event_des": "想要进去吗",
+    "map_name": "E1",
+    "pos": [
+      {
+        "x": 23,
+        "y": 9
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "进去看看",
+        "map_name": "house10",
+        "x": 13,
+        "y": 18
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "des": "一扇门",
+    "event_des": "想要出去吗",
+    "map_name": "house10",
+    "pos": [
+      {
+        "x": 13,
+        "y": 19
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "出去",
+        "map_name": "E1",
+        "x": 23,
+        "y": 10
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "des": "一扇门",
+    "event_des": "想要进去吗",
+    "map_name": "E2",
+    "pos": [
+      {
+        "x": 2,
+        "y": 25
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "进去看看",
+        "map_name": "house11",
+        "x": 13,
+        "y": 18
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "des": "一扇门",
+    "event_des": "想要出去吗",
+    "map_name": "house11",
+    "pos": [
+      {
+        "x": 13,
+        "y": 19
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "出去",
+        "map_name": "E2",
+        "x": 2,
+        "y": 26
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "des": "一扇门",
+    "event_des": "想要进去吗",
+    "map_name": "E1",
+    "pos": [
+      {
+        "x": 16,
+        "y": 28
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "进去看看",
+        "map_name": "house12",
+        "x": 13,
+        "y": 18
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "des": "一扇门",
+    "event_des": "想要出去吗",
+    "map_name": "house12",
+    "pos": [
+      {
+        "x": 13,
+        "y": 19
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "出去",
+        "map_name": "E1",
+        "x": 16,
+        "y": 29
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "des": "一扇门",
+    "event_des": "想要进去吗",
+    "map_name": "F3",
+    "pos": [
+      {
+        "x": 2,
+        "y": 3
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "进去看看",
+        "map_name": "house21",
+        "x": 13,
+        "y": 18
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "des": "一扇门",
+    "event_des": "想要出去吗",
+    "map_name": "house21",
+    "pos": [
+      {
+        "x": 13,
+        "y": 19
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "出去",
+        "map_name": "F3",
+        "x": 2,
+        "y": 4
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "des": "一扇门",
+    "event_des": "想要进去吗",
+    "map_name": "F3",
+    "pos": [
+      {
+        "x": 22,
+        "y": 18
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "进去看看",
+        "map_name": "house18",
+        "x": 13,
+        "y": 18
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "des": "一扇门",
+    "event_des": "想要出去吗",
+    "map_name": "house18",
+    "pos": [
+      {
+        "x": 13,
+        "y": 19
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "出去",
+        "map_name": "F3",
+        "x": 22,
+        "y": 19
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "des": "一扇门",
+    "event_des": "想要进去吗",
+    "map_name": "F2",
+    "pos": [
+      {
+        "x": 23,
+        "y": 5
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "进去看看",
+        "map_name": "house13",
+        "x": 15,
+        "y": 21
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "des": "一扇门",
+    "event_des": "想要出去吗",
+    "map_name": "house13",
+    "pos": [
+      {
+        "x": 15,
+        "y": 22
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "出去",
+        "map_name": "F2",
+        "x": 23,
+        "y": 6
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "des": "一扇门",
+    "event_des": "想要进去吗",
+    "map_name": "F2",
+    "pos": [
+      {
+        "x": 3,
+        "y": 17
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "进去看看",
+        "map_name": "house14",
+        "x": 15,
+        "y": 21
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "des": "一扇门",
+    "event_des": "想要出去吗",
+    "map_name": "house14",
+    "pos": [
+      {
+        "x": 15,
+        "y": 22
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "出去",
+        "map_name": "F2",
+        "x": 3,
+        "y": 18
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "des": "一扇门",
+    "event_des": "想要进去吗",
+    "map_name": "F1",
+    "pos": [
+      {
+        "x": 20,
+        "y": 22
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "进去看看",
+        "map_name": "house15",
+        "x": 15,
+        "y": 21
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "des": "一扇门",
+    "event_des": "想要出去吗",
+    "map_name": "house15",
+    "pos": [
+      {
+        "x": 15,
+        "y": 22
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "出去",
+        "map_name": "F1",
+        "x": 20,
+        "y": 23
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "des": "一扇门",
+    "event_des": "想要进去吗",
+    "map_name": "F2",
+    "pos": [
+      {
+        "x": 25,
+        "y": 25
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "进去看看",
+        "map_name": "house16",
+        "x": 15,
+        "y": 21
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "des": "一扇门",
+    "event_des": "想要出去吗",
+    "map_name": "house16",
+    "pos": [
+      {
+        "x": 15,
+        "y": 22
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "出去",
+        "map_name": "F2",
+        "x": 25,
+        "y": 26
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "des": "一扇门",
+    "event_des": "想要进去吗",
+    "map_name": "E4",
+    "pos": [
+      {
+        "x": 11,
+        "y": 25
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "进去看看",
+        "map_name": "house19",
+        "x": 15,
+        "y": 21
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "des": "一扇门",
+    "event_des": "想要出去吗",
+    "map_name": "house19",
+    "pos": [
+      {
+        "x": 15,
+        "y": 22
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "出去",
+        "map_name": "E4",
+        "x": 11,
+        "y": 26
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "des": "一扇门",
+    "event_des": "想要进去吗",
+    "map_name": "F3",
+    "pos": [
+      {
+        "x": 16,
+        "y": 12
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "进去看看",
+        "map_name": "house17f1",
+        "x": 15,
+        "y": 22
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "des": "一扇门",
+    "event_des": "想要出去吗",
+    "map_name": "house17f1",
+    "pos": [
+      {
+        "x": 15,
+        "y": 23
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "出去",
+        "map_name": "F3",
+        "x": 16,
+        "y": 13
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "des": "楼梯",
+    "event_des": "上去吗",
+    "map_name": "house17f1",
+    "pos": [
+      {
+        "x": 22,
+        "y": 12
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "上去看看",
+        "map_name": "house17f2",
+        "x": 23,
+        "y": 13
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "des": "楼梯",
+    "event_des": "下楼吗",
+    "map_name": "house17f2",
+    "pos": [
+      {
+        "x": 22,
+        "y": 13
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "下去",
+        "map_name": "house17f1",
+        "x": 21,
+        "y": 12
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "des": "一扇门",
+    "event_des": "想要进去吗",
+    "map_name": "E4",
+    "pos": [
+      {
+        "x": 21,
+        "y": 28
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "进去看看",
+        "map_name": "house20f1",
+        "x": 15,
+        "y": 22
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "des": "一扇门",
+    "event_des": "想要出去吗",
+    "map_name": "house20f1",
+    "pos": [
+      {
+        "x": 15,
+        "y": 23
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "出去",
+        "map_name": "E4",
+        "x": 21,
+        "y": 29
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "des": "楼梯",
+    "event_des": "上去吗",
+    "map_name": "house20f1",
+    "pos": [
+      {
+        "x": 22,
+        "y": 12
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "上去看看",
+        "map_name": "house20f2",
+        "x": 23,
+        "y": 13
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "des": "楼梯",
+    "event_des": "下楼吗",
+    "map_name": "house20f2",
+    "pos": [
+      {
+        "x": 22,
+        "y": 13
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "下去",
+        "map_name": "house20f1",
+        "x": 21,
+        "y": 12
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "des": "一扇门",
+    "event_des": "想要进去吗",
+    "map_name": "G3",
+    "pos": [
+      {
+        "x": 3,
+        "y": 24
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "进去看看",
+        "map_name": "house22",
+        "x": 14,
+        "y": 22
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "des": "一扇门",
+    "event_des": "想要出去吗",
+    "map_name": "house22",
+    "pos": [
+      {
+        "x": 14,
+        "y": 23
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "出去",
+        "map_name": "G3",
+        "x": 3,
+        "y": 25
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "des": "一扇门",
+    "event_des": "想要进去吗",
+    "map_name": "I3",
+    "pos": [
+      {
+        "x": 9,
+        "y": 13
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "进去看看",
+        "map_name": "house23",
+        "x": 14,
+        "y": 22
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "des": "一扇门",
+    "event_des": "想要出去吗",
+    "map_name": "house23",
+    "pos": [
+      {
+        "x": 14,
+        "y": 23
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "出去",
+        "map_name": "I3",
+        "x": 9,
+        "y": 14
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "des": "一扇门",
+    "event_des": "想要进去吗",
+    "map_name": "I3",
+    "pos": [
+      {
+        "x": 20,
+        "y": 13
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "进去看看",
+        "map_name": "house24",
+        "x": 13,
+        "y": 18
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "des": "一扇门",
+    "event_des": "想要出去吗",
+    "map_name": "house24",
+    "pos": [
+      {
+        "x": 13,
+        "y": 19
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "出去",
+        "map_name": "I3",
+        "x": 20,
+        "y": 14
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "des": "一扇门",
+    "event_des": "想要进去吗",
+    "map_name": "D7",
+    "pos": [
+      {
+        "x": 23,
+        "y": 21
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "进去看看",
+        "map_name": "house25",
+        "x": 14,
+        "y": 22
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "des": "一扇门",
+    "event_des": "想要出去吗",
+    "map_name": "house25",
+    "pos": [
+      {
+        "x": 14,
+        "y": 23
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "出去",
+        "map_name": "D7",
+        "x": 23,
+        "y": 22
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "des": "一扇门",
+    "event_des": "想要进去吗",
+    "map_name": "C8",
+    "pos": [
+      {
+        "x": 23,
+        "y": 21
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "进去看看",
+        "map_name": "house26",
+        "x": 14,
+        "y": 22
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "des": "一扇门",
+    "event_des": "想要出去吗",
+    "map_name": "house26",
+    "pos": [
+      {
+        "x": 14,
+        "y": 23
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "出去",
+        "map_name": "C8",
+        "x": 23,
+        "y": 22
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "des": "一扇门",
+    "event_des": "想要进去吗",
+    "map_name": "B10",
+    "pos": [
+      {
+        "x": 18,
+        "y": 26
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "进去看看",
+        "map_name": "house27",
+        "x": 14,
+        "y": 22
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "des": "一扇门",
+    "event_des": "想要出去吗",
+    "map_name": "house27",
+    "pos": [
+      {
+        "x": 14,
+        "y": 23
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "出去",
+        "map_name": "B10",
+        "x": 18,
+        "y": 27
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "des": "一扇门",
+    "event_des": "想要进去吗",
+    "map_name": "F5",
+    "pos": [
+      {
+        "x": 11,
+        "y": 4
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "进去看看",
+        "map_name": "house28",
+        "x": 15,
+        "y": 21
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "des": "一扇门",
+    "event_des": "想要出去吗",
+    "map_name": "house28",
+    "pos": [
+      {
+        "x": 15,
+        "y": 22
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "出去",
+        "map_name": "F5",
+        "x": 11,
+        "y": 5
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  }, //
+  {
+    "type": "event",
+    "des": "一扇门",
+    "event_des": "想要进去吗",
+    "map_name": "E6",
+    "pos": [
+      {
+        "x": 6,
+        "y": 27
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "进去看看",
+        "map_name": "house29",
+        "x": 13,
+        "y": 18
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "des": "一扇门",
+    "event_des": "想要出去吗",
+    "map_name": "house29",
+    "pos": [
+      {
+        "x": 13,
+        "y": 19
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "出去",
+        "map_name": "E6",
+        "x": 6,
+        "y": 28
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  }, //
+  {
+    "type": "event",
+    "des": "一扇门",
+    "event_des": "想要进去吗",
+    "map_name": "F8",
+    "pos": [
+      {
+        "x": 1,
+        "y": 4
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "进去看看",
+        "map_name": "house31",
+        "x": 13,
+        "y": 18
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "des": "一扇门",
+    "event_des": "想要出去吗",
+    "map_name": "house31",
+    "pos": [
+      {
+        "x": 13,
+        "y": 19
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "出去",
+        "map_name": "F8",
+        "x": 1,
+        "y": 5
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  }, //
+  {
+    "type": "event",
+    "des": "一扇门",
+    "event_des": "想要进去吗",
+    "map_name": "F8",
+    "pos": [
+      {
+        "x": 15,
+        "y": 4
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "进去看看",
+        "map_name": "house32",
+        "x": 13,
+        "y": 18
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "des": "一扇门",
+    "event_des": "想要出去吗",
+    "map_name": "house32",
+    "pos": [
+      {
+        "x": 13,
+        "y": 19
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "出去",
+        "map_name": "F8",
+        "x": 15,
+        "y": 5
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  }, //
+  {
+    "type": "event",
+    "des": "一扇门",
+    "event_des": "想要进去吗",
+    "map_name": "F8",
+    "pos": [
+      {
+        "x": 20,
+        "y": 20
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "进去看看",
+        "map_name": "house33",
+        "x": 13,
+        "y": 18
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "des": "一扇门",
+    "event_des": "想要出去吗",
+    "map_name": "house33",
+    "pos": [
+      {
+        "x": 13,
+        "y": 19
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "出去",
+        "map_name": "F8",
+        "x": 20,
+        "y": 21
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  }, //
+  {
+    "type": "event",
+    "des": "一扇门",
+    "event_des": "想要进去吗",
+    "map_name": "E7",
+    "pos": [
+      {
+        "x": 14,
+        "y": 6
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "进去看看",
+        "map_name": "house30",
+        "x": 14,
+        "y": 21
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "des": "一扇门",
+    "event_des": "想要出去吗",
+    "map_name": "house30",
+    "pos": [
+      {
+        "x": 14,
+        "y": 22
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "出去",
+        "map_name": "E7",
+        "x": 14,
+        "y": 7
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  }, //
+  {
+    "type": "event",
+    "des": "一扇门",
+    "event_des": "想要进去吗",
+    "map_name": "H6",
+    "pos": [
+      {
+        "x": 28,
+        "y": 9
+      },
+      {
+        "x": 29,
+        "y": 9
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "进去看看",
+        "map_name": "house34",
+        "x": 15,
+        "y": 21
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "des": "一扇门",
+    "event_des": "想要出去吗",
+    "map_name": "house34",
+    "pos": [
+      {
+        "x": 15,
+        "y": 22
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "出去",
+        "map_name": "H6",
+        "x": 28,
+        "y": 10
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  }, //
+  {
+    "type": "event",
+    "des": "一扇门",
+    "event_des": "想要进去吗",
+    "map_name": "H7",
+    "pos": [
+      {
+        "x": 12,
+        "y": 15
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "进去看看",
+        "map_name": "house37",
+        "x": 15,
+        "y": 21
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "des": "一扇门",
+    "event_des": "想要出去吗",
+    "map_name": "house37",
+    "pos": [
+      {
+        "x": 15,
+        "y": 22
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "出去",
+        "map_name": "H7",
+        "x": 12,
+        "y": 16
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  }, //
+  {
+    "type": "event",
+    "des": "一扇门",
+    "event_des": "想要进去吗",
+    "map_name": "H7",
+    "pos": [
+      {
+        "x": 19,
+        "y": 4
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "进去看看",
+        "map_name": "house35",
+        "x": 14,
+        "y": 21
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "des": "一扇门",
+    "event_des": "想要出去吗",
+    "map_name": "house35",
+    "pos": [
+      {
+        "x": 14,
+        "y": 22
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "出去",
+        "map_name": "H7",
+        "x": 19,
+        "y": 5
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  }, //
+  {
+    "type": "event",
+    "des": "一扇门",
+    "event_des": "想要进去吗",
+    "map_name": "G9",
+    "pos": [
+      {
+        "x": 23,
+        "y": 15
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "进去看看",
+        "map_name": "house36",
+        "x": 13,
+        "y": 18
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "des": "一扇门",
+    "event_des": "想要出去吗",
+    "map_name": "house36",
+    "pos": [
+      {
+        "x": 13,
+        "y": 19
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "出去",
+        "map_name": "G9",
+        "x": 23,
+        "y": 16
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  }, //
+  {
+    "type": "event",
+    "des": "一扇门",
+    "event_des": "想要进去吗",
+    "map_name": "G12",
+    "pos": [
+      {
+        "x": 1,
+        "y": 13
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "进去看看",
+        "map_name": "house38f1",
+        "x": 15,
+        "y": 22
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "des": "一扇门",
+    "event_des": "想要出去吗",
+    "map_name": "house38f1",
+    "pos": [
+      {
+        "x": 15,
+        "y": 23
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "出去",
+        "map_name": "G12",
+        "x": 1,
+        "y": 14
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "des": "楼梯",
+    "event_des": "上去吗",
+    "map_name": "house38f1",
+    "pos": [
+      {
+        "x": 22,
+        "y": 12
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "上去看看",
+        "map_name": "house38f2",
+        "x": 23,
+        "y": 13
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "des": "楼梯",
+    "event_des": "下楼吗",
+    "map_name": "house38f2",
+    "pos": [
+      {
+        "x": 22,
+        "y": 13
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "下去",
+        "map_name": "house38f1",
+        "x": 21,
+        "y": 12
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  }, //
+  {
+    "type": "event",
+    "des": "一扇门",
+    "event_des": "想要进去吗",
+    "map_name": "G13",
+    "pos": [
+      {
+        "x": 12,
+        "y": 12
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "进去看看",
+        "map_name": "house39",
+        "x": 14,
+        "y": 22
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "des": "一扇门",
+    "event_des": "想要出去吗",
+    "map_name": "house39",
+    "pos": [
+      {
+        "x": 14,
+        "y": 23
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "出去",
+        "map_name": "G13",
+        "x": 12,
+        "y": 13
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  }, //
+  {
+    "type": "event",
+    "des": "一扇门",
+    "event_des": "想要进去吗",
+    "map_name": "H14",
+    "pos": [
+      {
+        "x": 17,
+        "y": 19
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "进去看看",
+        "map_name": "house40",
+        "x": 14,
+        "y": 22
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "des": "一扇门",
+    "event_des": "想要出去吗",
+    "map_name": "house40",
+    "pos": [
+      {
+        "x": 14,
+        "y": 23
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "出去",
+        "map_name": "H14",
+        "x": 17,
+        "y": 20
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  }, //
+  {
+    "type": "event",
+    "des": "一扇门",
+    "event_des": "想要进去吗",
+    "map_name": "I12",
+    "pos": [
+      {
+        "x": 16,
+        "y": 20
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "进去看看",
+        "map_name": "house41",
+        "x": 14,
+        "y": 22
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "des": "一扇门",
+    "event_des": "想要出去吗",
+    "map_name": "house41",
+    "pos": [
+      {
+        "x": 14,
+        "y": 23
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "出去",
+        "map_name": "I12",
+        "x": 16,
+        "y": 21
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  }, //
+  {
+    "type": "event",
+    "des": "一扇门",
+    "event_des": "想要进去吗",
+    "map_name": "I11",
+    "pos": [
+      {
+        "x": 28,
+        "y": 20
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "进去看看",
+        "map_name": "house42",
+        "x": 14,
+        "y": 22
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "des": "一扇门",
+    "event_des": "想要出去吗",
+    "map_name": "house42",
+    "pos": [
+      {
+        "x": 14,
+        "y": 23
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "出去",
+        "map_name": "I11",
+        "x": 28,
+        "y": 21
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  }, //
+  {
+    "type": "event",
+    "des": "一扇门",
+    "event_des": "想要进去吗",
+    "map_name": "I11",
+    "pos": [
+      {
+        "x": 17,
+        "y": 20
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "进去看看",
+        "map_name": "house43",
+        "x": 14,
+        "y": 22
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "des": "一扇门",
+    "event_des": "想要出去吗",
+    "map_name": "house43",
+    "pos": [
+      {
+        "x": 14,
+        "y": 23
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "出去",
+        "map_name": "I11",
+        "x": 17,
+        "y": 21
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  }, //
+  {
+    "type": "event",
+    "des": "一扇门",
+    "event_des": "想要进去吗",
+    "map_name": "J9",
+    "pos": [
+      {
+        "x": 25,
+        "y": 13
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "进去看看",
+        "map_name": "house44",
+        "x": 14,
+        "y": 21
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "des": "一扇门",
+    "event_des": "想要出去吗",
+    "map_name": "house44",
+    "pos": [
+      {
+        "x": 14,
+        "y": 22
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "出去",
+        "map_name": "J9",
+        "x": 25,
+        "y": 14
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  }, //
+  {
+    "type": "event",
+    "des": "一扇门",
+    "event_des": "想要进去吗",
+    "map_name": "J10",
+    "pos": [
+      {
+        "x": 18,
+        "y": 19
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "进去看看",
+        "map_name": "house45",
+        "x": 13,
+        "y": 18
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "des": "一扇门",
+    "event_des": "想要出去吗",
+    "map_name": "house45",
+    "pos": [
+      {
+        "x": 13,
+        "y": 19
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "出去",
+        "map_name": "J10",
+        "x": 18,
+        "y": 20
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  }, //
+  {
+    "type": "event",
+    "des": "一扇门",
+    "event_des": "想要进去吗",
+    "map_name": "J9",
+    "pos": [
+      {
+        "x": 12,
+        "y": 23
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "进去看看",
+        "map_name": "house46",
+        "x": 15,
+        "y": 21
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "des": "一扇门",
+    "event_des": "想要出去吗",
+    "map_name": "house46",
+    "pos": [
+      {
+        "x": 15,
+        "y": 22
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "出去",
+        "map_name": "J9",
+        "x": 12,
+        "y": 24
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  }, //
+  {
+    "type": "event",
+    "des": "一扇门",
+    "event_des": "想要进去吗",
+    "map_name": "I8",
+    "pos": [
+      {
+        "x": 15,
+        "y": 23
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "进去看看",
+        "map_name": "port_house",
+        "x": 2,
+        "y": 26
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "des": "一扇门",
+    "event_des": "想要出去吗",
+    "map_name": "port_house",
+    "pos": [
+      {
+        "x": 2,
+        "y": 27
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "出去",
+        "map_name": "I8",
+        "x": 15,
+        "y": 24
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  }, //
+  {
+    "type": "event",
+    "des": "一扇门",
+    "event_des": "想要进去吗",
+    "map_name": "J8",
+    "pos": [
+      {
+        "x": 27,
+        "y": 2
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "进去看看",
+        "map_name": "port_house",
+        "x": 25,
+        "y": 26
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "des": "一扇门",
+    "event_des": "想要出去吗",
+    "map_name": "port_house",
+    "pos": [
+      {
+        "x": 24,
+        "y": 27
+      },
+      {
+        "x": 25,
+        "y": 27
+      },
+      {
+        "x": 26,
+        "y": 27
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "出去",
+        "map_name": "J8",
+        "x": 27,
+        "y": 3
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  }, //
+  {
+    "type": "event",
+    "des": "一个入口",
+    "event_des": "想要进去吗",
+    "map_name": "E6",
+    "pos": [
+      {
+        "x": 9,
+        "y": 12
+      },
+      {
+        "x": 10,
+        "y": 12
+      },
+      {
+        "x": 11,
+        "y": 12
+      },
+      {
+        "x": 12,
+        "y": 12
+      },
+      {
+        "x": 13,
+        "y": 12
+      },
+      {
+        "x": 14,
+        "y": 12
+      },
+      {
+        "x": 15,
+        "y": 12
+      },
+      {
+        "x": 16,
+        "y": 12
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "进去看看",
+        "map_name": "factoryf1",
+        "x": 9,
+        "y": 27
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "des": "一个出口",
+    "event_des": "想要出去吗",
+    "map_name": "factoryf1",
+    "pos": [
+      {
+        "x": 6,
+        "y": 28
+      },
+      {
+        "x": 7,
+        "y": 28
+      },
+      {
+        "x": 8,
+        "y": 28
+      },
+      {
+        "x": 9,
+        "y": 28
+      },
+      {
+        "x": 10,
+        "y": 28
+      },
+      {
+        "x": 11,
+        "y": 28
+      },
+      {
+        "x": 12,
+        "y": 28
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "出去",
+        "map_name": "E6",
+        "x": 12,
+        "y": 13
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  }, //
+  {
+    "type": "event",
+    "des": "楼梯",
+    "event_des": "想要下去吗",
+    "map_name": "E6",
+    "pos": [
+      {
+        "x": 7,
+        "y": 6
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "进去看看",
+        "map_name": "factoryf1",
+        "x": 2,
+        "y": 14
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "des": "楼梯",
+    "event_des": "想要上去吗",
+    "map_name": "factoryf1",
+    "pos": [
+      {
+        "x": 1,
+        "y": 14
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "出去",
+        "map_name": "E6",
+        "x": 6,
+        "y": 6
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  }, //
+  {
+    "type": "event",
+    "des": "楼梯",
+    "event_des": "想要下去吗",
+    "map_name": "E6",
+    "pos": [
+      {
+        "x": 19,
+        "y": 6
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "进去看看",
+        "map_name": "factoryf1",
+        "x": 28,
+        "y": 15
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "des": "楼梯",
+    "event_des": "想要上去吗",
+    "map_name": "factoryf1",
+    "pos": [
+      {
+        "x": 29,
+        "y": 15
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "出去",
+        "map_name": "E6",
+        "x": 20,
+        "y": 6
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  }, //
+  {
+    "type": "event",
+    "des": "楼梯",
+    "event_des": "想要上去吗",
+    "map_name": "factoryf1",
+    "pos": [
+      {
+        "x": 12,
+        "y": 6
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "进去看看",
+        "map_name": "factoryf2",
+        "x": 12,
+        "y": 16
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "des": "楼梯",
+    "event_des": "想要下去吗",
+    "map_name": "factoryf2",
+    "pos": [
+      {
+        "x": 11,
+        "y": 16
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "出去",
+        "map_name": "factoryf1",
+        "x": 11,
+        "y": 6
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  }, //
+  {
+    "type": "event",
+    "des": "一扇门",
+    "event_des": "想要进去吗",
+    "map_name": "E6",
+    "pos": [
+      {
+        "x": 17,
+        "y": 4
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "进去看看",
+        "map_name": "factoryf2",
+        "x": 15,
+        "y": 17
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "des": "一扇门",
+    "event_des": "想要出去吗",
+    "map_name": "factoryf2",
+    "pos": [
+      {
+        "x": 15,
+        "y": 18
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "出去",
+        "map_name": "E6",
+        "x": 17,
+        "y": 5
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  }, //
+  {
+    "type": "event",
+    "des": "一扇门",
+    "event_des": "想要进去吗",
+    "map_name": "B7",
+    "pos": [
+      {
+        "x": 24,
+        "y": 28
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "进去看看",
+        "map_name": "waterhouse",
+        "x": 10,
+        "y": 24
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "des": "一扇门",
+    "event_des": "想要出去吗",
+    "map_name": "waterhouse",
+    "pos": [
+      {
+        "x": 9,
+        "y": 25
+      },
+      {
+        "x": 10,
+        "y": 25
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "出去",
+        "map_name": "B7",
+        "x": 24,
+        "y": 29
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  }, //
+  {
+    "type": "event",
+    "des": "一扇门",
+    "event_des": "想要进去吗",
+    "map_name": "B7",
+    "pos": [
+      {
+        "x": 28,
+        "y": 28
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "进去看看",
+        "map_name": "waterhouse",
+        "x": 18,
+        "y": 24
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "des": "一扇门",
+    "event_des": "想要出去吗",
+    "map_name": "waterhouse",
+    "pos": [
+      {
+        "x": 18,
+        "y": 25
+      },
+      {
+        "x": 19,
+        "y": 25
+      }
+    ],
+    "result": [
+      {
+        "type": "change",
+        "des": "出去",
+        "map_name": "B7",
+        "x": 28,
+        "y": 29
+      },
+      {
+        "type": "nothing",
+        "des": "还是算了"
+      }
+    ]
+  }
+
+
+
+]

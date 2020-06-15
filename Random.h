@@ -22,17 +22,22 @@ class Random {
 		void frand_ori() {//默认范围取随机数
 			srand((int)this->rand_seed);
 			this->randnum_int = rand();
+			this->randnum_int = rand();
+			this->randnum_int = rand();
+			clock_t clk = clock();
 			//this->randnum_double = rand() + rand() / (RAND_MAX + 1.0);
-			this->rand_seed = (this->randnum_int * ((int)time(0))) % 1000007;
+			this->rand_seed = (this->randnum_int * clk % 1000007);
 		}
 		void frand_range(int a, int b) {//取一个范围内的随机数
 			srand((int)this->rand_seed);
 			//this->randnum_double = ((double)rand() / RAND_MAX) * (b - a) + a;
 			this->randnum_int = (rand() % (b - a + 1)) + a;
-			this->rand_seed = (this->randnum_int * ((int)time(0))) % 1000007;
+			clock_t clk = clock();
+			this->rand_seed = (this->randnum_int * clk) % 1000007;
 		}
 		int getRandom(int a, int b)
 		{
+			this->randnum_int = rand();
 			frand_range(a, b);
 			return randnum_int;
 		}

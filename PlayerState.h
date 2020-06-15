@@ -27,5 +27,12 @@ class PlayerState
 		static int defense;		//防御力
 		static std::map<std::string, bool>debuff;	//异常状态
 		static std::map<std::string, std::string>equip;	//穿戴物品
+
+		static int experience;
+
+		/*
+			统计数据
+		*/
+		static int kill_zombie;
 };
 

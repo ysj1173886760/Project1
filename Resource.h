@@ -54,6 +54,16 @@ class Resource
 		static IMAGE main_pointer;
 		static IMAGE help;
 		static IMAGE help_page;
+		static IMAGE death_page;
+		static IMAGE deploy;
+		static IMAGE loaddata;
+		static IMAGE success;
+		static IMAGE hunter;
+		static IMAGE tyrant;
+		static IMAGE setting;
+		static IMAGE setting_page;
+		static IMAGE boss;
+		static IMAGE settlement;
 
 		static std::map<std::string, IMAGE>placeable_map;
 
@@ -96,6 +106,8 @@ class Resource
 		static std::map<std::string, IMAGE>map_image;
 
 		static Random myrandom;
+
+		static std::map<std::string, std::string>zombie_spawn;
 };
 
 

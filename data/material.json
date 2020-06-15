@@ -88,5 +88,14 @@
     "size": 1,
     "time": 0,
     "type": "material"
+  },
+  {
+    "description": "能够帮助你撤离的东西",
+    "event": "",
+    "name": "通行证",
+    "pic": "apple.png",
+    "size": 0,
+    "time": 0,
+    "type": "material"
   }
 ]

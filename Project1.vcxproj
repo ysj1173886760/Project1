@@ -36,7 +36,7 @@
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -114,6 +114,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -176,7 +177,6 @@
     <ClInclude Include="Random.h" />
     <ClInclude Include="realTime.h" />
     <ClInclude Include="Resource.h" />
-    <ClInclude Include="resource1.h" />
     <ClInclude Include="Result.h" />
     <ClInclude Include="UI.h" />
     <ClInclude Include="Window.h" />
@@ -185,7 +185,8 @@
     <None Include="data\comestible.json" />
     <None Include="data\craft.json" />
     <None Include="data\equipments.json" />
-    <None Include="data\interactiveEvent.json" />
+    <None Include="data\heal.json" />
+    <None Include="data\interactiveEventForMap.json" />
     <None Include="data\itembox.json" />
     <None Include="data\material.json" />
     <None Include="data\placeable.json" />
@@ -395,8 +396,6 @@
     <Text Include="data\map\J8.txt" />
     <Text Include="data\map\J9.txt" />
     <Text Include="data\map\port_house.txt" />
-    <Text Include="data\school_map.txt" />
-    <Text Include="data\way_to_school.txt" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Project1.rc" />

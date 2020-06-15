@@ -18,6 +18,16 @@ IMAGE Resource::begin(0, 0);
 IMAGE Resource::main_pointer(0, 0);
 IMAGE Resource::help(0, 0);
 IMAGE Resource::help_page(0, 0);
+IMAGE Resource::death_page(0, 0);
+IMAGE Resource::loaddata(0, 0);
+IMAGE Resource::deploy(0, 0);
+IMAGE Resource::success(0, 0);
+IMAGE Resource::hunter(0, 0);
+IMAGE Resource::tyrant(0, 0);
+IMAGE Resource::setting(0, 0);
+IMAGE Resource::setting_page(0, 0);
+IMAGE Resource::boss(0, 0);
+IMAGE Resource::settlement(0, 0);
 
 std::map<std::string, IMAGE>Resource::placeable_map;
 
@@ -52,3 +62,5 @@ std::map<std::string, std::vector<std::vector<int>>>Resource::mainMap;
 Astar Resource::myAstar;
 
 Random Resource::myrandom;
+
+std::map<std::string, std::string>Resource::zombie_spawn;

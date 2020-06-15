@@ -68,8 +68,8 @@
     "where": "武器",
     "size": 10,
     "time": 30,
-    "attack_max": 50,
-    "attack_min": 40
+    "attack_max": 30,
+    "attack_min": 25
   },
   {
     "type": "backpack",
@@ -90,10 +90,34 @@
     "name": "登山包",
     "pic": "apple.png",
     "where": "背包",
-    "size": 15,
+    "size": 5,
     "time": 30,
     "bloat": 10,
     "capacity": 50
+  },
+  {
+    "type": "backpack",
+    "description": "军用背包，轻便容量又大",
+    "event": "",
+    "name": "军用背包",
+    "pic": "apple.png",
+    "where": "背包",
+    "size": 5,
+    "time": 30,
+    "bloat": 5,
+    "capacity": 40
+  },
+  {
+    "type": "backpack",
+    "description": "一个普通的挎包",
+    "event": "",
+    "name": "小挎包",
+    "pic": "apple.png",
+    "where": "背包",
+    "size": 5,
+    "time": 30,
+    "bloat": 5,
+    "capacity": 15
   },
   {
     "type": "weapon",
@@ -104,8 +128,8 @@
     "where": "武器",
     "size": 20,
     "time": 30,
-    "attack_max": 70,
-    "attack_min": 50
+    "attack_max": 40,
+    "attack_min": 20
   },
   {
     "type": "weapon",
@@ -116,8 +140,8 @@
     "where": "武器",
     "size": 25,
     "time": 30,
-    "attack_max": 80,
-    "attack_min": 70
+    "attack_max": 45,
+    "attack_min": 20
   },
   {
     "type": "weapon",
@@ -128,7 +152,236 @@
     "where": "武器",
     "size": 10,
     "time": 10,
-    "attack_max": 110,
-    "attack_min": 100
+    "attack_max": 1,
+    "attack_min": 1
+  },
+  {
+    "type": "cloth",
+    "description": "驾驶摩托车必备的头盔，即使不骑车也能给人安全感",
+    "event": "",
+    "name": "摩托车头盔",
+    "pic": "apple.png",
+    "where": "头部",
+    "size": 3,
+    "time": 60,
+    "bloat": 1,
+    "defense": 5
+  },
+  {
+    "type": "cloth",
+    "description": "表面上是瘟疫的相争，实则是医者的一片仁心",
+    "event": "",
+    "name": "鸟嘴面具",
+    "pic": "apple.png",
+    "where": "头部",
+    "size": 3,
+    "time": 60,
+    "bloat": 1,
+    "defense": 5
+  },
+  {
+    "type": "cloth",
+    "description": "通过人造技术制造而成的头发，现在有了奇怪的用途",
+    "event": "样子看上去女性化了许多",
+    "name": "假发",
+    "pic": "apple.png",
+    "where": "头部",
+    "size": 3,
+    "time": 60,
+    "bloat": 0,
+    "defense": 0
+  },
+  {
+    "type": "weapon",
+    "description": "普通的匕首，可以不用但一定要有",
+    "event": "",
+    "name": "求生匕首",
+    "pic": "apple.png",
+    "where": "武器",
+    "size": 2,
+    "time": 30,
+    "attack_max": 15,
+    "attack_min": 10
+  },
+  {
+    "type": "weapon",
+    "description": "如蝴蝶般翩翩起舞吧",
+    "event": "",
+    "name": "蝴蝶刀",
+    "pic": "apple.png",
+    "where": "武器",
+    "size": 2,
+    "time": 30,
+    "attack_max": 1,
+    "attack_min": 1
+  },
+  {
+    "type": "weapon",
+    "description": "平庸的外表下透着骇人的杀气",
+    "event": "",
+    "name": "折叠椅",
+    "pic": "apple.png",
+    "where": "武器",
+    "size": 5,
+    "time": 30,
+    "attack_max": 20,
+    "attack_min": 10
+  },
+  {
+    "type": "weapon",
+    "description": "原本用来挥打棒球的棍棒，在这末世之下，可能得另作打算",
+    "event": "",
+    "name": "棒球棒",
+    "pic": "apple.png",
+    "where": "武器",
+    "size": 5,
+    "time": 30,
+    "attack_max": 25,
+    "attack_min": 20
+  },
+  {
+    "type": "weapon",
+    "description": "维护正义的工具，但不是滥用权力的帮凶",
+    "event": "",
+    "name": "警棍",
+    "pic": "apple.png",
+    "where": "武器",
+    "size": 3,
+    "time": 30,
+    "attack_max": 15,
+    "attack_min": 10
+  },
+  {
+    "type": "weapon",
+    "description": "昂贵的钻石制成，自由世界的赠品",
+    "event": "",
+    "name": "钻石剑",
+    "pic": "apple.png",
+    "where": "武器",
+    "size": 3,
+    "time": 30,
+    "attack_max": 30,
+    "attack_min": 25
+  },
+  {
+    "type": "weapon",
+    "description": "朴实无华的武士刀，却有着极强的羁绊",
+    "event": "",
+    "name": "楔丸",
+    "pic": "apple.png",
+    "where": "武器",
+    "size": 5,
+    "time": 30,
+    "attack_max": 30,
+    "attack_min": 25
+  },
+  {
+    "type": "weapon",
+    "description": "在那位传奇女子手里有着无穷的潜力，但不是你",
+    "event": "",
+    "name": "登山镐",
+    "pic": "apple.png",
+    "where": "武器",
+    "size": 3,
+    "time": 30,
+    "attack_max": 20,
+    "attack_min": 15
+  },
+  {
+    "type": "weapon",
+    "description": "闪耀着物理学的光辉！！！",
+    "event": "",
+    "name": "撬棍",
+    "pic": "apple.png",
+    "where": "武器",
+    "size": 5,
+    "time": 30,
+    "attack_max": 25,
+    "attack_min": 20
+  },
+  {
+    "type": "weapon",
+    "description": "用途和名字一样简单粗暴",
+    "event": "",
+    "name": "砍刀",
+    "pic": "apple.png",
+    "where": "武器",
+    "size": 3,
+    "time": 30,
+    "attack_max": 15,
+    "attack_min": 10
+  },
+  {
+    "type": "weapon",
+    "description": "“凡能从石台上拔出此剑者便是全英格兰的王”",
+    "event": "显然你没有王的资格",
+    "name": "石中剑",
+    "pic": "apple.png",
+    "where": "武器",
+    "size": 5,
+    "time": 30,
+    "attack_max": 1,
+    "attack_min": 1
+  },
+  {
+    "type": "weapon",
+    "description": "传说穿刺耶稣胸膛之枪，沾染耶稣之血",
+    "event": "大概是冒牌货吧",
+    "name": "朗基努斯之枪",
+    "pic": "apple.png",
+    "where": "武器",
+    "size": 10,
+    "time": 30,
+    "attack_max": 45,
+    "attack_min": 40
+  },
+  {
+    "type": "cloth",
+    "description": "米其林轮胎人套装的一部分",
+    "event": "",
+    "name": "米其林轮胎人—头",
+    "pic": "apple.png",
+    "where": "头部",
+    "size": 3,
+    "time": 60,
+    "bloat": 7,
+    "defense": 10
+  },
+  {
+    "type": "cloth",
+    "description": "米其林轮胎人套装的一部分",
+    "event": "",
+    "name": "米其林轮胎人—上衣",
+    "pic": "apple.png",
+    "where": "上衣",
+    "size": 3,
+    "time": 60,
+    "bloat": 7,
+    "defense": 10
+  },
+  {
+    "type": "cloth",
+    "description": "米其林轮胎人套装的一部分",
+    "event": "",
+    "name": "米其林轮胎人—裤子",
+    "pic": "apple.png",
+    "where": "裤子",
+    "size": 3,
+    "time": 60,
+    "bloat": 7,
+    "defense": 10
+  },
+  {
+    "type": "cloth",
+    "description": "米其林轮胎人套装的一部分",
+    "event": "",
+    "name": "米其林轮胎人—鞋子",
+    "pic": "apple.png",
+    "where": "鞋子",
+    "size": 3,
+    "time": 60,
+    "bloat": 7,
+    "defense": 10
   }
+
 ]

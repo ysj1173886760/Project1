@@ -17,7 +17,8 @@ class Item
 			Tool,
 			Material,
 			Placeable,
-			Backpack
+			Backpack,
+			Heal
 		}type;
 
 		int size;
@@ -135,6 +136,10 @@ class Item
 		virtual bool can_equip()
 		{
 			return false;
+		}
+		virtual bool is_heal()
+		{
+			return true;
 		}
 };
 
@@ -305,4 +310,27 @@ class Cloth :public Item
 		}
 
 		void equip();
+};
+
+class Heal :public Item
+{
+	public:
+		~Heal() {}
+		Heal()
+		{
+			this->heal = 0;
+		}
+		int heal;
+
+		bool is_heal()
+		{
+			return true;
+		}
+
+		bool can_use()
+		{
+			return true;
+		}
+
+		void use();
 };

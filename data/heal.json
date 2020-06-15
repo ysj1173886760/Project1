@@ -1,0 +1,42 @@
+[
+  {
+    "description": "简易的绷带",
+    "event": "你用了绷带，感觉好多了",
+    "name": "绷带",
+    "pic": "apple.png",
+    "size": 1,
+    "time": 60,
+    "heal": 5,
+    "type": "heal"
+  },
+  {
+    "description": "抗生素",
+    "event": "吃了一瓶抗生素，感觉好多了",
+    "name": "抗生素",
+    "pic": "apple.png",
+    "size": 1,
+    "time": 60,
+    "heal": 15,
+    "type": "heal"
+  },
+  {
+    "description": "止痛药",
+    "event": "你吃了一瓶止痛药，感觉好多了",
+    "name": "止痛药",
+    "pic": "apple.png",
+    "size": 1,
+    "time": 60,
+    "heal": 10,
+    "type": "heal"
+  },
+  {
+    "description": "医疗包，能治疗大部分情况的伤口",
+    "event": "你感觉涅槃重生",
+    "name": "医疗包",
+    "pic": "apple.png",
+    "size": 2,
+    "time": 300,
+    "heal": 50,
+    "type": "heal"
+  }
+]

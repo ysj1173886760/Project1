@@ -2,7 +2,7 @@
 
 void Init::init_image()
 {
-	loadimage(&Resource::player, _T("Resources\\test.png"));
+	loadimage(&Resource::player, _T("Resources\\player.png"));
 	loadimage(&Resource::state, _T("Resources\\state.png"));
 	loadimage(&Resource::backpack, _T("Resources\\backpack.png"));
 	loadimage(&Resource::backpack_pointer, _T("Resources\\backpack_pointer.png"));
@@ -19,6 +19,16 @@ void Init::init_image()
 	loadimage(&Resource::main_pointer, _T("Resources\\main_pointer.png"));
 	loadimage(&Resource::help, _T("Resources\\help.png"));
 	loadimage(&Resource::help_page, _T("Resources\\help_page.png"));
+	loadimage(&Resource::death_page, _T("Resources\\death_page.png"));
+	loadimage(&Resource::loaddata, _T("Resources\\loaddata.png"));
+	loadimage(&Resource::deploy, _T("Resources\\deploy.png"));
+	loadimage(&Resource::success, _T("Resources\\game_success.png"));
+	loadimage(&Resource::tyrant, _T("Resources\\tyrant.png"));
+	loadimage(&Resource::hunter, _T("Resources\\hunter.png"));
+	loadimage(&Resource::setting, _T("Resources\\setting.png"));
+	loadimage(&Resource::setting_page, _T("Resources\\setting_page.png"));
+	loadimage(&Resource::boss, _T("Resources\\boss.png"));
+	loadimage(&Resource::settlement, _T("Resources\\settlement.png"));
 
 	/*
 		placeable pic
@@ -50,18 +60,50 @@ void Init::init_image()
 
 void Init::init_player_state()
 {
-	PlayerState::player_x = 10;
-	PlayerState::player_y = 20;
 	PlayerState::player_hp = 100;
 	PlayerState::player_food = 100;
 	PlayerState::player_water = 100;
 	PlayerState::player_fatigue = 0;
-	PlayerState::player_position = "B7";
 	PlayerState::player_face = 0;
 	PlayerState::player_sanity = 100;
-	PlayerState::attack_min = 10;
+	PlayerState::attack_min = 1;
+	PlayerState::attack_max = 5;
 	PlayerState::speed = 10;
 	PlayerState::step = 0;
+
+	PlayerState::kill_zombie = 0;
+
+	/*
+		生成位置
+	*/
+	
+	int n = Resource::myrandom.getRandom(1, 46);	//从1到46个房间里选一个
+	while(n == 17 || n == 20 || n == 38)
+		n = Resource::myrandom.getRandom(1, 46);
+	std::string temp = std::to_string(n);
+	if (temp.size() == 1)
+		temp = "0" + temp;
+	temp = "house" + temp;
+	std::cout << temp << std::endl;
+	bool flag = false;
+	PlayerState::player_position = temp;
+	for (int i = 0; i < 30; i++)
+	{
+		if (flag)
+			break;
+		for (int j = 0; j < 30; j++)
+		{
+			if (flag)
+				break;
+			if (Resource::mainMap[temp][i][j] >= 2 && Resource::interaction_map[Resource::mainMap[temp][i][j]]->type == Interaction::TYPE::Event)
+			{
+				flag = true;
+				PlayerState::player_x = i;
+				PlayerState::player_y = j - 1;
+			}
+		}
+	}
+
 }
 
 /*
@@ -304,6 +346,19 @@ void load_data_from_json(std::string source)
 				newBackpack->where = temp["where"].asString();
 				newItem = newBackpack;
 			}
+			else if(type == "heal")
+			{
+				Heal* newHeal = new Heal();
+				newHeal->description = temp["description"].asString();
+				newHeal->event = temp["event"].asString();
+				newHeal->name = temp["name"].asString();
+				newHeal->pic_source = "Resources\\\\" + temp["pic"].asString();
+				newHeal->time = temp["time"].asInt();
+				newHeal->size = temp["size"].asInt();
+				newHeal->heal = temp["heal"].asInt();
+				newHeal->type = Item::TYPE::Heal;
+				newItem = newHeal;
+			}
 
 			if (newItem != NULL)
 			{
@@ -341,6 +396,7 @@ void Init::init_item()
 	load_data_from_json("data\\tool.json");
 	load_data_from_json("data\\placeable.json");
 	load_data_from_json("data\\equipments.json");
+	load_data_from_json("data\\heal.json");
 }
 
 void Init::init_loot()
@@ -349,11 +405,14 @@ void Init::init_loot()
 	/*
 		玩家背包
 	*/
+	Resource::player_backpack.items.clear();
+	PlayerState::equip.clear();
 	Resource::player_backpack.set(0, 5);			//设置空间
 	Resource::item_map[Resource::item_map_for_string["白色T恤"]]->equip();
 	Resource::item_map[Resource::item_map_for_string["运动裤"]]->equip();
 	Resource::item_map[Resource::item_map_for_string["运动鞋"]]->equip();
 
+	//Resource::player_backpack.add("绷带");
 	/*
 		箱子
 	*/
@@ -384,14 +443,16 @@ void Init::init_loot()
 		{
 			int cnt = 0;
 			int temp = Resource::myrandom.getRandom(0, sumOfItem - 1);
-			while (!Resource::itemBox_map[i].canPut(Resource::item_map[temp]->name))
+			while ((!Resource::itemBox_map[i].canPut(Resource::item_map[temp]->name)) || Resource::item_map[temp]->name == "通行证")
 			{
 				temp = Resource::myrandom.getRandom(0, sumOfItem - 1);
 				cnt++;
-				if (cnt > 5)break;
+				if (cnt > 10)break;
 			}
-			if (cnt > 5)break;
+			if (cnt > 10)
+				continue;
 			Resource::itemBox_map[i].add(Resource::item_map[temp]->name);
+			Sleep(2);
 		}
 	}
 
@@ -487,6 +548,13 @@ void load_event_from_json(std::string source)
 						newChange->x = temp["result"][i]["x"].asInt();
 						newChange->y = temp["result"][i]["y"].asInt();
 						newResult = newChange;
+					}
+					else if (resultType == "extract")
+					{
+						Extract* newExtract = new Extract();
+						newExtract->des = temp["result"][i]["des"].asString();
+						newExtract->type = Result::TYPE::Extract;
+						newResult = newExtract;
 					}
 
 					if (newResult != NULL)
@@ -636,26 +704,319 @@ void data2()
 	Resource::interactionEvent_map.push_back(temp);
 }
 */
-
-void create_zombie(int x, int y, std::string map_name)
+void Init::create_zombie(int x, int y, std::string map_name, std::string type)
 {
-	zombie* newzombie = new zombie();
-	newzombie->hp = 30;
-	newzombie->name = "普通僵尸";
-	newzombie->x = x;
-	newzombie->y = y;
-	newzombie->speed = 10;
-	newzombie->chaseRange = 5;
-	newzombie->alive = true;
-	newzombie->id = -1 - Resource::zombie_map[map_name].size();
-	newzombie->attack_min = 5;
-	Resource::mainMap[map_name][x][y] = newzombie->id;
-	Resource::zombie_map[map_name].push_back(newzombie);
+	Enemy* newEnemy = NULL;
+	if (type == "zombie")
+	{
+		zombie* newzombie = new zombie();
+		newzombie->hp = Resource::myrandom.getRandom(30, 50);
+		newzombie->name = "普通僵尸";
+		newzombie->x = x;
+		newzombie->y = y;
+		newzombie->speed = Resource::myrandom.getRandom(7, 12);
+		newzombie->chaseRange = Resource::myrandom.getRandom(5, 8);
+		newzombie->alive = true;
+		newzombie->id = -1 - Resource::zombie_map[map_name].size();
+		newzombie->attack_min = 10;
+		newzombie->attack_max = 20;
+		newzombie->type = Enemy::TYPE::zombie;
+		Resource::mainMap[map_name][x][y] = newzombie->id;
+		newEnemy = newzombie;
+	}
+	else if (type == "hunter")
+	{
+		hunter* newhunter = new hunter();
+		newhunter->hp = Resource::myrandom.getRandom(5, 10);
+		newhunter->name = "猎手";
+		newhunter->x = x;
+		newhunter->y = y;
+		newhunter->speed = Resource::myrandom.getRandom(3, 5);
+		newhunter->chaseRange = Resource::myrandom.getRandom(10, 15);
+		newhunter->alive = true;
+		newhunter->id = -1 - Resource::zombie_map[map_name].size();
+		newhunter->attack_min = 10;
+		newhunter->attack_max = 20;
+		newhunter->type = Enemy::TYPE::hunter;
+		Resource::mainMap[map_name][x][y] = newhunter->id;
+		newEnemy = newhunter;
+	}
+	else if (type == "tyrant")
+	{
+		tyrant* newtyrant = new tyrant();
+		newtyrant->hp = Resource::myrandom.getRandom(80, 150);
+		newtyrant->name = "暴君";
+		newtyrant->x = x;
+		newtyrant->y = y;
+		newtyrant->speed = Resource::myrandom.getRandom(15, 25);
+		newtyrant->chaseRange = Resource::myrandom.getRandom(8, 12);
+		newtyrant->alive = true;
+		newtyrant->id = -1 - Resource::zombie_map[map_name].size();
+		newtyrant->attack_min = 30;
+		newtyrant->attack_max = 50;
+		newtyrant->type = Enemy::TYPE::tyrant;
+		Resource::mainMap[map_name][x][y] = newtyrant->id;
+		newEnemy = newtyrant;
+	}
+	else if (type == "boss")
+	{
+		boss* newboss = new boss();
+		newboss->hp = Resource::myrandom.getRandom(250, 350);
+		newboss->name = "boss";
+		newboss->x = x;
+		newboss->y = y;
+		newboss->speed = Resource::myrandom.getRandom(15, 20);
+		newboss->chaseRange = Resource::myrandom.getRandom(15, 20);
+		newboss->alive = true;
+		newboss->id = -1 - Resource::zombie_map[map_name].size();
+		newboss->attack_min = 25;
+		newboss->attack_max = 35;
+		newboss->type = Enemy::TYPE::boss;
+		Resource::mainMap[map_name][x][y] = newboss->id;
+		newEnemy = newboss;
+	}
+	Resource::zombie_map[map_name].push_back(newEnemy);
 }
+
+void Init::spawn_zombie(bool flag)
+{
+	std::string first = "A";
+	for (int i = 0; i < 10; i++)
+		for (int j = 1; j <= 15; j++)
+		{
+			
+			/*
+				获取位置
+			*/
+			std::string now = first;
+			now[0] += i;
+			now += std::to_string(j);
+
+			if (flag && now == PlayerState::player_position)
+				continue;
+
+			int maxx = 0;
+			int minn = 0;
+			if (Resource::zombie_spawn[now] == "none")
+			{
+				maxx = 0;
+				minn = 0;
+			}
+			else if (Resource::zombie_spawn[now] == "low")
+			{
+				maxx = 5;
+				minn = 1;
+			}
+			else if (Resource::zombie_spawn[now] == "medium")
+			{
+				maxx = 10;
+				minn = 5;
+			}
+			else if (Resource::zombie_spawn[now] == "high")
+			{
+				maxx = 15;
+				minn = 10;
+			}
+			int sum_of_zombie = Resource::myrandom.getRandom(minn, maxx);
+			for (int k = 0; k < sum_of_zombie; k++)
+			{
+				if (Resource::zombie_map[now].size() == maxx)
+					break;
+				int x = Resource::myrandom.getRandom(1, 28);
+				int y = Resource::myrandom.getRandom(1, 28);
+				int cnt = 0;
+				while (Resource::mainMap[now][x][y] != 0)
+				{
+					cnt++;
+					x = Resource::myrandom.getRandom(1, 28);
+					y = Resource::myrandom.getRandom(1, 28);
+					if (cnt > 10)break;
+				}
+				if (cnt > 10)continue;
+				int type = Resource::myrandom.getRandom(1, 3);
+				if (type == 1)
+				{
+					Init::create_zombie(x, y, now, "zombie");
+				}
+				else if (type == 2)
+				{
+					Init::create_zombie(x, y, now, "hunter");
+				}
+				else if (type == 3)
+				{
+					Init::create_zombie(x, y, now, "tyrant");
+				}
+				
+			}
+		}
+}
+
+
 void Init::init_data()
 {
-	Resource::Event_queue.clear();
+	Resource::zombie_spawn["A1"] = "none";
+	Resource::zombie_spawn["A2"] = "none";
+	Resource::zombie_spawn["A3"] = "none";
+	Resource::zombie_spawn["A4"] = "low";
+	Resource::zombie_spawn["A5"] = "low";
+	Resource::zombie_spawn["A6"] = "low";
+	Resource::zombie_spawn["A7"] = "low";
+	Resource::zombie_spawn["A8"] = "low";
+	Resource::zombie_spawn["A9"] = "low";
+	Resource::zombie_spawn["A10"] = "low";
+	Resource::zombie_spawn["A11"] = "low";
+	Resource::zombie_spawn["A12"] = "none";
+	Resource::zombie_spawn["A13"] = "none";
+	Resource::zombie_spawn["A14"] = "none";
+	Resource::zombie_spawn["A15"] = "none";
 
+	Resource::zombie_spawn["B1"] = "low";
+	Resource::zombie_spawn["B2"] = "low";
+	Resource::zombie_spawn["B3"] = "low";
+	Resource::zombie_spawn["B4"] = "low";
+	Resource::zombie_spawn["B5"] = "low";
+	Resource::zombie_spawn["B6"] = "low";
+	Resource::zombie_spawn["B7"] = "medium";
+	Resource::zombie_spawn["B8"] = "medium";
+	Resource::zombie_spawn["B9"] = "low";
+	Resource::zombie_spawn["B10"] = "low";
+	Resource::zombie_spawn["B11"] = "low";
+	Resource::zombie_spawn["B12"] = "low";
+	Resource::zombie_spawn["B13"] = "none";
+	Resource::zombie_spawn["B14"] = "none";
+	Resource::zombie_spawn["B15"] = "none";
+
+	Resource::zombie_spawn["C1"] = "low";
+	Resource::zombie_spawn["C2"] = "medium";
+	Resource::zombie_spawn["C3"] = "medium";
+	Resource::zombie_spawn["C4"] = "medium";
+	Resource::zombie_spawn["C5"] = "low";
+	Resource::zombie_spawn["C6"] = "high";
+	Resource::zombie_spawn["C7"] = "high";
+	Resource::zombie_spawn["C8"] = "high";
+	Resource::zombie_spawn["C9"] = "high";
+	Resource::zombie_spawn["C10"] = "low";
+	Resource::zombie_spawn["C11"] = "low";
+	Resource::zombie_spawn["C12"] = "low";
+	Resource::zombie_spawn["C13"] = "none";
+	Resource::zombie_spawn["C14"] = "none";
+	Resource::zombie_spawn["C15"] = "none";
+
+	Resource::zombie_spawn["D1"] = "medium";
+	Resource::zombie_spawn["D2"] = "low";
+	Resource::zombie_spawn["D3"] = "medium";
+	Resource::zombie_spawn["D4"] = "medium";
+	Resource::zombie_spawn["D5"] = "medium";
+	Resource::zombie_spawn["D6"] = "high";
+	Resource::zombie_spawn["D7"] = "high";
+	Resource::zombie_spawn["D8"] = "high";
+	Resource::zombie_spawn["D9"] = "high";
+	Resource::zombie_spawn["D10"] = "low";
+	Resource::zombie_spawn["D11"] = "low";
+	Resource::zombie_spawn["D12"] = "low";
+	Resource::zombie_spawn["D13"] = "low";
+	Resource::zombie_spawn["D14"] = "none";
+	Resource::zombie_spawn["D15"] = "none";
+
+	Resource::zombie_spawn["E1"] = "medium";
+	Resource::zombie_spawn["E2"] = "medium";
+	Resource::zombie_spawn["E3"] = "medium";
+	Resource::zombie_spawn["E4"] = "medium";
+	Resource::zombie_spawn["E5"] = "medium";
+	Resource::zombie_spawn["E6"] = "medium";
+	Resource::zombie_spawn["E7"] = "medium";
+	Resource::zombie_spawn["E8"] = "medium";
+	Resource::zombie_spawn["E9"] = "low";
+	Resource::zombie_spawn["E10"] = "low";
+	Resource::zombie_spawn["E11"] = "low";
+	Resource::zombie_spawn["E12"] = "low";
+	Resource::zombie_spawn["E13"] = "low";
+	Resource::zombie_spawn["E14"] = "low";
+	Resource::zombie_spawn["E15"] = "low";
+
+	Resource::zombie_spawn["F1"] = "medium";
+	Resource::zombie_spawn["F2"] = "medium";
+	Resource::zombie_spawn["F3"] = "medium";
+	Resource::zombie_spawn["F4"] = "medium";
+	Resource::zombie_spawn["F5"] = "medium";
+	Resource::zombie_spawn["F6"] = "medium";
+	Resource::zombie_spawn["F7"] = "high";
+	Resource::zombie_spawn["F8"] = "medium";
+	Resource::zombie_spawn["F9"] = "low";
+	Resource::zombie_spawn["F10"] = "low";
+	Resource::zombie_spawn["F11"] = "low";
+	Resource::zombie_spawn["F12"] = "low";
+	Resource::zombie_spawn["F13"] = "low";
+	Resource::zombie_spawn["F14"] = "low";
+	Resource::zombie_spawn["F15"] = "low";
+
+	Resource::zombie_spawn["G1"] = "low";
+	Resource::zombie_spawn["G2"] = "low";
+	Resource::zombie_spawn["G3"] = "medium";
+	Resource::zombie_spawn["G4"] = "low";
+	Resource::zombie_spawn["G5"] = "low";
+	Resource::zombie_spawn["G6"] = "low";
+	Resource::zombie_spawn["G7"] = "low";
+	Resource::zombie_spawn["G8"] = "low";
+	Resource::zombie_spawn["G9"] = "low";
+	Resource::zombie_spawn["G10"] = "medium";
+	Resource::zombie_spawn["G11"] = "medium";
+	Resource::zombie_spawn["G12"] = "medium";
+	Resource::zombie_spawn["G13"] = "low";
+	Resource::zombie_spawn["G14"] = "low";
+	Resource::zombie_spawn["G15"] = "low";
+
+	Resource::zombie_spawn["H1"] = "medium";
+	Resource::zombie_spawn["H2"] = "medium";
+	Resource::zombie_spawn["H3"] = "low";
+	Resource::zombie_spawn["H4"] = "low";
+	Resource::zombie_spawn["H5"] = "low";
+	Resource::zombie_spawn["H6"] = "medium";
+	Resource::zombie_spawn["H7"] = "medium";
+	Resource::zombie_spawn["H8"] = "low";
+	Resource::zombie_spawn["H9"] = "low";
+	Resource::zombie_spawn["H10"] = "low";
+	Resource::zombie_spawn["H11"] = "low";
+	Resource::zombie_spawn["H12"] = "low";
+	Resource::zombie_spawn["H13"] = "low";
+	Resource::zombie_spawn["H14"] = "medium";
+	Resource::zombie_spawn["H15"] = "low";
+
+	Resource::zombie_spawn["I1"] = "none";
+	Resource::zombie_spawn["I2"] = "none";
+	Resource::zombie_spawn["I3"] = "low";
+	Resource::zombie_spawn["I4"] = "none";
+	Resource::zombie_spawn["I5"] = "low";
+	Resource::zombie_spawn["I6"] = "medium";
+	Resource::zombie_spawn["I7"] = "medium";
+	Resource::zombie_spawn["I8"] = "medium";
+	Resource::zombie_spawn["I9"] = "low";
+	Resource::zombie_spawn["I10"] = "low";
+	Resource::zombie_spawn["I11"] = "medium";
+	Resource::zombie_spawn["I12"] = "medium";
+	Resource::zombie_spawn["I13"] = "low";
+	Resource::zombie_spawn["I14"] = "low";
+	Resource::zombie_spawn["I15"] = "low";
+
+	Resource::zombie_spawn["J1"] = "none";
+	Resource::zombie_spawn["J2"] = "none";
+	Resource::zombie_spawn["J3"] = "none";
+	Resource::zombie_spawn["J4"] = "none";
+	Resource::zombie_spawn["J5"] = "none";
+	Resource::zombie_spawn["J6"] = "none";
+	Resource::zombie_spawn["J7"] = "low";
+	Resource::zombie_spawn["J8"] = "high";
+	Resource::zombie_spawn["J9"] = "medium";
+	Resource::zombie_spawn["J10"] = "medium";
+	Resource::zombie_spawn["J11"] = "none";
+	Resource::zombie_spawn["J12"] = "none";
+	Resource::zombie_spawn["J13"] = "none";
+	Resource::zombie_spawn["J14"] = "none";
+	Resource::zombie_spawn["J15"] = "none";
+
+
+	Resource::Event_queue.clear();
+	Resource::zombie_map.clear();
 	Resource::itemBox_map.clear();
 
 	/*
@@ -672,6 +1033,7 @@ void Init::init_data()
 	//data1();
 	//data2();
 
+	load_event_from_json("data\\interactiveEventForMap.json");
 	load_event_from_json("data\\interactiveEvent.json");
 	load_event_from_json("data\\itembox.json");
 	load_placeable_event_from_json("data\\placeableEvent.json");
@@ -682,27 +1044,5 @@ void Init::init_data()
 	
 	//create_zombie(25, 25);
 	//create_zombie(25, 26);
-	std::string first = "A";
-	for(int i = 0; i < 10; i++)
-		for (int j = 1; j <= 15; j++)
-		{
-			std::string now = first;
-			now[0] += i;
-			now += std::to_string(j);
-			for (int k = 0; k < 3; k++)
-			{
-				int x = Resource::myrandom.getRandom(1, 28);
-				int y = Resource::myrandom.getRandom(1, 28);
-				int cnt = 0;
-				while (Resource::mainMap[now][x][y] != 0)
-				{
-					cnt++;
-					x = Resource::myrandom.getRandom(1, 28);
-					y = Resource::myrandom.getRandom(1, 28);
-					if (cnt > 5)break;
-				}
-				if (cnt > 5)break;
-				create_zombie(x, y, now);
-			}
-		}
+	
 }

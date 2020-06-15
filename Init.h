@@ -33,5 +33,7 @@ class Init
 		static void init_loot();
 		static void init_data();
 		static void init_easyx();
+		static void spawn_zombie(bool);
+		static void create_zombie(int, int, std::string, std::string);
 };
 

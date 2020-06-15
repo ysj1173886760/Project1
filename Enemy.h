@@ -2,6 +2,7 @@
 
 #include<string>
 #include<queue>
+#include<cmath>
 #include"PlayerState.h"
 #include"Resource.h"
 
@@ -44,10 +45,25 @@ class Enemy
 
 		enum class TYPE
 		{
-			zombie
-		};
+			zombie,
+			hunter,
+			tyrant,
+			boss
+		}type;
 
 		virtual bool is_zombie()
+		{
+			return false;
+		}
+		virtual bool is_hunter()
+		{
+			return false;
+		}
+		virtual bool is_tyrant()
+		{
+			return false;
+		}
+		virtual bool is_boss()
 		{
 			return false;
 		}
@@ -84,6 +100,60 @@ class zombie :public Enemy
 		bool chaseing();
 
 		bool is_zombie()
+		{
+			return true;
+		}
+};
+
+class hunter :public Enemy
+{
+	public:
+		~hunter() {}
+		hunter() {}
+
+		void move();
+		int attack();
+		bool can_attack();
+		bool add_step();
+		bool chaseing();
+
+		bool is_hunter()
+		{
+			return true;
+		}
+};
+
+class tyrant : public Enemy
+{
+	public:
+		~tyrant() {}
+		tyrant() {}
+
+		void move();
+		int attack();
+		bool can_attack();
+		bool add_step();
+		bool chaseing();
+
+		bool is_tyrant()
+		{
+			return true;
+		}
+};
+
+class boss :public Enemy
+{
+	public:
+		~boss() {}
+		boss() {}
+
+		void move();
+		int attack();
+		bool can_attack();
+		bool add_step();
+		bool chaseing();
+
+		bool is_boss()
 		{
 			return true;
 		}

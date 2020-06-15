@@ -31,8 +31,10 @@ bool Craft::can_craft()
 void Craft::craft_item()
 {
 	if (!can_craft())return;
+	//if (!Resource::player_backpack.canPut(this->product))return;
 	for (std::vector<std::pair<std::string, int>>::iterator it = need.begin(); it != need.end(); it++)
 	{
+		//if(Resource::item_map[Resource::item_map_for_string[it->first]]->type == Item::TYPE::Tool)
 		Resource::player_backpack.remove(it->first, it->second);
 	}
 	Resource::Event_queue.push_back(this->event);

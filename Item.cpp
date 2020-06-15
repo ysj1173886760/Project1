@@ -160,3 +160,10 @@ void Backpack::equip()
 		}
 	}
 }
+
+void Heal::use()
+{
+	PlayerState::player_hp += this->heal;
+	Resource::Maintime.add(this->time, 0, 0);
+	Resource::Event_queue.push_back(this->event);
+}
